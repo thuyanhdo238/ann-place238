@@ -7,6 +7,7 @@ Gui digest vao Discord #radar
 import os
 import json
 import urllib.request
+import urllib.error
 from datetime import datetime, timezone
 
 DISCORD_WEBHOOK = os.environ["DISCORD_RADAR_WEBHOOK"]
@@ -34,7 +35,8 @@ def fetch_rss(url, max_items=2):
             if title and link:
                 items.append((title.group(1).strip(), link.group(1).strip()))
         return items
-    except Exception:
+    except Exception as e:
+        print(f"RSS fetch error for {url}: {e}")
         return []
 
 def send_discord(content):
@@ -45,8 +47,14 @@ def send_discord(content):
         headers={"Content-Type": "application/json"},
         method="POST"
     )
-    with urllib.request.urlopen(req, timeout=10) as r:
-        return r.status
+    try:
+        with urllib.request.urlopen(req, timeout=10) as r:
+            print(f"Discord response status: {r.status}")
+            return r.status
+    except urllib.error.HTTPError as e:
+        body = e.read().decode("utf-8", errors="ignore")
+        print(f"Discord error {e.code}: {body}")
+        raise
 
 def main():
     today = datetime.now(timezone.utc).strftime("%d/%m/%Y")
