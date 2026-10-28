@@ -1,0 +1,14 @@
+name: General Agent (Điều phối)
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"   # 8:00 UTC Thứ Hai = 15:00 VN
+  workflow_dispatch:
+
+jobs:
+  post-general:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run General Agent
+        run: python agents/general.py

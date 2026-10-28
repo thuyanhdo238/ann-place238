@@ -1,0 +1,14 @@
+name: Opportunity Agent
+
+on:
+  schedule:
+    - cron: "0 6 * * *"   # 6:00 UTC = 13:00 VN
+  workflow_dispatch:
+
+jobs:
+  post-opportunity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Opportunity Agent
+        run: python agents/opportunity.py
