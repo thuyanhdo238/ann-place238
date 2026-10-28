@@ -19,6 +19,4 @@ jobs:
           python-version: "3.11"
 
       - name: Run Radar Agent
-        env:
-          DISCORD_RADAR_WEBHOOK: ${{ secrets.DISCORD_RADAR_WEBHOOK }}
         run: python agents/radar.py

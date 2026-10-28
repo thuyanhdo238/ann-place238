@@ -19,6 +19,4 @@ jobs:
           python-version: "3.11"
 
       - name: Run Chance Agent
-        env:
-          DISCORD_CHANCE_WEBHOOK: ${{ secrets.DISCORD_CHANCE_WEBHOOK }}
         run: python agents/chance.py

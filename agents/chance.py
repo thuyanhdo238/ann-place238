@@ -12,7 +12,10 @@ import ssl
 import random
 from datetime import datetime, timezone
 
-DISCORD_WEBHOOK = os.environ["DISCORD_CHANCE_WEBHOOK"]
+_config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "config", "webhooks.json")
+with open(_config_path) as _f:
+    _cfg = json.load(_f)
+DISCORD_WEBHOOK = _cfg["chance"]
 
 # Kho cau noi - triet hoc, nghe thuat, thiet ke, van hoa
 QUOTES = [

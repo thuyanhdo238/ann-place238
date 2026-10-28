@@ -10,7 +10,10 @@ import urllib.request
 import urllib.error
 from datetime import datetime, timezone
 
-DISCORD_WEBHOOK = os.environ["DISCORD_RADAR_WEBHOOK"]
+_config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "config", "webhooks.json")
+with open(_config_path) as _f:
+    _cfg = json.load(_f)
+DISCORD_WEBHOOK = _cfg["radar"]
 
 FEEDS = [
     {"name": "MIT Tech Review - AI", "url": "https://www.technologyreview.com/feed/", "tag": "AI"},
