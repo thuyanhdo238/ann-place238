@@ -1,0 +1,14 @@
+name: Art Sympathy Agent
+
+on:
+  schedule:
+    - cron: "0 2 * * *"   # 2:00 UTC daily = 9:00 SA / 21:00 VN
+  workflow_dispatch:
+
+jobs:
+  post-art:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Art Sympathy Agent
+        run: python agents/art.py
