@@ -1,0 +1,24 @@
+name: 🎲 Chance Agent
+
+on:
+  schedule:
+    - cron: "0 1 * * *"  # 1:00 UTC moi ngay (8:00 sang Hanoi)
+  workflow_dispatch:
+
+jobs:
+  chance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run Chance Agent
+        env:
+          DISCORD_CHANCE_WEBHOOK: ${{ secrets.DISCORD_CHANCE_WEBHOOK }}
+        run: python agents/chance.py
