@@ -15,6 +15,8 @@ import json
 import datetime
 import http.client
 import ssl
+import os
+import re
 
 _cfg = json.load(open("config/webhooks.json"))
 DISCORD_WEBHOOK = _cfg["general"]
@@ -78,6 +80,35 @@ def get_week_range():
     return monday.strftime("%d/%m"), sunday.strftime("%d/%m/%Y")
 
 
+def read_pipeline():
+    """Đọc pipeline.md và phân loại theo trạng thái"""
+    pipeline_path = "pipeline.md"
+    if not os.path.exists(pipeline_path):
+        return None
+    with open(pipeline_path, encoding="utf-8") as f:
+        content = f.read()
+
+    status_map = {
+        "[>]": ("đang làm", "🔵"),
+        "[?]": ("chờ quyết định", "🟡"),
+        "[!]": ("cần sửa", "🔴"),
+        "[ ]": ("chưa bắt đầu", "⚪"),
+        "[x]": ("xong", "✅"),
+    }
+
+    in_progress, waiting, needs_fix = [], [], []
+    for line in content.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("- [>]"):
+            in_progress.append(stripped[5:].strip())
+        elif stripped.startswith("- [?]"):
+            waiting.append(stripped[5:].strip())
+        elif stripped.startswith("- [!]"):
+            needs_fix.append(stripped[5:].strip())
+
+    return {"in_progress": in_progress, "waiting": waiting, "needs_fix": needs_fix}
+
+
 def build_message():
     week_start, week_end = get_week_range()
     today_str = datetime.date.today().strftime("%d/%m/%Y")
@@ -87,28 +118,41 @@ def build_message():
     lines.append(f"# 🗂️ Báo cáo tuần — Ann Place")
     lines.append(f"*Tuần {week_start} – {week_end} · Điều phối tổng hợp*\n")
 
+    # Pipeline
+    pipeline = read_pipeline()
+    if pipeline:
+        lines.append("## 📋 Pipeline công việc")
+        if pipeline["needs_fix"]:
+            lines.append("**🔴 Cần sửa:**")
+            for item in pipeline["needs_fix"]:
+                lines.append(f"  • {item}")
+        if pipeline["waiting"]:
+            lines.append("**🟡 Chờ bạn quyết định:**")
+            for item in pipeline["waiting"]:
+                lines.append(f"  • {item}")
+        if pipeline["in_progress"]:
+            lines.append("**🔵 Đang làm:**")
+            for item in pipeline["in_progress"]:
+                lines.append(f"  • {item}")
+        if not any([pipeline["needs_fix"], pipeline["waiting"], pipeline["in_progress"]]):
+            lines.append("*Không có việc nào đang chạy — kiểm tra pipeline.md*")
+
     # Trạng thái các agent
-    lines.append("## ✅ Agents đang chạy")
+    lines.append("\n## ✅ Agents đang chạy")
     for a in AGENT_SCHEDULE:
         lines.append(f"• **{a['name']}** → {a['channel']} lúc {a['time_vn']} ({a['days']})")
 
     # Usage tracking
-    lines.append("\n## 📊 Ước tính tài nguyên tháng này")
+    lines.append("\n## 📊 Ước tính tài nguyên")
     lines.append(f"• GitHub Actions: ~{monthly_minutes} phút/tháng ≈ **{pct}% free tier** (giới hạn 2.000 phút)")
-    lines.append(f"• Chi phí hosting: **$0** (GitHub Actions free)")
-    lines.append(f"• Claude/ChatGPT: gói thuê bao cố định — agents hiện tại không dùng API, không phát sinh thêm")
-    lines.append("• ⚠️ *Các số trên là ước tính — không phải hóa đơn thật*")
-
-    # Việc chờ quyết định
-    lines.append("\n## 🔔 Cần bạn quyết định")
-    lines.append("• Xem lại cơ hội từ #radar tuần này — có deadline nào cần đăng ký không?")
-    lines.append("• Agent nào cần điều chỉnh nội dung hoặc lịch chạy?")
-    lines.append("• Phase tiếp theo: thêm agent theo dõi pipeline công việc?")
+    lines.append(f"• Chi phí hosting: **$0**")
+    lines.append(f"• Claude/ChatGPT: gói cố định — agents không dùng API, không phát sinh thêm")
+    lines.append("• ⚠️ *Số trên là ước tính, không phải hóa đơn thật*")
 
     # Ghi chú
     lines.append("\n---")
-    lines.append("*Agents không tự nộp hồ sơ, không gửi email, không chi tiền khi chưa được giao quyền*")
-    lines.append(f"*Báo cáo tự động · {today_str}*")
+    lines.append("*Không tự nộp hồ sơ · không gửi email · không chi tiền khi chưa được giao quyền*")
+    lines.append(f"*Tự động · {today_str}*")
 
     return "\n".join(lines)
 

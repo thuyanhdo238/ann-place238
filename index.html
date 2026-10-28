@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Văn Phòng Của Anh ♥</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap');
+
+  :root {
+    --cream: #f5f0e8;
+    --brown: #8B5E3C;
+    --dark-brown: #5C3D1E;
+    --green: #4a7c59;
+    --dark-green: #2d5a3d;
+    --red: #c0392b;
+    --dark-red: #8B2012;
+    --white: #fefefe;
+    --shadow: #d4c4a8;
+    --pixel: 2px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; image-rendering: pixelated; }
+
+  body {
+    background: var(--cream);
+    font-family: 'VT323', monospace;
+    min-height: 100vh;
+    padding: 16px;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .header-box {
+    display: inline-block;
+    background: var(--brown);
+    border: 4px solid var(--dark-brown);
+    padding: 10px 28px;
+    position: relative;
+    box-shadow: 4px 4px 0 var(--dark-brown);
+  }
+  .header-box h1 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(10px, 2.5vw, 16px);
+    color: var(--cream);
+    letter-spacing: 2px;
+  }
+  .hearts { color: #e8739e; font-size: 1.2em; }
+  .leaf { font-size: 1.4em; position: absolute; top: -4px; }
+  .leaf-l { left: -8px; }
+  .leaf-r { right: -8px; }
+
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* ROOM CARD */
+  .room {
+    background: var(--white);
+    border: 4px solid var(--dark-brown);
+    box-shadow: 4px 4px 0 var(--dark-brown);
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    position: relative;
+    overflow: hidden;
+  }
+  .room:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--dark-brown);
+  }
+  .room:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--dark-brown);
+  }
+
+  /* ROOM HEADER BAR */
+  .room-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+    border-bottom: 3px solid var(--dark-brown);
+  }
+  .room-header.green { background: var(--green); }
+  .room-header.red   { background: var(--red); }
+
+  .room-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(6px, 1.5vw, 9px);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.5px;
+  }
+  .room-title svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* STATUS DOT */
+  .status-dot {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(0,0,0,0.25);
+    border-radius: 0;
+    padding: 2px 6px;
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.5);
+  }
+  .dot.on  { background: #7fff7f; animation: pulse 2s infinite; }
+  .dot.off { background: #ff6b6b; }
+  .dot-count {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 6px;
+    color: var(--white);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ROOM BODY */
+  .room-body {
+    padding: 10px 10px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-height: 110px;
+    position: relative;
+  }
+
+  /* PIXEL CHARACTER */
+  .character {
+    width: 56px;
+    height: 56px;
+    image-rendering: pixelated;
+    flex-shrink: 0;
+  }
+
+  /* DESK PROP */
+  .desk-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .prop-box {
+    background: var(--shadow);
+    border: 2px solid var(--brown);
+    width: 70%;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  /* CHANNEL LINK */
+  .channel-tag {
+    font-size: 13px;
+    color: var(--brown);
+    text-decoration: none;
+    border: 2px solid var(--brown);
+    padding: 1px 6px;
+    font-family: 'VT323', monospace;
+  }
+  .channel-tag:hover { background: var(--brown); color: var(--white); }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(92,61,30,0.6);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--cream);
+    border: 4px solid var(--dark-brown);
+    box-shadow: 6px 6px 0 var(--dark-brown);
+    max-width: 420px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .modal-header {
+    background: var(--dark-brown);
+    color: var(--cream);
+    padding: 10px 14px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-close {
+    cursor: pointer;
+    font-size: 16px;
+    background: none;
+    border: none;
+    color: var(--cream);
+    font-family: 'Press Start 2P', monospace;
+  }
+  .modal-body {
+    padding: 16px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--dark-brown);
+  }
+  .modal-body h3 { font-size: 13px; margin-bottom: 6px; color: var(--dark-brown); font-family: 'Press Start 2P', monospace; }
+  .modal-body p { margin-bottom: 8px; }
+  .modal-body ul { padding-left: 18px; margin-bottom: 8px; }
+  .modal-body li { margin-bottom: 3px; }
+  .tag-green { background: var(--green); color: white; padding: 1px 6px; font-size: 13px; }
+  .tag-red   { background: var(--red);   color: white; padding: 1px 6px; font-size: 13px; }
+  .schedule-row { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed var(--shadow); font-size: 15px; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--brown);
+    opacity: 0.7;
+  }
+
+  /* PAUSE BUTTON */
+  .controls {
+    text-align: center;
+    margin: 14px 0 6px;
+  }
+  .btn-pixel {
+    background: var(--brown);
+    color: var(--cream);
+    border: 3px solid var(--dark-brown);
+    box-shadow: 3px 3px 0 var(--dark-brown);
+    padding: 6px 16px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    cursor: pointer;
+    letter-spacing: 1px;
+  }
+  .btn-pixel:hover { background: var(--dark-brown); }
+  .btn-pixel:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--dark-brown); }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .room-body { min-height: 90px; }
+    .character { width: 44px; height: 44px; }
+    .prop-box { height: 28px; font-size: 14px; }
+  }
+  @media (max-width: 380px) {
+    .grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-box">
+    <span class="leaf leaf-l">🌿</span>
+    <h1><span class="hearts">♥</span> VĂN PHÒNG CỦA ANH <span class="hearts">♥</span></h1>
+    <span class="leaf leaf-r">🌿</span>
+  </div>
+</div>
+
+<div class="grid" id="grid">
+
+  <!-- 1. ĐIỀU PHỐI -->
+  <div class="room" onclick="openModal('dieuphoi')">
+    <div class="room-header green">
+      <div class="room-title">
+        <svg viewBox="0 0 16 16" fill="white"><rect x="2" y="2" width="5" height="5"/><rect x="9" y="2" width="5" height="5"/><rect x="2" y="9" width="5" height="5"/><rect x="9" y="9" width="5" height="5"/></svg>
+        ĐIỀU PHỐI
+      </div>
+      <div class="status-dot"><div class="dot on"></div><span class="dot-count">●2</span></div>
+    </div>
+    <div class="room-body">
+      <canvas class="character" id="c-dieuphoi" width="56" height="56"></canvas>
+      <div class="desk-area"><div class="prop-box">📋 ✅ 📋</div></div>
+      <a class="channel-tag" href="#" onclick="event.stopPropagation()">#general</a>
+    </div>
+  </div>
+
+  <!-- 2. VĂN HÓA -->
+  <div class="room" onclick="openModal('vanhoa')">
+    <div class="room-header green">
+      <div class="room-title">
+        <svg viewBox="0 0 16 16" fill="white"><circle cx="8" cy="5" r="3"/><rect x="4" y="9" width="8" height="5"/></svg>
+        VĂN HÓA
+      </div>
+      <div class="status-dot"><div class="dot on"></div><span class="dot-count">●2</span></div>
+    </div>
+    <div class="room-body">
+      <canvas class="character" id="c-vanhoa" width="56" height="56"></canvas>
+      <div class="desk-area"><div class="prop-box">🎨 🖼️ 🎧</div></div>
+      <a class="channel-tag" href="#" onclick="event.stopPropagation()">#radar</a>
+    </div>
+  </div>
+
+  <!-- 3. CƠ HỘI -->
+  <div class="room" onclick="openModal('cohoi')">
+    <div class="room-header green">
+      <div class="room-title">
+        <svg viewBox="0 0 16 16" fill="white"><circle cx="8" cy="8" r="5" stroke="white" stroke-width="2" fill="none"/><rect x="7" y="3" width="2" height="5"/><rect x="8" y="8" width="4" height="2"/></svg>
+        CƠ HỘI
+      </div>
+      <div class="status-dot"><div class="dot on"></div><span class="dot-count">●4</span></div>
+    </div>
+    <div class="room-body">
+      <canvas class="character" id="c-cohoi" width="56" height="56"></canvas>
+      <div class="desk-area"><div class="prop-box">🗺️ 📍 💼</div></div>
+      <a class="channel-tag" href="#" onclick="event.stopPropagation()">#radar</a>
+    </div>
+  </div>
+
+  <!-- 4. CHIẾN LƯỢC -->
+  <div class="room" onclick="openModal('chienluoc')">
+    <div class="room-header red">
+      <div class="room-title">
+        <svg viewBox="0 0 16 16" fill="white"><rect x="1" y="10" width="3" height="5"/><rect x="5" y="6" width="3" height="9"/><rect x="9" y="3" width="3" height="12"/><rect x="13" y="1" width="3" height="14"/></svg>
+        CHIẾN LƯỢC
+      </div>
+      <div class="status-dot"><div class="dot on"></div><span class="dot-count">●2</span></div>
+    </div>
+    <div class="room-body">
+      <canvas class="character" id="c-chienluoc" width="56" height="56"></canvas>
+      <div class="desk-area"><div class="prop-box">📈 📊</div></div>
+      <a class="channel-tag" href="#" onclick="event.stopPropagation()">#general</a>
+    </div>
+  </div>
+
+  <!-- 5. SÁNG TẠO -->
+  <div class="room" onclick="openModal('sangtao')">
+    <div class="room-header red">
+      <div class="room-title">
+        <svg viewBox="0 0 16 16" fill="white"><circle cx="8" cy="8" r="3"/><rect x="7" y="1" width="2" height="3"/><rect x="7" y="12" width="2" height="3"/><rect x="1" y="7" width="3" height="2"/><rect x="12" y="7" width="3" height="2"/></svg>
+        SÁNG TẠO
+      </div>
+      <div class="status-dot"><div class="dot on"></div><span class="dot-count">●1</span></div>
+    </div>
+    <div class="room-body">
+      <canvas class="character" id="c-sangtao" width="56" height="56"></canvas>
+      <div class="desk-area"><div class="prop-box">✏️ 💡 📝</div></div>
+      <a class="channel-tag" href="#" onclick="event.stopPropagation()">#art · #chance</a>
+    </div>
+  </div>
+
+  <!-- 6. KIỂM TRA -->
+  <div class="room" onclick="openModal('kiemtra')">
+    <div class="room-header green">
+      <div class="room-title">
+        <svg viewBox="0 0 16 16" fill="white"><rect x="2" y="2" width="12" height="12" rx="1" fill="none" stroke="white" stroke-width="2"/><path d="M5 8 L7 10 L11 6" stroke="white" stroke-width="2" fill="none"/></svg>
+        KIỂM TRA
+      </div>
+      <div class="status-dot"><div class="dot on"></div><span class="dot-count">●3</span></div>
+    </div>
+    <div class="room-body">
+      <canvas class="character" id="c-kiemtra" width="56" height="56"></canvas>
+      <div class="desk-area"><div class="prop-box">✅ ✅ 🔍</div></div>
+      <a class="channel-tag" href="#" onclick="event.stopPropagation()">#general</a>
+    </div>
+  </div>
+
+  <!-- 7. VẬN HÀNH -->
+  <div class="room" onclick="openModal('vanhanh')">
+    <div class="room-header green">
+      <div class="room-title">
+        <svg viewBox="0 0 16 16" fill="white"><circle cx="8" cy="8" r="3"/><circle cx="8" cy="8" r="6" stroke="white" stroke-width="2" fill="none"/></svg>
+        VẬN HÀNH
+      </div>
+      <div class="status-dot"><div class="dot on"></div><span class="dot-count">●2</span></div>
+    </div>
+    <div class="room-body">
+      <canvas class="character" id="c-vanhanh" width="56" height="56"></canvas>
+      <div class="desk-area"><div class="prop-box">⚙️ 🔲 🟦</div></div>
+      <a class="channel-tag" href="#" onclick="event.stopPropagation()">#general</a>
+    </div>
+  </div>
+
+  <!-- 8. NHÂN SỰ -->
+  <div class="room" onclick="openModal('nhansu')">
+    <div class="room-header red">
+      <div class="room-title">
+        <svg viewBox="0 0 16 16" fill="white"><circle cx="5" cy="5" r="2"/><circle cx="11" cy="5" r="2"/><rect x="2" y="9" width="5" height="5"/><rect x="9" y="9" width="5" height="5"/></svg>
+        NHÂN SỰ
+      </div>
+      <div class="status-dot"><div class="dot on"></div><span class="dot-count">●1</span></div>
+    </div>
+    <div class="room-body">
+      <canvas class="character" id="c-nhansu" width="56" height="56"></canvas>
+      <div class="desk-area"><div class="prop-box">👤 👤 👤 👤</div></div>
+      <a class="channel-tag" href="#" onclick="event.stopPropagation()">#general</a>
+    </div>
+  </div>
+
+  <!-- 9. KẾ TOÁN -->
+  <div class="room" onclick="openModal('ketoan')">
+    <div class="room-header green">
+      <div class="room-title">
+        <svg viewBox="0 0 16 16" fill="white"><rect x="2" y="2" width="12" height="12"/><rect x="4" y="4" width="3" height="3" fill="#4a7c59"/><rect x="9" y="4" width="3" height="3" fill="#4a7c59"/><rect x="4" y="9" width="3" height="3" fill="#4a7c59"/><rect x="9" y="9" width="3" height="3" fill="#4a7c59"/></svg>
+        KẾ TOÁN
+      </div>
+      <div class="status-dot"><div class="dot on"></div><span class="dot-count">●2</span></div>
+    </div>
+    <div class="room-body">
+      <canvas class="character" id="c-ketoan" width="56" height="56"></canvas>
+      <div class="desk-area"><div class="prop-box">📉 📈 🧮</div></div>
+      <a class="channel-tag" href="#" onclick="event.stopPropagation()">#general</a>
+    </div>
+  </div>
+
+</div><!-- /grid -->
+
+<div class="controls">
+  <button class="btn-pixel" onclick="openModal('schedule')">📅 LỊCH CHẠY</button>
+  &nbsp;
+  <button class="btn-pixel" onclick="openModal('usage')">📊 USAGE</button>
+</div>
+
+<div class="footer">
+  ♥ Ann Place · GitHub Actions · Zero cost · Tự động hóa hoàn toàn ♥<br>
+  <small style="font-size:11px">Dữ liệu hiển thị là minh họa — trạng thái thực xem trên GitHub Actions</small>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <span id="modal-title">Chi tiết</span>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const ROOMS = {
+  dieuphoi: {
+    title: "ĐIỀU PHỐI",
+    color: "#4a7c59",
+    body: `
+      <h3>Vai trò</h3>
+      <p>Tổng hợp báo cáo tuần, đọc pipeline công việc, theo dõi trạng thái các agent.</p>
+      <h3>Agents</h3>
+      <ul>
+        <li><span class="tag-green">General</span> — báo cáo tuần, pipeline, usage</li>
+      </ul>
+      <h3>Lịch</h3>
+      <div class="schedule-row"><span>Thứ Hai 15:00 VN</span><span>→ #general</span></div>
+      <h3>Nguyên tắc</h3>
+      <p>Không tự giao quyền mới. Không tự điều chỉnh ngân sách. Chỉ báo cáo và chờ bạn quyết định.</p>
+    `
+  },
+  vanhoa: {
+    title: "VĂN HÓA & DESIGN",
+    color: "#4a7c59",
+    body: `
+      <h3>Vai trò</h3>
+      <p>Cập nhật tin tức văn hóa, di sản, AI tools, xu hướng thiết kế sáng tạo.</p>
+      <h3>Agents</h3>
+      <ul>
+        <li><span class="tag-green">Radar</span> — 6 RSS feeds: AI, Design, Heritage, Art</li>
+      </ul>
+      <h3>Lịch</h3>
+      <div class="schedule-row"><span>Hằng ngày 7:00 VN</span><span>→ #radar</span></div>
+      <h3>Nguồn đang theo dõi</h3>
+      <ul>
+        <li>Hacker News</li><li>Design Milk</li><li>It's Nice That</li>
+        <li>Colossal</li><li>MIT Technology Review</li><li>Smashing Magazine</li>
+      </ul>
+    `
+  },
+  cohoi: {
+    title: "CƠ HỘI",
+    color: "#4a7c59",
+    body: `
+      <h3>Vai trò</h3>
+      <p>Quét cơ hội: hội thảo, triển lãm, call for submissions, remote jobs phù hợp.</p>
+      <h3>Agents</h3>
+      <ul>
+        <li><span class="tag-green">Opportunity</span> — hội thảo + remote design jobs</li>
+      </ul>
+      <h3>Lịch</h3>
+      <div class="schedule-row"><span>Hằng ngày 13:00 VN</span><span>→ #radar</span></div>
+      <h3>Nguyên tắc</h3>
+      <p>Chỉ báo cáo — <strong>không tự nộp hồ sơ, không tự đăng ký</strong> khi chưa được giao quyền.</p>
+    `
+  },
+  chienluoc: {
+    title: "CHIẾN LƯỢC",
+    color: "#c0392b",
+    body: `
+      <h3>Vai trò</h3>
+      <p>Phân tích xu hướng từ Radar, đề xuất định vị và kế hoạch phát triển kênh.</p>
+      <h3>Trạng thái</h3>
+      <p><span class="tag-red">Phase 3</span> — Chưa có agent tự động. Hiện do bạn và Claude xử lý khi cần.</p>
+      <h3>Kế hoạch</h3>
+      <ul>
+        <li>Monthly strategy digest từ dữ liệu Radar tích lũy</li>
+        <li>So sánh kênh tương tự trong lĩnh vực art/design</li>
+      </ul>
+    `
+  },
+  sangtao: {
+    title: "SÁNG TẠO",
+    color: "#c0392b",
+    body: `
+      <h3>Vai trò</h3>
+      <p>Sản xuất nội dung cho Art Sympathy và các kênh sáng tạo.</p>
+      <h3>Agents</h3>
+      <ul>
+        <li><span class="tag-red">Art Sympathy (SaLu)</span> — nhật ký nghệ thuật hằng ngày</li>
+        <li><span class="tag-red">Chance</span> — trích dẫn cảm hứng từ danh họa</li>
+      </ul>
+      <h3>Lịch</h3>
+      <div class="schedule-row"><span>SaLu — 9:00 VN</span><span>→ #art</span></div>
+      <div class="schedule-row"><span>Chance — 8:00 VN</span><span>→ #chance</span></div>
+      <h3>Nhân vật SaLu</h3>
+      <p>Sinh vật tròn nhỏ, mắt to, cầm sketchbook. Ghi nhật ký lang thang qua cái đẹp. Anonymous — không có mặt bạn.</p>
+    `
+  },
+  kiemtra: {
+    title: "KIỂM TRA",
+    color: "#4a7c59",
+    body: `
+      <h3>Vai trò</h3>
+      <p>Rà soát nội dung trước khi xuất bản: nguồn, bản quyền, độ chính xác, quy định nền tảng.</p>
+      <h3>Trạng thái</h3>
+      <p><span class="tag-green">Tích hợp</span> trong từng agent — không agent riêng.</p>
+      <h3>Checklist tự động</h3>
+      <ul>
+        <li>Kiểm tra nguồn RSS có hợp lệ không</li>
+        <li>Không suy diễn tâm lý từ tác phẩm (Art Sympathy)</li>
+        <li>Ghi rõ: dữ kiện / diễn giải / đề xuất AI</li>
+        <li>Đánh dấu nội dung chưa xác minh</li>
+      </ul>
+    `
+  },
+  vanhanh: {
+    title: "VẬN HÀNH",
+    color: "#4a7c59",
+    body: `
+      <h3>Vai trò</h3>
+      <p>Quản lý lịch đăng, theo dõi GitHub Actions, đảm bảo agents chạy đúng giờ.</p>
+      <h3>Hạ tầng</h3>
+      <ul>
+        <li>GitHub Actions — cron tự động, free tier</li>
+        <li>config/webhooks.json — không thủ công</li>
+        <li>pipeline.md — bạn update, agent đọc</li>
+      </ul>
+      <h3>Không có</h3>
+      <p>Server riêng · Domain · Hosting fee · Manual trigger hằng ngày</p>
+    `
+  },
+  nhansu: {
+    title: "NHÂN SỰ",
+    color: "#c0392b",
+    body: `
+      <h3>Vai trò</h3>
+      <p>Theo dõi phân công vai trò, đề xuất thêm/bớt agent khi văn phòng phát triển.</p>
+      <h3>Trạng thái hiện tại</h3>
+      <p><span class="tag-red">Phase 3</span> — Báo cáo nhân sự tích hợp trong General (Điều phối).</p>
+      <h3>Agents hiện có</h3>
+      <ul>
+        <li>Radar · Chance · Art Sympathy · Opportunity · General</li>
+      </ul>
+    `
+  },
+  ketoan: {
+    title: "KẾ TOÁN",
+    color: "#4a7c59",
+    body: `
+      <h3>Vai trò</h3>
+      <p>Theo dõi usage GitHub Actions, ước tính chi phí, cảnh báo gần giới hạn.</p>
+      <h3>Báo cáo hằng tuần (trong General)</h3>
+      <ul>
+        <li>GitHub Actions: ~124 phút/tháng ≈ 6.2% free tier</li>
+        <li>Giới hạn: 2.000 phút/tháng (private repo)</li>
+        <li>Chi phí hosting: $0</li>
+        <li>Claude/ChatGPT: gói thuê bao cố định, agents không dùng API</li>
+      </ul>
+      <p>⚠️ <em>Số trên là ước tính — không phải hóa đơn thật</em></p>
+    `
+  },
+  schedule: {
+    title: "LỊCH CHẠY",
+    color: "#5C3D1E",
+    body: `
+      <h3>Hằng ngày</h3>
+      <div class="schedule-row"><span>7:00 VN</span><span>Radar → #radar</span></div>
+      <div class="schedule-row"><span>8:00 VN</span><span>Chance → #chance</span></div>
+      <div class="schedule-row"><span>9:00 VN</span><span>SaLu → #art</span></div>
+      <div class="schedule-row"><span>13:00 VN</span><span>Opportunity → #radar</span></div>
+      <br>
+      <h3>Thứ Hai hằng tuần</h3>
+      <div class="schedule-row"><span>15:00 VN</span><span>Điều phối → #general</span></div>
+      <br>
+      <p style="font-size:13px">Tất cả chạy trên GitHub Actions · Không cần bật máy · Không cần làm gì thủ công</p>
+    `
+  },
+  usage: {
+    title: "USAGE & CHI PHÍ",
+    color: "#5C3D1E",
+    body: `
+      <h3>GitHub Actions (tháng)</h3>
+      <div class="schedule-row"><span>Agents hằng ngày (4×30)</span><span>120 phút</span></div>
+      <div class="schedule-row"><span>General hằng tuần (1×4)</span><span>4 phút</span></div>
+      <div class="schedule-row"><span><strong>Tổng ước tính</strong></span><span><strong>~124 phút</strong></span></div>
+      <div class="schedule-row"><span>Free tier</span><span>2.000 phút</span></div>
+      <div class="schedule-row"><span>Đã dùng</span><span>~6.2%</span></div>
+      <br>
+      <h3>Chi phí thật</h3>
+      <div class="schedule-row"><span>GitHub Actions</span><span>$0</span></div>
+      <div class="schedule-row"><span>Hosting/Server</span><span>$0</span></div>
+      <div class="schedule-row"><span>Claude/ChatGPT API</span><span>$0 (không dùng)</span></div>
+      <div class="schedule-row"><span>Subscription Claude</span><span>Cố định (dùng chung)</span></div>
+      <br>
+      <p style="font-size:13px">⚠️ Số trên là ước tính. Không phải hóa đơn thật. Kiểm tra GitHub Settings > Billing để xem số chính xác.</p>
+    `
+  }
+};
+
+function openModal(key) {
+  const data = ROOMS[key];
+  if (!data) return;
+  document.getElementById('modal-title').textContent = data.title;
+  document.getElementById('modal-body').innerHTML = data.body;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
+}
+function closeModalDirect() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+
+// PIXEL CHARACTERS — drawn on canvas, different hair colors per room
+const CHARS = {
+  'c-dieuphoi':  { hair: '#2c2c2c', skin: '#f5c5a3', shirt: '#4a7c59' },
+  'c-vanhoa':    { hair: '#e8739e', skin: '#f5c5a3', shirt: '#4a7c59' },
+  'c-cohoi':     { hair: '#2c2c2c', skin: '#c8a882', shirt: '#2d5a3d' },
+  'c-chienluoc': { hair: '#6b4c9a', skin: '#f5c5a3', shirt: '#4a7c59' },
+  'c-sangtao':   { hair: '#e8739e', skin: '#f5c5a3', shirt: '#c0392b' },
+  'c-kiemtra':   { hair: '#2c2c2c', skin: '#c8a882', shirt: '#2d5a3d' },
+  'c-vanhanh':   { hair: '#8B5E3C', skin: '#f5c5a3', shirt: '#4a7c59' },
+  'c-nhansu':    { hair: '#6b4c9a', skin: '#d4a574', shirt: '#c0392b' },
+  'c-ketoan':    { hair: '#3d6e2a', skin: '#c8a882', shirt: '#2d5a3d' },
+};
+
+function drawCharacter(id, colors) {
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const S = 4; // pixel size
+  ctx.clearRect(0, 0, 56, 56);
+
+  // Body parts in pixel coords (each unit = S px)
+  const px = (x, y, w, h, color) => {
+    ctx.fillStyle = color;
+    ctx.fillRect(x*S, y*S, w*S, h*S);
+  };
+
+  // Laptop/desk (bottom)
+  px(1, 10, 12, 1, '#8B5E3C');
+  px(2, 7, 10, 3, '#d0c8bc');
+  px(3, 7.5, 8, 2, '#7bafd4');
+
+  // Body
+  px(3, 4, 8, 4, colors.shirt);
+  // Head
+  px(4, 1, 6, 4, colors.skin);
+  // Hair
+  px(4, 0, 6, 2, colors.hair);
+  px(3, 1, 1, 2, colors.hair);
+  px(9, 1, 1, 2, colors.hair);
+  // Eyes
+  px(5, 2, 1, 1, '#2c2c2c');
+  px(8, 2, 1, 1, '#2c2c2c');
+  // Arms
+  px(1, 4, 2, 2, colors.skin);
+  px(11, 4, 2, 2, colors.skin);
+  // Hands on keyboard
+  px(2, 9, 2, 1, colors.skin);
+  px(10, 9, 2, 1, colors.skin);
+  // Plant (right side)
+  px(12, 8, 1, 2, '#8B5E3C');
+  px(11, 6, 3, 2, '#4a7c59');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  Object.entries(CHARS).forEach(([id, colors]) => drawCharacter(id, colors));
+});
+
+// Blink animation for active dots
+setInterval(() => {
+  document.querySelectorAll('.dot.on').forEach(d => {
+    d.style.opacity = d.style.opacity === '0.3' ? '1' : '0.3';
+  });
+}, 1500);
+</script>
+</body>
+</html>
