@@ -40,21 +40,28 @@ def fetch_rss(url, max_items=2):
         return []
 
 def send_discord(content):
-    data = json.dumps({"content": content}).encode("utf-8")
-    req = urllib.request.Request(
-        DISCORD_WEBHOOK,
-        data=data,
-        headers={"Content-Type": "application/json"},
-        method="POST"
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=10) as r:
-            print(f"Discord response status: {r.status}")
-            return r.status
-    except urllib.error.HTTPError as e:
-        body = e.read().decode("utf-8", errors="ignore")
-        print(f"Discord error {e.code}: {body}")
-        raise
+    import http.client
+    import ssl
+    payload = json.dumps({"content": content, "username": "Ann Place Radar"})
+    parsed = urllib.request.urlparse(DISCORD_WEBHOOK) if hasattr(urllib.request, 'urlparse') else None
+    # Parse URL manually
+    url = DISCORD_WEBHOOK
+    host = "discord.com"
+    path = url.replace("https://discord.com", "")
+    ctx = ssl.create_default_context()
+    conn = http.client.HTTPSConnection(host, context=ctx, timeout=10)
+    headers = {
+        "Content-Type": "application/json",
+        "User-Agent": "DiscordBot (https://github.com/thuyanhdo238/ann-place238, 1.0)",
+        "Content-Length": str(len(payload.encode("utf-8"))),
+    }
+    conn.request("POST", path, body=payload, headers=headers)
+    resp = conn.getresponse()
+    body = resp.read().decode("utf-8", errors="ignore")
+    print(f"Discord response {resp.status}: {body}")
+    if resp.status not in (200, 204):
+        raise Exception(f"Discord error {resp.status}: {body}")
+    return resp.status
 
 def main():
     today = datetime.now(timezone.utc).strftime("%d/%m/%Y")
