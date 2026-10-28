@@ -389,6 +389,87 @@ body {
 }
 @keyframes growBar { from{width:0} }
 
+/* ── AI TEAM PANEL ── */
+.ai-team-panel {
+  max-width: 720px;
+  margin: 28px auto 8px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 22px 16px;
+}
+.ai-team-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.ai-team-grid { display: flex; flex-direction: column; gap: 14px; }
+.ai-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.ai-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 160px;
+  flex-shrink: 0;
+}
+.ai-avatar {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 13px; color: #fff;
+  flex-shrink: 0;
+}
+.ai-gemini    { background: linear-gradient(135deg,#4285f4,#34a853); }
+.ai-grok      { background: linear-gradient(135deg,#1a1a2e,#4a4a7a); }
+.ai-perplexity{ background: linear-gradient(135deg,#20b2aa,#008b8b); }
+.ai-chatgpt   { background: linear-gradient(135deg,#10a37f,#0d8a6b); }
+.ai-name { font-size: 13px; font-weight: 700; line-height: 1.2; }
+.ai-task { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.ai-bar-col { flex: 1; }
+.ai-bar-wrap {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+.ai-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  animation: growBar .8s ease;
+}
+.ai-bar-gemini    { background: linear-gradient(90deg,#4285f4,#34a853); }
+.ai-bar-grok      { background: linear-gradient(90deg,#6c6cbb,#9494d4); }
+.ai-bar-perplexity{ background: linear-gradient(90deg,#20b2aa,#48d1cc); }
+.ai-bar-chatgpt   { background: linear-gradient(90deg,#10a37f,#1bc99a); }
+.ai-bar-label {
+  font-size: 11px;
+  color: var(--muted);
+}
+.ai-bar-label strong { color: var(--text); }
+.ai-bar-warn { color: #e8843a; }
+.ai-bar-warn strong { color: #e8843a; }
+.ai-team-note {
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--muted);
+  opacity: .7;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+@media (max-width: 600px) {
+  .ai-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .ai-info { min-width: unset; }
+  .ai-bar-col { width: 100%; }
+}
+
 /* ── FOOTER ── */
 .footer {
   text-align: center;
@@ -636,6 +717,79 @@ body {
   </div>
 
 </div><!-- /grid -->
+
+<!-- AI TEAM STATUS -->
+<div class="ai-team-panel">
+  <div class="ai-team-title">⚡ AI Team — Quota Hôm Nay</div>
+  <div class="ai-team-grid">
+
+    <div class="ai-row">
+      <div class="ai-info">
+        <span class="ai-avatar ai-gemini">G</span>
+        <div>
+          <div class="ai-name">Gemini</div>
+          <div class="ai-task">Trends · Video · SaLu content</div>
+        </div>
+      </div>
+      <div class="ai-bar-col">
+        <div class="ai-bar-wrap">
+          <div class="ai-bar-fill ai-bar-gemini" data-pct="80" style="width:80%"></div>
+        </div>
+        <div class="ai-bar-label"><strong>80%</strong> còn lại · đủ: 2 video + 5 search</div>
+      </div>
+    </div>
+
+    <div class="ai-row">
+      <div class="ai-info">
+        <span class="ai-avatar ai-grok">X</span>
+        <div>
+          <div class="ai-name">Grok</div>
+          <div class="ai-task">Real-time · X/Twitter · News</div>
+        </div>
+      </div>
+      <div class="ai-bar-col">
+        <div class="ai-bar-wrap">
+          <div class="ai-bar-fill ai-bar-grok" data-pct="60" style="width:60%"></div>
+        </div>
+        <div class="ai-bar-label"><strong>60%</strong> còn lại · đủ: 5 research tasks</div>
+      </div>
+    </div>
+
+    <div class="ai-row">
+      <div class="ai-info">
+        <span class="ai-avatar ai-perplexity">P</span>
+        <div>
+          <div class="ai-name">Perplexity</div>
+          <div class="ai-task">Academic · Citations · PhD</div>
+        </div>
+      </div>
+      <div class="ai-bar-col">
+        <div class="ai-bar-wrap">
+          <div class="ai-bar-fill ai-bar-perplexity" data-pct="50" style="width:50%"></div>
+        </div>
+        <div class="ai-bar-label"><strong>50%</strong> còn lại · đủ: 4 academic search</div>
+      </div>
+    </div>
+
+    <div class="ai-row">
+      <div class="ai-info">
+        <span class="ai-avatar ai-chatgpt">C</span>
+        <div>
+          <div class="ai-name">ChatGPT</div>
+          <div class="ai-task">Frontend · CSS · Design zone</div>
+        </div>
+      </div>
+      <div class="ai-bar-col">
+        <div class="ai-bar-wrap">
+          <div class="ai-bar-fill ai-bar-chatgpt" data-pct="20" style="width:20%"></div>
+        </div>
+        <div class="ai-bar-label ai-bar-warn"><strong>20%</strong> — chỉ đủ: 1 task nhỏ ⚠️</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="ai-team-note">Cập nhật khi AI push output.md · Giá trị demo — thay bằng dữ liệu thực từ GitHub</div>
+</div>
 
 <!-- ACTIONS -->
 <div class="actions">
