@@ -1,0 +1,16 @@
+{
+  "task": "onboarding-verification",
+  "worker": "Google AI Studio (chance / media production)",
+  "character": "Bé SaLu KOL (Art Sympathy)",
+  "source_asset": "assets/salu-kol.png",
+  "format": "video/mp4",
+  "resolution": "720x1280 (9:16 Shorts/Reels/TikTok standard)",
+  "duration_seconds": 5,
+  "frame_rate": 25,
+  "video_codec": "H.264 (libx264, High Profile, yuv420p)",
+  "audio_codec": "AAC (44100 Hz mono)",
+  "file_size_bytes": 133370,
+  "sha256": "16ce07381da605937a4417445834fa842f7d7057ce2291e9c7bf999aba753f3b",
+  "render_engine": "FFmpeg 4.4.2 via Linux runtime",
+  "status": "verified_real_file"
+}
