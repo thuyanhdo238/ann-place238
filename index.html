@@ -838,12 +838,12 @@ const DATA = {
   vanhoa: {
     title: "🎨 Văn Hóa & Design",
     html: `
-      <h3>Vai trò</h3>
-      <p>Cập nhật tin văn hóa, di sản, AI tools, xu hướng thiết kế sáng tạo mỗi ngày.</p>
       <h3>Agent</h3>
-      <p><span class="chip chip-green">Radar</span> — 7:00 VN → #radar</p>
-      <h3>RSS Sources</h3>
-      <p>Hacker News · Design Milk · It's Nice That · Colossal · MIT Tech Review · Smashing Magazine</p>
+      <p><span class="chip chip-green">Radar — Grok</span> — 7:00 VN → #radar</p>
+      <h3>📡 Tin mới nhất từ Grok</h3>
+      <div id="radar-content" style="margin-top:8px;font-size:13px;line-height:1.7;color:#5a4a3a">
+        <span style="color:#8a7560">⏳ Đang tải...</span>
+      </div>
     `
   },
   cohoi: {
@@ -961,11 +961,66 @@ const DATA = {
   }
 };
 
+const RADAR_URL = 'https://raw.githubusercontent.com/thuyanhdo238/ann-place238/main/agents/radar/output/output.md';
+
+function parseRadarMd(md) {
+  // Extract news items: lines starting with ## or ### or **
+  const lines = md.split('\n');
+  let html = '';
+  let count = 0;
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    // Section headers
+    if (trimmed.startsWith('## ') || trimmed.startsWith('### ')) {
+      const title = trimmed.replace(/^###?\s*/, '').replace(/^\d+\.\s*/, '');
+      if (title && count < 8) {
+        html += `<div style="margin-bottom:10px;padding:8px 10px;background:#f5f0e8;border-left:3px solid #d4813a;border-radius:4px">
+          <strong style="color:#3d2e1e;font-size:13px">${title}</strong>`;
+        count++;
+      }
+    } else if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+      const text = trimmed.replace(/^[-*]\s*/, '');
+      if (text && html.endsWith('</strong>')) {
+        html += `<div style="color:#5a4a3a;font-size:12px;margin-top:4px">${text}</div></div>`;
+      }
+    } else if (trimmed.startsWith('**') && trimmed.includes('**')) {
+      const title = trimmed.replace(/\*\*/g,'').replace(/^\d+\.\s*/, '');
+      if (title && count < 8) {
+        html += `<div style="margin-bottom:10px;padding:8px 10px;background:#f5f0e8;border-left:3px solid #d4813a;border-radius:4px">
+          <strong style="color:#3d2e1e;font-size:13px">${title}</strong></div>`;
+        count++;
+      }
+    }
+  }
+  if (!html) html = '<p style="color:#8a7560">Chưa có dữ liệu mới.</p>';
+  // Check deadline alerts
+  const deadlineMatch = md.match(/deadline.*?(\d{1,2}\/\d{1,2}\/\d{4})/i);
+  if (deadlineMatch) {
+    html = `<div style="background:#fdeeed;border:1px solid #c0523a;border-radius:6px;padding:8px 10px;margin-bottom:12px;font-size:12px;color:#c0523a">
+      ⚠️ <strong>Deadline:</strong> ${deadlineMatch[0]}</div>` + html;
+  }
+  return html;
+}
+
 function openModal(key) {
   const d = DATA[key]; if (!d) return;
   document.getElementById('modal-title').textContent = d.title;
   document.getElementById('modal-body').innerHTML = d.html;
   document.getElementById('overlay').classList.add('open');
+  // Load live radar data
+  if (key === 'vanhoa') {
+    fetch(RADAR_URL + '?t=' + Date.now())
+      .then(r => r.ok ? r.text() : Promise.reject(r.status))
+      .then(md => {
+        const el = document.getElementById('radar-content');
+        if (el) el.innerHTML = parseRadarMd(md);
+      })
+      .catch(() => {
+        const el = document.getElementById('radar-content');
+        if (el) el.innerHTML = '<span style="color:#8a7560">Không tải được — xem trực tiếp trên <a href="https://github.com/thuyanhdo238/ann-place238/blob/main/agents/radar/output/output.md" target="_blank">GitHub</a></span>';
+      });
+  }
 }
 function closeModal(e) { if (e.target.id === 'overlay') closeModalDirect(); }
 function closeModalDirect() { document.getElementById('overlay').classList.remove('open'); }
