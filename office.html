@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ann Place — Office</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600&display=swap');
+
+:root {
+  --bg: #1a1a2e;
+  --panel: #16213e;
+  --room-bg: #0f3460;
+  --room-border: #e94560;
+  --accent: #f5a623;
+  --green: #4ade80;
+  --blue: #60a5fa;
+  --purple: #a78bfa;
+  --pink: #f472b6;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --fire: #ff6b35;
+  --pixel: 'Press Start 2P', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--panel);
+  border-bottom: 3px solid var(--room-border);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-title {
+  font-family: var(--pixel);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 2px;
+}
+
+.header-time {
+  font-family: var(--pixel);
+  font-size: 9px;
+  color: var(--green);
+}
+
+.header-date {
+  font-family: var(--pixel);
+  font-size: 8px;
+  color: var(--muted);
+}
+
+/* ── LAYOUT ── */
+.layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  min-height: calc(100vh - 52px);
+}
+
+/* ── LEFT SIDEBAR (STATS) ── */
+.sidebar {
+  background: var(--panel);
+  border-right: 2px solid #2d3748;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar-section {
+  background: #0d1b2a;
+  border: 2px solid #2d3748;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.sidebar-title {
+  font-family: var(--pixel);
+  font-size: 7px;
+  color: var(--accent);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.stat-icon { font-size: 10px; width: 16px; }
+
+.stat-label {
+  font-family: var(--pixel);
+  font-size: 6px;
+  color: var(--muted);
+  width: 52px;
+  flex-shrink: 0;
+}
+
+.stat-bar {
+  flex: 1;
+  height: 6px;
+  background: #1e293b;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid #334155;
+}
+
+.stat-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+.stat-fill.green { background: var(--green); }
+.stat-fill.blue { background: var(--blue); }
+.stat-fill.purple { background: var(--purple); }
+.stat-fill.amber { background: var(--accent); }
+.stat-fill.pink { background: var(--pink); }
+
+/* Quest panel */
+.quest-panel {
+  background: #1a0a00;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.quest-title {
+  font-family: var(--pixel);
+  font-size: 7px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.quest-item {
+  font-family: var(--pixel);
+  font-size: 6px;
+  color: var(--text);
+  line-height: 1.8;
+  padding: 3px 0;
+  border-bottom: 1px solid #2d1a00;
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.quest-item:last-child { border-bottom: none; }
+
+.quest-check { color: var(--green); flex-shrink: 0; }
+.quest-pending { color: var(--muted); flex-shrink: 0; }
+
+/* Report panel */
+.report-panel {
+  background: #001a0a;
+  border: 2px solid var(--green);
+  border-radius: 4px;
+  padding: 10px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.report-title {
+  font-family: var(--pixel);
+  font-size: 7px;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.report-log {
+  font-size: 9px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.report-log .time { color: var(--accent); }
+.report-log .agent { color: var(--blue); }
+.report-log .done { color: var(--green); }
+.report-log .pending { color: #f59e0b; }
+
+/* ── MAIN AREA ── */
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── OFFICE GRID ── */
+.office-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 3px;
+  padding: 3px;
+  background: #0a0a14;
+  flex: 1;
+}
+
+/* ── ROOM ── */
+.room {
+  background: var(--room-bg);
+  border: 3px solid #1e3a5f;
+  padding: 12px;
+  position: relative;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.room:hover { border-color: var(--accent); }
+
+.room-label {
+  font-family: var(--pixel);
+  font-size: 7px;
+  color: var(--accent);
+  background: rgba(0,0,0,0.6);
+  padding: 3px 6px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.room-name {
+  font-family: var(--pixel);
+  font-size: 6px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+/* Character sprite */
+.character {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  animation: idle 2s infinite;
+}
+
+.char-sprite {
+  font-size: 28px;
+  line-height: 1;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.char-name {
+  font-family: var(--pixel);
+  font-size: 5px;
+  color: white;
+  background: rgba(0,0,0,0.7);
+  padding: 2px 4px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+/* Status bubble */
+.status-bubble {
+  position: absolute;
+  top: 36px;
+  right: 10px;
+  background: rgba(0,0,0,0.85);
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 4px 6px;
+  font-family: var(--pixel);
+  font-size: 5px;
+  color: var(--text);
+  max-width: 90px;
+  text-align: center;
+  animation: bubble-appear 0.3s ease;
+}
+
+.status-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 3px solid transparent;
+  border-top-color: #334155;
+}
+
+/* State: working */
+.char-working .char-sprite::after {
+  content: '🔥';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 14px;
+  animation: fire 0.5s infinite alternate;
+}
+
+.char-working { position: relative; }
+
+/* State: idle */
+.char-idle .char-sprite {
+  animation: bob 1.5s infinite ease-in-out;
+}
+
+/* State: sleeping / no quota */
+.char-sleep .char-sprite {
+  filter: grayscale(0.7) drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  animation: none;
+}
+
+.zzz {
+  position: absolute;
+  top: -16px;
+  right: -10px;
+  font-family: var(--pixel);
+  font-size: 8px;
+  color: var(--muted);
+  animation: float-up 2s infinite;
+}
+
+/* Room decorations */
+.room-deco {
+  position: absolute;
+  font-size: 14px;
+  opacity: 0.4;
+}
+
+/* Floor indicator */
+.floor-tag {
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-family: var(--pixel);
+  font-size: 5px;
+  color: #334155;
+}
+
+/* Special: Lounge room */
+.room.lounge {
+  background: #1a0f2e;
+  border-color: var(--purple);
+  grid-column: span 1;
+}
+
+/* ── BOTTOM TICKER ── */
+.ticker {
+  background: #000;
+  border-top: 2px solid var(--room-border);
+  padding: 6px 12px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-inner {
+  display: inline-block;
+  animation: ticker 30s linear infinite;
+  font-family: var(--pixel);
+  font-size: 7px;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes idle {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-3px); }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes fire {
+  from { transform: scale(1) rotate(-5deg); }
+  to { transform: scale(1.2) rotate(5deg); }
+}
+
+@keyframes float-up {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes bubble-appear {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ticker {
+  from { transform: translateX(100vw); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes walk {
+  0%, 100% { transform: translateX(-50%); }
+  25% { transform: translateX(-70%); }
+  75% { transform: translateX(-30%); }
+}
+
+/* ── DAY/NIGHT ── */
+body.night { --bg: #0a0a14; --room-bg: #0a1628; }
+body.night .office-grid { background: #050508; }
+
+.day-badge {
+  font-family: var(--pixel);
+  font-size: 7px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  color: #000;
+}
+
+.day-badge.day { background: var(--accent); }
+.day-badge.night { background: #3730a3; color: white; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--panel); }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .office-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-title">🏢 ANN PLACE</div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+    <div class="header-time" id="clock">--:--:--</div>
+    <div class="header-date" id="datestr">--</div>
+  </div>
+  <div id="day-badge" class="day-badge day">☀️ DAY</div>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <!-- STATS -->
+    <div class="sidebar-section">
+      <div class="sidebar-title">📊 AGENT STATUS</div>
+
+      <div class="stat-row">
+        <span class="stat-icon">📡</span>
+        <span class="stat-label">GROK</span>
+        <div class="stat-bar"><div class="stat-fill green" style="width:100%"></div></div>
+      </div>
+      <div class="stat-row">
+        <span class="stat-icon">👑</span>
+        <span class="stat-label">CLAUDE</span>
+        <div class="stat-bar"><div class="stat-fill blue" style="width:85%"></div></div>
+      </div>
+      <div class="stat-row">
+        <span class="stat-icon">🖥️</span>
+        <span class="stat-label">COPILOT</span>
+        <div class="stat-bar"><div class="stat-fill purple" style="width:70%"></div></div>
+      </div>
+      <div class="stat-row">
+        <span class="stat-icon">✏️</span>
+        <span class="stat-label">CHATGPT</span>
+        <div class="stat-bar"><div class="stat-fill amber" style="width:60%"></div></div>
+      </div>
+      <div class="stat-row">
+        <span class="stat-icon">🎨</span>
+        <span class="stat-label">GEMINI</span>
+        <div class="stat-bar"><div class="stat-fill pink" style="width:40%"></div></div>
+      </div>
+      <div class="stat-row">
+        <span class="stat-icon">🔬</span>
+        <span class="stat-label">PERPLX</span>
+        <div class="stat-bar"><div class="stat-fill green" style="width:30%"></div></div>
+      </div>
+    </div>
+
+    <!-- QUEST -->
+    <div class="quest-panel">
+      <div class="quest-title">⚔️ TODAY'S QUEST</div>
+      <div class="quest-item">
+        <span class="quest-check">✓</span>
+        <span>Radar scan done</span>
+      </div>
+      <div class="quest-item">
+        <span class="quest-pending">○</span>
+        <span>Discord report</span>
+      </div>
+      <div class="quest-item">
+        <span class="quest-pending">○</span>
+        <span>SaLu script</span>
+      </div>
+      <div class="quest-item">
+        <span class="quest-pending">○</span>
+        <span>Art concept</span>
+      </div>
+    </div>
+
+    <!-- REPORT LOG -->
+    <div class="report-panel">
+      <div class="report-title">📋 ACTIVITY LOG</div>
+      <div class="report-log" id="log-output">
+        <div><span class="time">06:00</span> System boot</div>
+        <div><span class="time">07:15</span> <span class="agent">Grok</span> <span class="done">✓ radar push</span></div>
+        <div><span class="time">10:00</span> <span class="agent">Claude</span> <span class="pending">⟳ synthesis...</span></div>
+        <div><span class="time">17:00</span> Discord report scheduled</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- OFFICE GRID -->
+    <div class="office-grid">
+
+      <!-- RADAR ROOM - Grok -->
+      <div class="room" onclick="showBubble('grok-bubble')">
+        <div class="room-label">📡 RADAR ROOM</div>
+        <div class="room-name">Real-time News</div>
+        <span class="room-deco" style="top:10px;right:10px">🖥️</span>
+        <span class="room-deco" style="top:10px;left:40px">📰</span>
+        <div id="grok-bubble" class="status-bubble" style="display:none">Scanning X...</div>
+        <div class="character char-working" id="grok-char">
+          <div style="position:relative">
+            <div class="char-sprite">👩‍🎨</div>
+            <span style="position:absolute;top:-10px;right:-8px;font-size:12px;animation:fire 0.4s infinite alternate">🔥</span>
+          </div>
+          <div class="char-name">GROK</div>
+        </div>
+        <div class="floor-tag">ACTIVE ●</div>
+      </div>
+
+      <!-- ART ROOM - Gemini -->
+      <div class="room" onclick="showBubble('gemini-bubble')">
+        <div class="room-label">🎨 ART STUDIO</div>
+        <div class="room-name">Visual & Content</div>
+        <span class="room-deco" style="top:10px;right:10px">🖼️</span>
+        <span class="room-deco" style="top:10px;left:40px">🌟</span>
+        <div id="gemini-bubble" class="status-bubble" style="display:none">Creating SaLu art...</div>
+        <div class="character char-idle" id="gemini-char">
+          <div class="char-sprite" style="animation:bob 1.5s infinite ease-in-out;display:inline-block">👨‍🎨</div>
+          <div class="char-name">GEMINI</div>
+        </div>
+        <div class="floor-tag">IDLE ○</div>
+      </div>
+
+      <!-- LEADER ROOM - Claude -->
+      <div class="room" style="border-color:#60a5fa" onclick="showBubble('claude-bubble')">
+        <div class="room-label">👑 LEADER ROOM</div>
+        <div class="room-name">Synthesis & Report</div>
+        <span class="room-deco" style="top:10px;right:10px">⚡</span>
+        <span class="room-deco" style="top:10px;left:40px">📊</span>
+        <div id="claude-bubble" class="status-bubble" style="display:none">Synthesizing reports...</div>
+        <div class="character char-working" id="claude-char">
+          <div style="position:relative">
+            <div class="char-sprite">🧑‍💼</div>
+            <span style="position:absolute;top:-10px;right:-8px;font-size:12px;animation:fire 0.4s infinite alternate">🔥</span>
+          </div>
+          <div class="char-name">CLAUDE</div>
+        </div>
+        <div class="floor-tag">ACTIVE ●</div>
+      </div>
+
+      <!-- DEVOPS ROOM - Copilot -->
+      <div class="room" onclick="showBubble('copilot-bubble')">
+        <div class="room-label">🖥️ DEVOPS ROOM</div>
+        <div class="room-name">Code & Deploy</div>
+        <span class="room-deco" style="top:10px;right:10px">⚙️</span>
+        <span class="room-deco" style="top:10px;left:40px">🔧</span>
+        <div id="copilot-bubble" class="status-bubble" style="display:none">Reviewing PR #12...</div>
+        <div class="character char-idle" id="copilot-char">
+          <div class="char-sprite" style="animation:bob 2s infinite ease-in-out;display:inline-block">👾</div>
+          <div class="char-name">COPILOT</div>
+        </div>
+        <div class="floor-tag">IDLE ○</div>
+      </div>
+
+      <!-- LOUNGE - SaLu -->
+      <div class="room lounge" onclick="showBubble('salu-bubble')">
+        <div class="room-label" style="color:var(--purple)">☕ SALU LOUNGE</div>
+        <div class="room-name" style="color:#c4b5fd">Tea & Sketchbook</div>
+        <span class="room-deco" style="top:10px;right:10px">🫖</span>
+        <span class="room-deco" style="top:10px;left:40px">✨</span>
+        <div id="salu-bubble" class="status-bubble" style="display:none;border-color:var(--purple)">Brewing tea... 🍵</div>
+        <div class="character char-idle" id="salu-char">
+          <div class="char-sprite" style="animation:idle 3s infinite ease-in-out;display:inline-block">🌸</div>
+          <div class="char-name" style="background:#3b0764">SaLu ♡</div>
+        </div>
+        <div class="floor-tag" style="color:#7c3aed">RESTING ●</div>
+      </div>
+
+      <!-- SCRIPT ROOM - ChatGPT -->
+      <div class="room" onclick="showBubble('chatgpt-bubble')">
+        <div class="room-label">✏️ SCRIPT ROOM</div>
+        <div class="room-name">Writing & Video</div>
+        <span class="room-deco" style="top:10px;right:10px">📝</span>
+        <span class="room-deco" style="top:10px;left:40px">🎬</span>
+        <div id="chatgpt-bubble" class="status-bubble" style="display:none">Writing SaLu script...</div>
+        <div class="character char-sleep" id="chatgpt-char">
+          <div style="position:relative;display:inline-block">
+            <div class="char-sprite">🤖</div>
+            <div class="zzz">z z z</div>
+          </div>
+          <div class="char-name" style="color:var(--muted)">CHATGPT</div>
+        </div>
+        <div class="floor-tag" style="color:#475569">NO QUOTA ✕</div>
+      </div>
+
+    </div>
+
+    <!-- TICKER -->
+    <div class="ticker">
+      <span class="ticker-inner">
+        ★ Grok pushed radar/output.md at 07:15 VN &nbsp;&nbsp;&nbsp;
+        ★ Claude synthesis scheduled 17:00 VN &nbsp;&nbsp;&nbsp;
+        ★ Travelling Heritage Conference deadline: 15/11/2026 &nbsp;&nbsp;&nbsp;
+        ★ Microsoft MAI Image 2.7 released &nbsp;&nbsp;&nbsp;
+        ★ RMIT VN Digital Art Show — application open &nbsp;&nbsp;&nbsp;
+        ★ French Institute Digital November HCMC &nbsp;&nbsp;&nbsp;
+        ★ SaLu: 0 / 1000 subscribers &nbsp;&nbsp;&nbsp;
+      </span>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /layout -->
+
+<script>
+// ── CLOCK ──
+function updateClock() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  const s = String(now.getSeconds()).padStart(2,'0');
+  document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+
+  const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+  const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  document.getElementById('datestr').textContent =
+    `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+
+  // Day/night (6am-6pm = day)
+  const hour = now.getHours();
+  const isDay = hour >= 6 && hour < 18;
+  const badge = document.getElementById('day-badge');
+  if (isDay) {
+    document.body.classList.remove('night');
+    badge.textContent = '☀️ DAY';
+    badge.className = 'day-badge day';
+  } else {
+    document.body.classList.add('night');
+    badge.textContent = '🌙 NIGHT';
+    badge.className = 'day-badge night';
+  }
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+// ── BUBBLE ──
+function showBubble(id) {
+  // hide all
+  document.querySelectorAll('.status-bubble').forEach(b => b.style.display = 'none');
+  const el = document.getElementById(id);
+  if (el) {
+    el.style.display = 'block';
+    setTimeout(() => el.style.display = 'none', 2500);
+  }
+}
+
+// ── RANDOM WALK (animate chars left-right) ──
+const chars = ['grok-char','gemini-char','claude-char','copilot-char','salu-char','chatgpt-char'];
+chars.forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  // skip sleeping chars
+  if (el.classList.contains('char-sleep')) return;
+
+  function randomWalk() {
+    const offset = (Math.random() - 0.5) * 40;
+    const duration = 1500 + Math.random() * 2000;
+    el.style.transition = `left ${duration}ms ease-in-out`;
+    el.style.left = `calc(50% + ${offset}px)`;
+    setTimeout(randomWalk, duration + 500 + Math.random()*2000);
+  }
+  // set initial position
+  el.style.position = 'absolute';
+  el.style.bottom = '16px';
+  el.style.left = '50%';
+  el.style.transform = 'translateX(-50%)';
+  setTimeout(randomWalk, Math.random() * 3000);
+});
+</script>
+
+</body>
+</html>
