@@ -23,6 +23,7 @@ Kho cất các công cụ AI, skill và prompt mà Thuy Anh sưu tầm, đã đ�
 | B4 | VoiceStudio | App | Thuyết minh, nhân bản giọng, chép lời | 🟢 tải app | [→](B-video.md#b4) |
 | B5 | Claude Motion | Tính năng Claude | Hoạt hình ngắn trong Claude | ⛔ chỉ gói Team/Enterprise | [→](B-video.md#b5) |
 | B6 | `/video-kenh` | Skill Ann Place | Quy trình video SaLu / rồng Lý | ✅ | [→](B-video.md#b6) |
+| B7 | Musee (socialboxy) | App trả phí | Tạo video AI hàng loạt trên Muse bằng nhiều tài khoản | ⛔ không khuyên dùng | [→](B-video.md#b7) |
 | **C** | **THIẾT KẾ** | | | | [C-thiet-ke.md](C-thiet-ke.md) |
 | C1 | Editable Design (`/editable-design`) | Skill | Poster, social card có lớp, chữ thật | ✅ | [→](C-thiet-ke.md#c1) |
 | C2 | Paper Fig | Skill (Codex) | Sơ đồ phương pháp cho bài báo → PPTX | ⛔ cần Codex | [→](C-thiet-ke.md#c2) |

@@ -46,3 +46,15 @@
 - **Là gì:** Quy trình 5 bước làm video dọc cho SaLu / kênh rồng Lý: kịch bản có nguồn → thuyết minh → hình → dựng HyperFrames → tự kiểm, xuất MP4 + ảnh bìa + chú thích bài đăng. Không tự đăng, không dùng dịch vụ trả phí.
 - **Cách dùng:** `/video-kenh kênh rồng Lý, chủ đề "3 đặc điểm nhận diện rồng thời Lý", tài liệu @tai-lieu.pdf`
 - **File:** [`.claude/skills/video-kenh/SKILL.md`](../.claude/skills/video-kenh/SKILL.md)
+
+## B7
+### Musee (musee.socialboxy.com) · ⛔ không khuyên dùng · đánh giá 29/10/2026
+- **Là gì:** App Windows (giao diện tiếng Việt) chạy hàng loạt prompt tạo video trên dịch vụ **Muse AI**: dán danh sách prompt, chạy **nhiều tài khoản Muse song song**, mỗi tài khoản một proxy, tự chạy lại khi lỗi, gắn nhân vật bằng `@tên`. Không phải sản phẩm của Muse AI; trang không ghi tên nhà phát triển, chỉ có Zalo/Telegram.
+- **Giá:** dùng thử 3 ngày, sau đó **99.000đ/tháng** (chuyển khoản QR) — chưa kể tiền tài khoản Muse.
+- **Vì sao không dùng:**
+  - Trái luật Ann Place: tốn tiền hằng tháng.
+  - Chạy nhiều tài khoản + proxy riêng để lách giới hạn thường **vi phạm điều khoản** của dịch vụ AI → dễ bị khóa tài khoản.
+  - Phải giao **cookie đăng nhập** các tài khoản cho một app không rõ chủ (dù nói mã hóa trên máy).
+  - Video mẫu thiên về quảng cáo sản phẩm, KOL — không hợp kênh nghệ thuật, di sản.
+- **Thay thế:** HyperFrames ([B1](#b1)) + `/video-kenh` ([B6](#b6)) — miễn phí, kiểm soát từng khung hình; cần cảnh AI thật thì dùng tài khoản chính chủ của công cụ AI video.
+- **Nguồn:** https://musee.socialboxy.com
