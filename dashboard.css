@@ -12,3 +12,11 @@
 @media(prefers-reduced-motion:reduce){.wander img{animation:none!important}body.motion-enabled .wander{animation:none!important}body.motion-enabled .wander img{animation:salu-breathe 4s ease-in-out infinite alternate!important}}
 
 .flow-task{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--border)}.flow-task:last-child{border-bottom:0}.flow-task p{font-size:12px;line-height:1.7;margin:7px 0}.flow-task small{font-size:10px;overflow-wrap:anywhere;color:var(--muted)}.flow-number{flex:0 0 27px;height:27px;border-radius:50%;background:#eee6f0;color:var(--wine);display:grid;place-items:center;font-size:12px}.card.lower{margin-bottom:20px}.flow-task h3{font-size:17px}
+
+/* Give the office illustration enough room to read on desktop and phone. */
+.hero{grid-template-columns:minmax(0,1fr) minmax(360px,44%);gap:28px;padding:26px 0}
+.office{width:100%;height:auto;aspect-ratio:900/672}
+.office-bg,.typing-scene{object-position:50% 50%}
+.office.collapsed{height:38px;aspect-ratio:auto}
+@media(min-width:761px) and (max-width:1100px){.hero{grid-template-columns:minmax(0,1fr) minmax(300px,48%);gap:18px}}
+@media(max-width:760px){.hero{gap:15px}.office{height:auto;aspect-ratio:900/672}.office-bg,.typing-scene{object-position:50% 50%}.office.collapsed{height:38px;aspect-ratio:auto}.office-caption{font-size:9px}.wander{height:62px;width:43px}}
