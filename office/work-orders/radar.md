@@ -1,6 +1,6 @@
 # Nhiệm vụ cho radar
 
-Cập nhật: 2026-10-29T12:04:33.735162+07:00
+Cập nhật: 2026-10-29T20:07:03.206718+07:00
 
 Brief: Xây kênh SaLu lên các nền tảng để đạt KPI 1.000 người theo dõi.
 Phạm vi: Nghệ thuật và cảm hứng: SaLu lang thang ký họa, kể cách bé nhìn cuộc sống; không chẩn đoán hoặc hứa chữa bệnh.
