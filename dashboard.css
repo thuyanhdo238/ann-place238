@@ -25,3 +25,4 @@
   .office-bg,.typing-scene{object-fit:cover;object-position:50% 50%}
   .office.collapsed{height:38px;aspect-ratio:auto}
 }
+.flow-task{display:flex;gap:14px;padding:16px 0;border-top:1px solid var(--line)}.flow-task:first-of-type{border:0}.flow-number{flex:none;height:30px;width:30px;border-radius:50%;background:var(--lav);color:var(--wine);display:grid;place-items:center;font-family:"Noto Serif",serif}.flow-task p{margin:4px 0;font-size:11px;color:var(--muted)}.flow-task p b{color:var(--ink)}.agent-card .chip{display:inline-block}.lower+.stats{margin-top:14px}
