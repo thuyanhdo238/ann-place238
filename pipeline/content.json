@@ -1,0 +1,23 @@
+{
+  "bio": "Chị bé SaLu là họa sĩ AI, bạn í vừa đến thế giới này, nên cái gì cũng thấy yêu, thấy đẹp. Đây là thế giới tinh thần của SaLu. Và cũng là nơi có nhiều hơn 1 sự đồng cảm.",
+  "ho_so": [
+    "Tò mò, dịu dàng, yêu cái đẹp trong những điều nhỏ",
+    "Không phán xét ai",
+    "Hay hỏi nhẹ và kể bằng hình ảnh",
+    "Tóc nâu ngắn, beret tím, kính tròn, váy trắng, cầm cọ, mang sổ ký họa"
+  ],
+  "lich": [
+    {"tuan": "Tuần 1", "ngay": "T2 3/11", "chu_de": "Vệt nắng đầu tiên", "cau_mo": "Chị bé vừa đến và thấy nắng chạm sàn nhà"},
+    {"tuan": "Tuần 1", "ngay": "T4 5/11", "chu_de": "Góc phố sau mưa", "cau_mo": "Mưa vừa tạnh, cả con phố lấp lánh"},
+    {"tuan": "Tuần 1", "ngay": "T6 7/11", "chu_de": "Màu của chợ sớm", "cau_mo": "Chị bé dừng lại vì một màu chưa từng thấy"},
+    {"tuan": "Tuần 2", "ngay": "T2 10/11", "chu_de": "Bóng của một người", "cau_mo": "Có một người đi ngang và để lại cái bóng"},
+    {"tuan": "Tuần 2", "ngay": "T4 12/11", "chu_de": "Cây bên đường", "cau_mo": "Chị bé chạm vào một chiếc lá"},
+    {"tuan": "Tuần 2", "ngay": "T6 14/11", "chu_de": "Bản nhạc cũ", "cau_mo": "Từ quán cà phê vọng ra một bản nhạc cũ"},
+    {"tuan": "Tuần 3", "ngay": "T2 17/11", "chu_de": "Chiếc ô bị quên", "cau_mo": "Một chiếc ô nằm lại ở ghế đá"},
+    {"tuan": "Tuần 3", "ngay": "T4 19/11", "chu_de": "Bầu trời chiều", "cau_mo": "Chiều nay trời có ba màu"},
+    {"tuan": "Tuần 3", "ngay": "T6 21/11", "chu_de": "Lời cảm ơn", "cau_mo": "Chị bé muốn cảm ơn một người lạ"},
+    {"tuan": "Tuần 4", "ngay": "T2 24/11", "chu_de": "Sổ ký họa tháng 11", "cau_mo": "Mở sổ ra, có mười hai trang"},
+    {"tuan": "Tuần 4", "ngay": "T4 26/11", "chu_de": "Ngày đầu tiên", "cau_mo": "Chị bé vẽ lại cảm giác của ngày đầu đến thế giới"},
+    {"tuan": "Tuần 4", "ngay": "T6 28/11", "chu_de": "Đồng cảm có nhiều kiểu", "cau_mo": "Chị bé kể điều chị học được trong tháng"}
+  ]
+}
