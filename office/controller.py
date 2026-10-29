@@ -113,9 +113,10 @@ def run(root=ROOT, now=None):
             prior = task_id
     by_id = {t['id']: t for t in board['tasks']}
     decisions = []
+    preparation = []
     for key, title in [('platforms', 'Chọn nền tảng và tài khoản kênh'), ('kpi_scope', '1.000 follow cho từng kênh hay tổng các kênh?'), ('deadline', 'Chọn thời hạn mục tiêu'), ('baseline_followers', 'Xác nhận số follow ban đầu'), ('budget_vnd', 'Xác nhận mức chi: 0 đồng hoặc ngân sách cho phép')]:
         if campaign.get(key) is None or campaign.get(key) == []:
-            decisions.append({'id': 'campaign-' + key, 'title': title, 'reason': 'Brief chưa có thông tin này; không tự đoán thay bạn.', 'file': 'office/campaign.json'})
+            preparation.append({'id': 'campaign-' + key, 'title': title, 'reason': 'Leader cần nghiên cứu và đề xuất phương án, ghi rõ giả định trước khi xin quyết định.', 'file': 'office/campaign.json'})
     for t in board['tasks']:
         t['worker'] = cfg['stage_workers'].get(t['stage'])
         # Rebuild state from evidence every run; never trust an old green status.
@@ -138,11 +139,14 @@ def run(root=ROOT, now=None):
         t['overdue'] = now > timestamp(t['due_at']) and t['status'] != 'completed'
     for stage in ['video', 'review', 'publish']:
         if not cfg['stage_workers'].get(stage):
-            decisions.append({'id': 'assign-' + stage, 'title': 'Chọn worker: ' + dict((x[0], x[1]) for x in STAGES)[stage],
+            preparation.append({'id': 'assign-' + stage, 'title': 'Chọn worker: ' + dict((x[0], x[1]) for x in STAGES)[stage],
                 'reason': 'Chưa có worker được xác nhận thực hiện bước này.', 'file': 'office/config.json'})
-    decisions.append({'id': 'confirm-worker-schedules', 'title': 'Xác nhận lịch của từng ứng dụng AI',
+    preparation.append({'id': 'confirm-worker-schedules', 'title': 'Xác nhận lịch của từng ứng dụng AI',
         'reason': 'GitHub chỉ tạo nhiệm vụ và thu báo cáo; không tự khởi chạy phiên Claude/Grok/ChatGPT.', 'file': 'office/README.md'})
-    board.update(campaign=campaign, updated_at=now.isoformat(), schedule_vn=cfg['schedule_vn'], workers=cfg['workers'], decisions=decisions,
+    plan = next((t for t in board['tasks'] if t['cycle'] == cycle and t['stage'] == 'plan'), None)
+    if plan and plan['status'] == 'completed':
+        decisions.append({'id': 'review-plan', 'title': 'Xem kế hoạch kênh leader đã bàn giao', 'reason': 'Đã có tệp kế hoạch; cần quyết định các phương án/nền tảng được đề xuất.', 'file': plan['expected_output']})
+    board.update(preparation=preparation, campaign=campaign, updated_at=now.isoformat(), schedule_vn=cfg['schedule_vn'], workers=cfg['workers'], decisions=decisions,
         mode='Bộ điều phối theo quy tắc; chưa phải phiên AI leader tự suy luận',
         spending='Không gọi API AI, không mua dịch vụ; chưa thu thập token thực tế')
     save(board_path, board)
@@ -160,6 +164,7 @@ def run(root=ROOT, now=None):
     for t in today_tasks:
         lines.append(f"- {t['title']} | {t['worker'] or 'chưa phân công'} | {t['status']}: {t['reason']}")
     lines += ['', '## Cần quyết định'] + ['- ' + d['title'] for d in decisions]
+    lines += ['', '## Leader cần chuẩn bị'] + ['- ' + d['title'] for d in preparation]
     lines += ['', 'Không có số liệu token/hóa đơn được kết nối. Không gửi thông báo ra ngoài.']
     out = root / 'office/reports' / (day + '.md')
     out.parent.mkdir(parents=True, exist_ok=True)

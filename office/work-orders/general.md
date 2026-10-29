@@ -1,6 +1,6 @@
 # Nhiệm vụ cho general
 
-Cập nhật: 2026-10-29T11:24:11.857790+07:00
+Cập nhật: 2026-10-29T11:49:18.572928+07:00
 
 Brief: Xây kênh SaLu lên các nền tảng để đạt KPI 1.000 người theo dõi.
 Phạm vi: Nghệ thuật và cảm hứng: SaLu lang thang ký họa, kể cách bé nhìn cuộc sống; không chẩn đoán hoặc hứa chữa bệnh.

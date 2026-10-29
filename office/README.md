@@ -6,7 +6,7 @@ Brief thử: xây kênh Art Sympathy / SaLu tới 1.000 người theo dõi. Ph�
 
 GitHub giữ nhiệm vụ, đầu ra và báo cáo. `controller.py` là chương trình điều phối **theo quy tắc**, không phải Claude hay một AI leader chạy ngầm. Nó không gọi API AI, không mở các ứng dụng, không gửi tin Discord, không dựng hoặc đăng video. Nó đọc chứng cứ bàn giao và tạo công việc tiếp theo.
 
-Lịch GitHub dự kiến: 08:00, 10:00, 13:00, 17:00 giờ Việt Nam. Actions có thể chạy muộn, không phải đồng hồ đảm bảo đúng phút. Workflow chỉ hoạt động sau khi gộp vào nhánh mặc định. Không tự thêm lịch trong tài khoản AI của bạn.
+Lịch GitHub dự kiến: 08:00, 10:00, 13:00, 17:00 giờ Việt Nam. Actions có thể chạy muộn, không phải đồng hồ đảm bảo đúng phút. Workflow hoạt động sau khi gộp vào nhánh mặc định; chạy thêm khi có thay đổi brief, cấu hình hoặc bàn giao. Không tự thêm lịch trong tài khoản AI của bạn.
 
 Mỗi ứng dụng AI cần được đặt lịch riêng để:
 1. Đọc `office/work-orders/<worker>.md` bản mới nhất trên main.
@@ -61,3 +61,5 @@ Báo bị chặn:
 `office/campaign.json`: brief và các giá trị cần bạn quyết định. `office/config.json`: worker và quy tắc. Chỉ sửa các giá trị đã được bạn chấp thuận; không tự chi tiền. `office/decisions.json` dành cho lịch sử quyết định về sau, hiện không điều khiển tác vụ. Dashboard trên GitHub Pages chỉ đọc, không giả lập nút duyệt như thể đã ghi GitHub. Không đưa token/webhook vào các file công khai.
 
 Thử tại máy: `python3 office/controller.py`. Kiểm tra: `python3 -m unittest discover -s tests`. Không chạy các script Discord cũ để thử bộ điều phối này.
+
+Dashboard đọc board công khai từ main trên raw.githubusercontent.com để cập nhật theo lần bàn giao, không cần Pages build lại cho mỗi commit do GitHub Actions tạo. Nếu không truy cập được, dùng bản đệm theo lần build; xem thời điểm cập nhật trong trang Văn phòng AI. Các điểm thiếu về chiến lược nằm trong danh sách leader chuẩn bị; chỉ hiện yêu cầu bạn quyết định khi đã có kế hoạch bàn giao. Ngân sách khởi đầu 0 đồng, chi mới phải hỏi.

@@ -129,11 +129,11 @@
     "platforms": [],
     "deadline": null,
     "baseline_followers": null,
-    "budget_vnd": null,
-    "state": "brief_received",
+    "budget_vnd": 0,
+    "state": "pilot_preparation",
     "notes": "Mục tiêu thử; chưa có dữ liệu tài khoản, mốc ban đầu, thời hạn hoặc kết nối sản xuất/xuất bản. Không cam kết chắc chắn đạt KPI."
   },
-  "updated_at": "2026-10-29T11:24:11.857790+07:00",
+  "updated_at": "2026-10-29T11:49:18.572928+07:00",
   "schedule_vn": [
     "08:00",
     "10:00",
@@ -167,35 +167,32 @@
       "external_schedule_confirmed": false
     }
   },
-  "decisions": [
+  "decisions": [],
+  "mode": "Bộ điều phối theo quy tắc; chưa phải phiên AI leader tự suy luận",
+  "spending": "Không gọi API AI, không mua dịch vụ; chưa thu thập token thực tế",
+  "preparation": [
     {
       "id": "campaign-platforms",
       "title": "Chọn nền tảng và tài khoản kênh",
-      "reason": "Brief chưa có thông tin này; không tự đoán thay bạn.",
+      "reason": "Leader cần nghiên cứu và đề xuất phương án, ghi rõ giả định trước khi xin quyết định.",
       "file": "office/campaign.json"
     },
     {
       "id": "campaign-kpi_scope",
       "title": "1.000 follow cho từng kênh hay tổng các kênh?",
-      "reason": "Brief chưa có thông tin này; không tự đoán thay bạn.",
+      "reason": "Leader cần nghiên cứu và đề xuất phương án, ghi rõ giả định trước khi xin quyết định.",
       "file": "office/campaign.json"
     },
     {
       "id": "campaign-deadline",
       "title": "Chọn thời hạn mục tiêu",
-      "reason": "Brief chưa có thông tin này; không tự đoán thay bạn.",
+      "reason": "Leader cần nghiên cứu và đề xuất phương án, ghi rõ giả định trước khi xin quyết định.",
       "file": "office/campaign.json"
     },
     {
       "id": "campaign-baseline_followers",
       "title": "Xác nhận số follow ban đầu",
-      "reason": "Brief chưa có thông tin này; không tự đoán thay bạn.",
-      "file": "office/campaign.json"
-    },
-    {
-      "id": "campaign-budget_vnd",
-      "title": "Xác nhận mức chi: 0 đồng hoặc ngân sách cho phép",
-      "reason": "Brief chưa có thông tin này; không tự đoán thay bạn.",
+      "reason": "Leader cần nghiên cứu và đề xuất phương án, ghi rõ giả định trước khi xin quyết định.",
       "file": "office/campaign.json"
     },
     {
@@ -222,7 +219,5 @@
       "reason": "GitHub chỉ tạo nhiệm vụ và thu báo cáo; không tự khởi chạy phiên Claude/Grok/ChatGPT.",
       "file": "office/README.md"
     }
-  ],
-  "mode": "Bộ điều phối theo quy tắc; chưa phải phiên AI leader tự suy luận",
-  "spending": "Không gọi API AI, không mua dịch vụ; chưa thu thập token thực tế"
+  ]
 }
