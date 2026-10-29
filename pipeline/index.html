@@ -24,6 +24,12 @@ th{color:#8a7560;font-weight:600}
 .tag2{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;background:#eee}
 .dang_lam{background:#fef3e8}.da_giao{background:#edf3fb}.cho{background:#fdeeed}.xong{background:#eaf5ee}
 .sub{color:#8a7560;font-size:13px;margin:0 0 8px}
+.rooms{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.room{border:1px solid #e2d9c8;border-radius:12px;padding:12px;background:#fdfaf4}
+.av{width:38px;height:38px;border-radius:50%;background:#f3eee4;display:flex;align-items:center;justify-content:center;font-weight:700;color:#5a4a36}
+.room h3{font-size:14px;margin:8px 0 2px}
+.room p{font-size:13px;margin:0;color:#5a4a36}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -55,6 +61,12 @@ th{color:#8a7560;font-weight:600}
 </section>
 
 <section>
+<h2>Văn phòng 2D</h2>
+<p class="sub">Mỗi ô là một phòng. Chấm màu cho biết việc đang ở trạng thái nào.</p>
+<div class="rooms" id="rooms"></div>
+</section>
+
+<section>
 <h2>Tiến độ đội</h2>
 <p class="sub" id="meta">Đang tải…</p>
 <table><thead><tr><th>Mã</th><th>Ai</th><th>Việc</th><th>Trạng thái</th></tr></thead><tbody id="viec"></tbody></table>
@@ -73,6 +85,9 @@ Promise.all([get("content.json"),get("gallery.json"),get("status.json")]).then((
   const co=g.anh.filter(a=>a.file);
   if(co.length) document.getElementById("gallery_note").textContent="Các hình đã được duyệt.";
   document.getElementById("gallery").innerHTML=g.anh.map(a=>`<div><div class="ph">${a.file?`<img src="${esc(a.file)}" alt="${esc(a.ten)}">`:esc(a.ghi_chu||"Chờ hình")}</div><div class="cap">${esc(a.ten)}</div></div>`).join("");
+  const PHONG=[{ai:"Claude",phong:"Phòng Điều hành",vai:"Trưởng nhóm"},{ai:"Grok",phong:"Phòng Radar",vai:"Tin và cơ hội"},{ai:"ChatGPT",phong:"Phòng Art",vai:"Họa sĩ SaLu"},{ai:"Google AI Studio",phong:"Phòng Thử",vai:"Sản xuất thử"},{ai:"Copilot",phong:"Phòng Kỹ thuật",vai:"Workflow và QA"}];
+  const MAU={dang_lam:"#d4813a",da_giao:"#4a7eb5",cho:"#c0523a",xong:"#5a9e72"};
+  document.getElementById("rooms").innerHTML=PHONG.map(r=>{const v=s.viec.find(x=>x.ai===r.ai);const m=v?MAU[v.trang_thai]||"#999":"#bbb";const t=v?(NHAN[v.trang_thai]||v.trang_thai)+": "+v.viec:"Chưa có việc";return `<div class="room"><div class="av">${esc(r.ai[0])}</div><h3>${esc(r.ai)}</h3><p>${esc(r.phong)} · ${esc(r.vai)}</p><p><span class="dot" style="background:${m}"></span>${esc(t)}</p></div>`;}).join("");
   document.getElementById("meta").textContent="Cập nhật "+s.cap_nhat+" · "+s.pilot;
   document.getElementById("viec").innerHTML=s.viec.map(v=>`<tr><td>${esc(v.ma)}</td><td>${esc(v.ai)}</td><td>${esc(v.viec)}</td><td><span class="tag2 ${esc(v.trang_thai)}">${NHAN[v.trang_thai]||esc(v.trang_thai)}</span></td></tr>`).join("");
   document.getElementById("canh").innerHTML=s.can_anh.map(v=>`<tr><td>${esc(v.ma)}</td><td>${esc(v.viec)}</td><td>${esc(v.han)}</td><td><span class="tag2 ${esc(v.trang_thai)}">${NHAN[v.trang_thai]||esc(v.trang_thai)}</span></td></tr>`).join("");
