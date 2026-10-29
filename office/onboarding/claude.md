@@ -1,7 +1,7 @@
 # Onboarding — Claude (worker `general`, Leader)
 
 Ngày kiểm tra: 29/10/2026, 12:20–12:40 giờ VN · Phiên: Claude (Opus 5.5) trong ứng dụng Claude, môi trường cloud có shell + git.
-Trạng thái tổng: **GitHub đọc/ghi: đạt** · **Chạy theo lịch: đã tạo lịch thử, chờ kết quả lần chạy 13:00 VN** · Chưa đánh dấu `external_schedule_confirmed`.
+Trạng thái tổng: **GitHub đọc/ghi: đạt** · **Chạy theo lịch: đạt (lần thử một lần 13:00 VN, 29/10)** · Chưa đánh dấu `external_schedule_confirmed`.
 
 ## 1. Đã làm được (có bằng chứng)
 
@@ -12,11 +12,11 @@ Trạng thái tổng: **GitHub đọc/ghi: đạt** · **Chạy theo lịch: đ�
 | Ghi repo | Tạo nhánh riêng `office-onboarding-claude` từ `office-scheduled-handoffs`, commit và push tệp này | Chính commit/PR chứa tệp này |
 | Mở PR | PR vào `office-scheduled-handoffs`, **không vào main** | Link PR (xem mô tả PR) |
 | Chạy test | `python3 -m unittest discover -s tests` → 12 test, OK | Chạy tại phiên |
-| Tạo lịch | Tạo một tác vụ chạy một lần lúc 13:00 VN (06:00 UTC), id `trig_01Y73kHzovsEbyMGzvDjk1d8`, chế độ tự duyệt (auto) | Tác vụ sẽ push `office/onboarding/claude-schedule-receipt.json` lên nhánh này |
+| Chạy theo lịch | Tác vụ một lần `trig_01Y73kHzovsEbyMGzvDjk1d8` chạy trong phiên mới lúc 13:00:22–13:00:28 VN, đọc `board.json` (7 task, khớp board) và tự push | Commit `a874862` · `office/onboarding/claude-schedule-receipt.json`, `status: completed`, `error: null` |
 
 ## 2. Chưa làm được / chưa chứng minh
 
-- **Lịch tự chạy chưa được chứng minh.** Mỗi lần chạy theo lịch là một phiên mới. Chỉ coi là đạt khi tệp `claude-schedule-receipt.json` xuất hiện trên nhánh với `status: completed`. Nếu không có, ghi blocked.
+- **Lịch mới thử một lần.** Lần chạy 13:00 đạt; chưa chứng minh lịch lặp ổn định nhiều ngày. Theo dõi 3 ngày đầu sau khi bật lịch lặp.
 - **Không có mặt định kỳ 08:00/10:00/13:00/17:00 cho Claude.** Chưa tạo lịch lặp; chờ chủ dự án duyệt sau khi lần thử đạt. Lịch lặp tối thiểu theo giờ; có thể bị trễ vài phút.
 - **Không thao tác tài khoản mạng xã hội.** Không có kết nối TikTok/Instagram/YouTube; không lấy được baseline follow; không đăng bài.
 - **Không gọi ứng dụng AI khác.** Claude không mở được ChatGPT, Grok, Google AI Studio hay Copilot; chỉ giao việc qua work-order/GitHub.
@@ -35,8 +35,8 @@ Trạng thái tổng: **GitHub đọc/ghi: đạt** · **Chạy theo lịch: đ�
 
 ## 4. Điểm cần kiểm chứng
 
-1. 13:00 VN 29/10: tệp `office/onboarding/claude-schedule-receipt.json` có trên nhánh `office-onboarding-claude`? Nội dung `board_status` đúng `board.json`?
-2. Phiên chạy theo lịch có quyền push không (khác phiên tương tác)? Nếu bị chặn → ghi lỗi nguyên văn vào PR.
+1. ~~Receipt 13:00~~ — **đạt**, commit `a874862`; `board_status` khớp `board.json`.
+2. ~~Phiên theo lịch có quyền push~~ — **đạt** (phiên mới, không có người duyệt, vẫn push được).
 3. Sau khi đạt: chủ dự án chấp thuận lịch lặp 08:00 / 17:00 VN cho Claude (đề xuất ở `handoff-plan.md`); khi đó mới đặt `external_schedule_confirmed: true` cho `general`.
 4. Workflow `office_handoffs.yml` chỉ chạy trên `main` — nhánh thử nghiệm không kích hoạt controller. Bàn giao trên nhánh này cần chạy `python3 office/controller.py` thủ công để kiểm.
 5. Các hạn trong `board.json` (plan 29/10 10:00) đã qua; cần cập nhật theo lịch mới khi được duyệt.
