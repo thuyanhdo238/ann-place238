@@ -1,0 +1,18 @@
+{
+  "worker": "general",
+  "application": "Claude",
+  "test": "scheduled_run_github_rw",
+  "status": "completed",
+  "started_at": "2026-10-29T13:00:22+07:00",
+  "finished_at": "2026-10-29T13:00:28+07:00",
+  "board_status": {
+    "salu-first-1000-research": "ready",
+    "salu-first-1000-plan": "waiting",
+    "salu-first-1000-script": "waiting",
+    "salu-first-1000-video": "blocked",
+    "salu-first-1000-review": "blocked",
+    "salu-first-1000-publish": "blocked",
+    "salu-first-1000-measure": "waiting"
+  },
+  "error": null
+}
