@@ -1,0 +1,1 @@
+{"name":"ann-place-dashboard","private":true,"scripts":{"dev":"node preview-server.cjs","check":"node --check dashboard.js"}}
