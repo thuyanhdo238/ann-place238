@@ -10,7 +10,8 @@ Bộ sổ này phỏng theo workflow của dự án mã nguồn mở [van-phong-
 |---|---|---|---|
 | Trưởng nhóm | Claude | Phòng Điều hành | Lên kế hoạch, giao việc, tổng hợp, duyệt bản cuối |
 | Radar | Grok | Phòng Radar | Quét tin, cơ hội, deadline mỗi sáng |
-| Họa sĩ SaLu | Gemini (Google AI Studio) | Phòng Art | Hình ảnh, nhân vật, nội dung hình cho SaLu |
+| Họa sĩ SaLu | ChatGPT | Phòng Art | Vẽ chị bé SaLu, ký họa, storyboard, caption |
+| Sản xuất thử | Google AI Studio | Phòng Thử | Thử hình, âm thanh, video bằng tính năng có sẵn |
 | Thiết kế | ChatGPT | Phòng Design | Giao diện, CSS (nhánh `design`, chỉ DESIGN ZONE) |
 | Kỹ thuật | GitHub Copilot | Phòng DevOps | Workflow, script, review PR |
 
@@ -28,7 +29,7 @@ Chi tiết ở [DOI-NGU.md](DOI-NGU.md). Quyền ở [CAP-BAC.md](CAP-BAC.md). L
 
 ## AI trên web đọc sổ thế nào
 
-ChatGPT, Grok và Gemini không tự mở repo được như Claude Code hay Copilot. Thuy Anh làm "người đưa thư":
+ChatGPT, Grok và Google AI Studio không tự mở repo được như Claude Code hay Copilot. Thuy Anh làm "người đưa thư":
 
 - Mở hòm thư của vai đó, ví dụ `hop-thu/grok.md`.
 - Copy **phiếu việc** (mỗi phiếu đã viết sẵn đủ ngữ cảnh) và dán vào chat với AI đó. Lần đầu dán thêm [PHIEU-MO-DAU.md](PHIEU-MO-DAU.md).

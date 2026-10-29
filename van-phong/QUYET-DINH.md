@@ -15,3 +15,4 @@ Mỗi quyết định một dòng, mới nhất ở dưới. Ghi nguyên văn l�
 | 29/10/2026 | Gọi nhân vật là "em SaLu", không dùng "bé" trong văn bản công khai | Thuy Anh |
 | 29/10/2026 | Văn bản công khai (bio, bài đăng, chú thích, giao diện) không dùng dấu gạch ngang "-" hoặc "—" | Thuy Anh |
 | 29/10/2026 | Thử gọi nhân vật là "chị bé SaLu" (người chị nhỏ xíu), có thể đổi sau. Bio rút ngắn | Thuy Anh |
+| 29/10/2026 | Vai họa sĩ SaLu chuyển từ Gemini sang ChatGPT. Google AI Studio làm vai sản xuất thử. Phiếu P-3 chuyển sang hòm thư ChatGPT | Thuy Anh |

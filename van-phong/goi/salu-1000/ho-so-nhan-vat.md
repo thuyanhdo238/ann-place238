@@ -12,4 +12,4 @@
 
 **Không làm:** không ép bán hàng, không nói điều chị chưa thấy, không chê ai.
 
-**Hình gốc (Gemini vẽ theo):** tóc nâu ngắn, beret tím, kính tròn, váy trắng, cầm cọ, mang sổ ký họa.
+**Hình gốc (ChatGPT vẽ theo):** tóc nâu ngắn, beret tím, kính tròn, váy trắng, cầm cọ, mang sổ ký họa.
