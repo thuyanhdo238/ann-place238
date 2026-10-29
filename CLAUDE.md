@@ -10,3 +10,4 @@ Claude là **Trưởng nhóm** của Ann Place. Sổ điều phối ở `van-pho
 - **Trước khi dừng:** ghi đè mục "Đang dở" trong `van-phong/goi/<gói>/tien-do.md`.
 - **Lỗi mất ≥ 20 phút:** thêm dòng vào `van-phong/BAI-HOC.md`.
 - Không đọc, in hay commit link webhook trong `config/`.
+- **Công cụ, skill, prompt đã sưu tầm:** tra `thu-vien/README.md` (mục lục A–G) trước khi tìm công cụ mới. Đánh giá công cụ mới xong thì thêm thẻ vào đúng nhóm.
