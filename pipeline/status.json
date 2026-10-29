@@ -1,0 +1,32 @@
+{
+  "cap_nhat": "2026-10-29",
+  "pilot": "SaLu, concept A Sổ ký họa, tuần 1 trên 4",
+  "viec": [
+    {
+      "ma": "P-1",
+      "ai": "Claude",
+      "viec": "Lịch nội dung concept A cho tháng 11",
+      "trang_thai": "xong"
+    },
+    {
+      "ma": "P-2",
+      "ai": "Grok",
+      "viec": "Mục Cho SaLu trong bản Radar",
+      "trang_thai": "da_giao"
+    },
+    {
+      "ma": "P-3",
+      "ai": "ChatGPT",
+      "viec": "Vẽ chị bé SaLu theo hồ sơ nhân vật",
+      "trang_thai": "da_giao"
+    }
+  ],
+  "can_anh": [
+    {
+      "ma": "CA-1",
+      "viec": "Chọn hướng methodology digital heritage",
+      "han": "2026-11-15",
+      "trang_thai": "cho"
+    }
+  ]
+}

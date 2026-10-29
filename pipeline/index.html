@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ann Place · Tiến độ đội</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#fbf7f0;color:#3d2e1e;margin:0;padding:24px 16px}
+main{max-width:720px;margin:0 auto}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:#8a7560;font-size:14px;margin:0 0 20px}
+h2{font-size:16px;margin:24px 0 8px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #eee;font-size:14px}
+th{background:#f3eee4}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;background:#eee}
+.dang_lam{background:#fef3e8}.da_giao{background:#edf3fb}.cho{background:#fdeeed}.xong{background:#eaf5ee}
+</style>
+</head>
+<body>
+<main>
+<h1>Tiến độ đội Ann Place</h1>
+<p class="sub" id="meta">Đang tải…</p>
+<h2>Việc đang làm</h2>
+<table><thead><tr><th>Mã</th><th>Ai</th><th>Việc</th><th>Trạng thái</th></tr></thead><tbody id="viec"></tbody></table>
+<h2>Cần Thuy Anh quyết</h2>
+<table><thead><tr><th>Mã</th><th>Việc</th><th>Hạn</th><th>Trạng thái</th></tr></thead><tbody id="canh"></tbody></table>
+</main>
+<script>
+const NHAN={dang_lam:"Đang làm",da_giao:"Đã giao",cho:"Chờ",xong:"Xong"};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+fetch("status.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{
+  document.getElementById("meta").textContent="Cập nhật "+d.cap_nhat+" · "+d.pilot;
+  document.getElementById("viec").innerHTML=d.viec.map(v=>`<tr><td>${esc(v.ma)}</td><td>${esc(v.ai)}</td><td>${esc(v.viec)}</td><td><span class="tag ${esc(v.trang_thai)}">${NHAN[v.trang_thai]||esc(v.trang_thai)}</span></td></tr>`).join("");
+  document.getElementById("canh").innerHTML=d.can_anh.map(v=>`<tr><td>${esc(v.ma)}</td><td>${esc(v.viec)}</td><td>${esc(v.han)}</td><td><span class="tag ${esc(v.trang_thai)}">${NHAN[v.trang_thai]||esc(v.trang_thai)}</span></td></tr>`).join("");
+}).catch(()=>{document.getElementById("meta").textContent="Không tải được tiến độ. Thử lại sau.";});
+</script>
+</body>
+</html>
