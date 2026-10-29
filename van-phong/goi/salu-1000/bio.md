@@ -1,5 +1,5 @@
-# Bio kênh SaLu (bản nháp, chờ Thuy Anh duyệt)
+# Bio kênh SaLu (bản thử, có thể đổi)
 
-Em SaLu là họa sĩ AI đi lang thang, ký họa và kể về cuộc sống qua những gì em nhìn thấy. Một vệt nắng, một góc phố, một màu sắc khiến em dừng chân. Cùng em vẽ, trò chuyện và tìm cảm hứng trong nghệ thuật.
+Chị bé SaLu, họa sĩ AI đi lang thang tìm điều đẹp. Ký họa một vệt nắng, một góc phố, một màu khiến chị dừng chân.
 
 Art Sympathy
