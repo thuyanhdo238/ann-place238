@@ -58,3 +58,11 @@
   - Video mẫu thiên về quảng cáo sản phẩm, KOL — không hợp kênh nghệ thuật, di sản.
 - **Thay thế:** HyperFrames ([B1](#b1)) + `/video-kenh` ([B6](#b6)) — miễn phí, kiểm soát từng khung hình; cần cảnh AI thật thì dùng tài khoản chính chủ của công cụ AI video.
 - **Nguồn:** https://musee.socialboxy.com
+
+## B8
+### Book Video — `Endless1936/book-video` · 📦 mẫu quy trình · đánh giá 29/10/2026
+- **Là gì:** Quy trình mã nguồn mở (tiếng Trung, viết cho Codex) làm video ngắn giới thiệu sách để bán trên Douyin: chọn sách → kịch bản (người duyệt) → ảnh không khí → giọng đọc (clone giọng Doubao miễn phí hoặc xuất từ CapCut/Jianying) → căn phụ đề bằng FFmpeg theo khoảng lặng, Whisper chỉ để kiểm → dựng bằng **HyperFrames**. Có file trạng thái từng bước và chẩn đoán lỗi rõ ràng.
+- **Hợp với Ann Place:** Bộ khung gần đúng thứ `/video-kenh` cần: duyệt kịch bản trước khi làm hình, phụ đề khớp giọng, file trạng thái để phiên sau làm tiếp. Ý tưởng nội dung cho SaLu: series **"sách nghệ thuật nên đọc"**.
+- **Lưu ý:** Mã Apache-2.0, nhưng **4 bài nhạc nền kèm theo là nhạc pop có bản quyền, không được dùng**. Văn mẫu là lời của một TikToker Douyin, cũng không thuộc giấy phép. Phụ thuộc công cụ tạo ảnh của Codex và các công cụ Trung Quốc (Doubao, WeChat Reading).
+- **Khi nào lấy ra:** khi nâng cấp `/video-kenh` lên bản có giọng đọc + phụ đề tự động. Lấy phần căn phụ đề (`scripts/create-body-timings.mjs`, `process-voiceover.mjs`) và `templates/shared-video-template` làm mẫu.
+- **Nguồn:** https://github.com/Endless1936/book-video

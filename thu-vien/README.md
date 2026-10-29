@@ -16,6 +16,7 @@ Kho cất các công cụ AI, skill và prompt mà Thuy Anh sưu tầm, đã đ�
 | **A** | **ĐIỀU PHỐI VĂN PHÒNG** | | | | [A-van-phong.md](A-van-phong.md) |
 | A1 | Văn phòng ảo 3D (van-phong-ao-3d) | App + quy trình | Mẫu quy trình điều phối đội AI | 📖 đã chuyển thành `van-phong/` | [→](A-van-phong.md#a1) |
 | A2 | `/giao-phieu` | Skill Ann Place | Ra phiếu việc cho 5 AI | ✅ | [→](A-van-phong.md#a2) |
+| A3 | Ely tự nuôi mình (ely-diary) | Thí nghiệm agent tự chủ | Bài học + tư liệu nghiên cứu | 📖 | [→](A-van-phong.md#a3) |
 | **B** | **VIDEO & CHUYỂN ĐỘNG** | | | | [B-video.md](B-video.md) |
 | B1 | HyperFrames (`/hyperframes`, `/hyperframes-cli`, `/hyperframes-registry`, `/media-use`) | Skill | Dựng video từ HTML, xuất MP4 | ✅ | [→](B-video.md#b1) |
 | B2 | HyperFrames Launches | Kho video mẫu | Học cách dựng, lấy mẫu chỉnh lại | 📦 | [→](B-video.md#b2) |
@@ -23,6 +24,7 @@ Kho cất các công cụ AI, skill và prompt mà Thuy Anh sưu tầm, đã đ�
 | B4 | VoiceStudio | App | Thuyết minh, nhân bản giọng, chép lời | 🟢 tải app | [→](B-video.md#b4) |
 | B5 | Claude Motion | Tính năng Claude | Hoạt hình ngắn trong Claude | ⛔ chỉ gói Team/Enterprise | [→](B-video.md#b5) |
 | B6 | `/video-kenh` | Skill Ann Place | Quy trình video SaLu / rồng Lý | ✅ | [→](B-video.md#b6) |
+| B8 | Book Video | Quy trình mẫu (Codex + HyperFrames) | Video giới thiệu sách: kịch bản → giọng → phụ đề → dựng | 📦 mẫu tham khảo | [→](B-video.md#b8) |
 | B7 | Musee (socialboxy) | App trả phí | Tạo video AI hàng loạt trên Muse bằng nhiều tài khoản | ⛔ không khuyên dùng | [→](B-video.md#b7) |
 | **C** | **THIẾT KẾ** | | | | [C-thiet-ke.md](C-thiet-ke.md) |
 | C1 | Editable Design (`/editable-design`) | Skill | Poster, social card có lớp, chữ thật | ✅ | [→](C-thiet-ke.md#c1) |
