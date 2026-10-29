@@ -1,0 +1,33 @@
+name: Radar Agent — Grok
+
+on:
+  schedule:
+    # 00:00 UTC = 07:00 Vietnam time
+    - cron: '0 0 * * *'
+  workflow_dispatch:  # Cho phép chạy thủ công để test
+
+# Workflow này KHÔNG chạy script — Grok tự push output qua GitHub connection.
+# File này chỉ để document lịch chạy và trigger nếu cần fallback.
+
+jobs:
+  check_radar_output:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Check if Grok pushed output today
+        run: |
+          TODAY=$(date -u +"%Y-%m-%d")
+          OUTPUT_FILE="agents/radar/output/output.md"
+          if [ -f "$OUTPUT_FILE" ]; then
+            MODIFIED=$(git log -1 --format="%ai" -- "$OUTPUT_FILE" | cut -d' ' -f1)
+            echo "Output file last modified: $MODIFIED"
+            if [ "$MODIFIED" = "$TODAY" ]; then
+              echo "✅ Grok đã push output hôm nay ($TODAY)"
+            else
+              echo "⚠️  Output file chưa được cập nhật hôm nay (last: $MODIFIED)"
+            fi
+          else
+            echo "❌ Output file chưa tồn tại: $OUTPUT_FILE"
+          fi
