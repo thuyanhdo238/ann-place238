@@ -1,0 +1,87 @@
+{
+  "version": "1.0",
+  "status": "proposed_not_benchmarked",
+  "note": "Phân vai ban đầu cho đúng 5 công cụ chủ dự án xác nhận; chưa phải xếp hạng benchmark hoặc xác nhận lịch/quyền thực thi.",
+  "roles": [
+    {
+      "worker": "general",
+      "role": "leader_editorial_review",
+      "owns": [
+        "brief",
+        "plan",
+        "allocation",
+        "synthesis",
+        "optimization",
+        "independent_editorial_review",
+        "rights_screening_decision"
+      ],
+      "model": null,
+      "benchmark_score": null,
+      "application": "Claude"
+    },
+    {
+      "worker": "radar",
+      "role": "research",
+      "owns": [
+        "trend_research",
+        "source_ledger",
+        "audience_research"
+      ],
+      "model": null,
+      "benchmark_score": null,
+      "application": "Grok"
+    },
+    {
+      "worker": "art",
+      "role": "creative",
+      "owns": [
+        "script",
+        "storyboard",
+        "caption",
+        "SaLu_consistency"
+      ],
+      "model": null,
+      "benchmark_score": null,
+      "application": "ChatGPT"
+    },
+    {
+      "worker": "chance",
+      "role": "production_candidate",
+      "owns": [
+        "video",
+        "audio",
+        "subtitles",
+        "asset_ledger"
+      ],
+      "model": null,
+      "benchmark_score": null,
+      "execution_verified": false,
+      "application": "Google AI Studio",
+      "note": "Nhận việc hình/âm thanh/video chỉ khi tính năng, quota và đường xuất tệp trong tài khoản đã được kiểm chứng; chưa xác nhận lịch native."
+    },
+    {
+      "worker": "opportunity",
+      "role": "engineering_qa",
+      "owns": [
+        "workflow_code",
+        "schema_validation",
+        "hash_validation",
+        "tests",
+        "dashboard",
+        "publisher_adapter_if_authorized"
+      ],
+      "model": null,
+      "benchmark_score": null,
+      "execution_verified": false,
+      "application": "GitHub Copilot",
+      "note": "Không phải chuyên gia pháp lý hoặc người tự xác nhận nội dung. Chưa xác nhận cloud agent, quyền upload hay chi phí gói."
+    }
+  ],
+  "review_must_differ_from": [
+    "creative",
+    "production"
+  ],
+  "benchmark_min_score": 80,
+  "benchmark_samples": 3,
+  "critical_errors_allowed": 0
+}

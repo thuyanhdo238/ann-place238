@@ -1,0 +1,51 @@
+{
+  "timezone": "Asia/Ho_Chi_Minh",
+  "schedule_vn": [
+    "08:00",
+    "10:00",
+    "13:00",
+    "17:00"
+  ],
+  "workers": {
+    "general": {
+      "label": "Leader · Điều phối",
+      "existing": "Báo cáo tuần theo quy tắc",
+      "external_schedule_confirmed": false
+    },
+    "radar": {
+      "label": "Radar · Nghiên cứu",
+      "existing": "RSS và báo cáo Grok",
+      "external_schedule_confirmed": false
+    },
+    "art": {
+      "label": "Art · Nội dung SaLu",
+      "existing": "Chọn nội dung viết sẵn",
+      "external_schedule_confirmed": false
+    },
+    "chance": {
+      "label": "Chance",
+      "existing": "Chọn câu trích dẫn",
+      "external_schedule_confirmed": false
+    },
+    "opportunity": {
+      "label": "Opportunity · Cơ hội",
+      "existing": "RSS cơ hội",
+      "external_schedule_confirmed": false
+    }
+  },
+  "stage_workers": {
+    "research": "radar",
+    "script": "art",
+    "video": null,
+    "review": null,
+    "publish": null,
+    "measure": "general",
+    "plan": "general"
+  },
+  "publishing_policy": {
+    "enabled": false,
+    "channel": null,
+    "charter_approved": false
+  },
+  "new_spending_requires_owner": true
+}

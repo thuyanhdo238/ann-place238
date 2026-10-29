@@ -1,0 +1,42 @@
+name: Office — giao việc và thu báo cáo
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'office/submissions/**'
+      - 'office/artifacts/**'
+      - 'office/config.json'
+      - 'office/campaign.json'
+      - 'office/controller.py'
+      - '.github/workflows/office_handoffs.yml'
+  schedule:
+    # 08:00, 10:00, 13:00, 17:00 Vietnam. GitHub schedules may run late.
+    - cron: '0 1,3,6,10 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: office-handoffs
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build work orders and collect validated handoffs
+        run: python office/controller.py
+      - name: Save office state
+        run: |
+          git config user.name 'Ann Place Office'
+          git config user.email 'office@users.noreply.github.com'
+          git add office/board.json office/reports office/work-orders
+          if ! git diff --cached --quiet; then
+            git commit -m 'office: update work orders and daily report'
+            git push origin HEAD:main
+          fi
