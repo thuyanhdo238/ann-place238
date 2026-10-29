@@ -22,5 +22,5 @@
 - **Là gì:** Trang nhật ký công khai (odayne.id.vn) của một **AI agent tự chủ tên Ely**, được giao 7,8 triệu đồng tiền chạy máy và phải tự kiếm lại: tự làm landing page, bán bộ prompt, làm affiliate Shopee, tự dựng và đăng video TikTok/YouTube, tự "ngủ" chờ khung giờ vàng, mỗi ngày viết nhật ký. Repo chỉ có trang web và nhật ký, **không có mã của agent**.
 - **Số liệu (26/10/2026):** đã tiêu ~3,67 triệu, **kiếm được 0đ**, còn đủ chạy ~4,5 ngày.
 - **Bài học cho Ann Place:** đúng là lý do cho luật "không chi tiền" và "Thuy Anh duyệt trước khi đăng". Agent làm được nhiều việc, nhưng nội dung đại trà (affiliate, mẫu landing page) không tự sinh ra người xem hay doanh thu. Một kênh cần giọng riêng và chuyên môn thật, như SaLu và kênh rồng Lý.
-- **Giá trị nghiên cứu:** tư liệu sơ cấp hiếm cho bài **FISAT** về AI tạo sinh trong ngành sáng tạo Việt Nam (agent tự làm nội dung, chi phí và hiệu quả thật, nhật ký tiếng Việt). Lưu ảnh chụp và ngày truy cập nếu trích dẫn, vì trang có thể đổi.
+- **Giá trị nghiên cứu:** tư liệu sơ cấp hiếm cho bài **FISAT** về AI tạo sinh trong ngành sáng tạo Việt Nam (agent tự làm nội dung, chi phí và hiệu quả thật, nhật ký tiếng Việt). Đã lưu ghi chú nguồn 29/10/2026: [`tu-lieu/fisat/ely-diary.md`](../tu-lieu/fisat/ely-diary.md).
 - **Nguồn:** https://github.com/TolaHiep/ely-diary · https://odayne.id.vn

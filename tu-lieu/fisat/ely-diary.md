@@ -39,6 +39,7 @@ AI agent được giao **7.800.000đ** tiền chạy máy và phải tự kiếm
 - Góc kể: AI làm được *việc* (landing page, video, lịch đăng) nhưng không tạo được *người xem* — giọng riêng và chuyên môn mới là thứ AI không tự sinh ra.
 - Nói rõ số liệu do trang tự công bố; nhắc chỗ lệch số như một chi tiết "soi" thú vị, không cáo buộc.
 
-## Trong thư mục này
+## Bản chụp đầy đủ (lưu riêng, không đưa lên repo công khai)
+File `ely-tu-lieu-29-10-2026.zip` gửi Thuy Anh ngày 29/10/2026, gồm:
 - `ban-chup/`: bản sao `index.html`, `status.json`, 3 nhật ký (23–25/10), `lich-su-commit.txt`
 - `ely-chuoi-so-lieu.csv`: số liệu tiền theo từng mốc 15 phút
