@@ -1,1092 +1,1593 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ann Place — Văn Phòng Của Anh</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ann Place — AI Office Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f7f2e8;
+      --cream-dark: #ede5d5;
+      --sage: #b8c9a3;
+      --sage-dark: #58714b;
+      --sage-light: #e8f0df;
+      --terracotta: #c17f4a;
+      --terracotta-dark: #8c5325;
+      --terracotta-light: #fbeee3;
+      --paper: #fefdfa;
+      --ink: #2b251f;
+      --ink-muted: #6e6255;
+      --border: #dfd4c0;
+      --border-soft: #ece4d4;
+      --shadow-sm: 0 3px 10px rgba(43, 37, 31, 0.05);
+      --shadow-md: 0 8px 24px rgba(43, 37, 31, 0.08);
+      --shadow-lg: 0 16px 36px rgba(43, 37, 31, 0.12);
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+    }
 
-<!-- ╔══════════════════════════════════════════════════════╗
-     ║  🎨 DESIGN ZONE — ChatGPT chỉnh sửa trong này      ║
-     ║  Được phép đổi: màu sắc, font, spacing, animation   ║
-     ║  KHÔNG đổi: tên class, id, cấu trúc HTML            ║
-     ╚══════════════════════════════════════════════════════╝ -->
-<style>
-:root {
-  --bg: #f0ebe0;
-  --card: #fdfaf4;
-  --border: #e2d9c8;
-  --text: #3d2e1e;
-  --muted: #8a7560;
-  --green: #5a9e72;
-  --green-light: #eaf5ee;
-  --green-dark: #3d7a53;
-  --amber: #d4813a;
-  --amber-light: #fef3e8;
-  --red: #c0523a;
-  --red-light: #fdeeed;
-  --blue: #4a7eb5;
-  --blue-light: #edf3fb;
-  --shadow-sm: 0 2px 8px rgba(61,46,30,0.08);
-  --shadow-md: 0 4px 20px rgba(61,46,30,0.12);
-  --radius: 16px;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--cream);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(#dfd4c0 0.8px, transparent 0.8px),
+        radial-gradient(#e8ddca 0.8px, var(--cream) 0.8px);
+      background-size: 32px 32px;
+      background-position: 0 0, 16px 16px;
+    }
 
-body {
-  background: var(--bg);
-  font-family: 'Inter', sans-serif;
-  color: var(--text);
-  min-height: 100vh;
-  padding: 24px 16px 40px;
-}
+    /* Headings in Georgia / Storybook Serif */
+    h1, h2, h3, h4, .serif-font {
+      font-family: Georgia, 'Newsreader', 'Times New Roman', serif;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+    }
 
-/* ── HEADER ── */
-.header {
-  text-align: center;
-  margin-bottom: 32px;
-}
-.header-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--green);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 100px;
-  margin-bottom: 10px;
-}
-.dot-live {
-  width: 6px; height: 6px;
-  background: #a8ffbf;
-  border-radius: 50%;
-  animation: livepulse 2s infinite;
-}
-@keyframes livepulse {
-  0%,100% { opacity:1; transform:scale(1); }
-  50% { opacity:.4; transform:scale(1.4); }
-}
-.header h1 {
-  font-family: 'Nunito', sans-serif;
-  font-size: clamp(22px, 5vw, 36px);
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: -0.5px;
-}
-.header p {
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 6px;
-}
+    a {
+      color: var(--terracotta-dark);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    a:hover {
+      color: var(--terracotta);
+    }
 
-/* ── STATS ROW ── */
-.stats {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
-}
-.stat-pill {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  padding: 6px 16px;
-  font-size: 13px;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: var(--shadow-sm);
-}
-.stat-pill strong { color: var(--text); font-weight: 600; }
+    /* Top Utility Bar */
+    .top-nav {
+      background: rgba(247, 242, 232, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 12px 24px;
+    }
+    .top-nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--terracotta);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 2px 8px rgba(193, 127, 74, 0.3);
+    }
+    .brand-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .brand-sub {
+      font-size: 11px;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
 
-/* ── GRID ── */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  max-width: 860px;
-  margin: 0 auto 24px;
-}
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .live-clock-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      box-shadow: var(--shadow-sm);
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ea863;
+      box-shadow: 0 0 0 0 rgba(78, 168, 99, 0.6);
+      animation: pulseGreen 2s infinite;
+    }
+    @keyframes pulseGreen {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(78, 168, 99, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(78, 168, 99, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(78, 168, 99, 0); }
+    }
 
-/* ── ROOM CARD ── */
-.room {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  transition: transform .2s ease, box-shadow .2s ease;
-  position: relative;
-}
-.room:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-.room:hover .char-wrap { animation: bounce 0.6s ease; }
+    /* ══════════════════════════════════════════════
+       HERO SCENE: GHIBLI / STORYBOOK ILLUSTRATION
+       ══════════════════════════════════════════════ */
+    .hero-container {
+      position: relative;
+      background: linear-gradient(180deg, #f0ebd8 0%, #f7f2e8 100%);
+      border-bottom: 2px solid var(--border);
+      padding: 40px 20px 20px 20px;
+      overflow: hidden;
+    }
 
-@keyframes bounce {
-  0%,100% { transform: translateY(0); }
-  30% { transform: translateY(-6px); }
-  60% { transform: translateY(-3px); }
-}
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
 
-/* Room color accent bar */
-.room-bar {
-  height: 4px;
-  width: 100%;
-}
-.bar-green { background: linear-gradient(90deg, var(--green), #82c99a); }
-.bar-amber { background: linear-gradient(90deg, var(--amber), #e8a96a); }
-.bar-blue  { background: linear-gradient(90deg, var(--blue),  #7aadd4); }
-.bar-red   { background: linear-gradient(90deg, var(--red),   #d8826a); }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: var(--sage-light);
+      border: 1px solid var(--sage);
+      color: var(--sage-dark);
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
 
-.room-inner { padding: 14px 14px 12px; }
+    .hero-title {
+      font-size: clamp(34px, 5.5vw, 56px);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
 
-/* Room header */
-.room-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 10px;
-}
-.room-name {
-  font-family: 'Nunito', sans-serif;
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1.2;
-}
-.room-sub {
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 2px;
-  font-weight: 400;
-}
+    .hero-subtitle {
+      font-size: clamp(14px, 2vw, 17px);
+      color: var(--ink-muted);
+      max-width: 640px;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
 
-/* Status badge */
-.badge {
-  font-size: 10px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 100px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.badge-green { background: var(--green-light); color: var(--green-dark); }
-.badge-amber { background: var(--amber-light); color: #a05a10; }
-.badge-blue  { background: var(--blue-light);  color: #2d5a8a; }
-.badge-gray  { background: #f0ebe0; color: var(--muted); }
+    /* Ghibli SVG Artwork Canvas */
+    .ghibli-scene {
+      width: 100%;
+      max-width: 960px;
+      margin: 10px auto 0 auto;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, #dcebe9 0%, #faecd7 55%, #e1eecd 85%, #b8c9a3 100%);
+      border: 2px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      position: relative;
+    }
 
-/* CHARACTER SCENE */
-.scene {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 6px;
-  margin: 8px 0;
-  min-height: 72px;
-}
-.char-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.char-wrap canvas {
-  image-rendering: pixelated;
-  display: block;
-}
+    .ghibli-scene svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
-/* Floating sparkle animation */
-.sparkle {
-  position: absolute;
-  font-size: 13px;
-  animation: floatup 3s ease-in-out infinite;
-  pointer-events: none;
-  opacity: 0;
-}
-.sparkle:nth-child(1) { top: 30%; left: 12%; animation-delay: 0s; }
-.sparkle:nth-child(2) { top: 20%; right: 14%; animation-delay: 1s; }
-.sparkle:nth-child(3) { top: 40%; right: 8%; animation-delay: 2s; }
-@keyframes floatup {
-  0%   { opacity:0; transform:translateY(0) scale(0.8); }
-  30%  { opacity:1; }
-  80%  { opacity:.6; }
-  100% { opacity:0; transform:translateY(-18px) scale(1); }
-}
+    /* Drifting Clouds Animation */
+    @keyframes driftCloud1 {
+      0% { transform: translateX(-120px); }
+      100% { transform: translateX(1050px); }
+    }
+    @keyframes driftCloud2 {
+      0% { transform: translateX(950px); }
+      100% { transform: translateX(-150px); }
+    }
+    @keyframes smokeRise {
+      0% { transform: translate(0, 0) scale(0.8); opacity: 0.8; }
+      50% { transform: translate(8px, -18px) scale(1.3); opacity: 0.5; }
+      100% { transform: translate(18px, -36px) scale(1.8); opacity: 0; }
+    }
+    @keyframes swayTree {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(1.5deg); }
+    }
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
 
-/* Desk */
-.desk {
-  width: 100%;
-  background: var(--border);
-  border-radius: 6px;
-  height: 6px;
-  margin-top: 2px;
-}
+    .cloud-layer-1 { animation: driftCloud1 45s linear infinite; }
+    .cloud-layer-2 { animation: driftCloud2 65s linear infinite; }
+    .smoke-puff-1 { animation: smokeRise 3.5s ease-out infinite; transform-origin: center bottom; }
+    .smoke-puff-2 { animation: smokeRise 3.5s ease-out infinite 1.7s; transform-origin: center bottom; }
+    .tree-sway { animation: swayTree 6s ease-in-out infinite; transform-origin: bottom center; }
+    .lantern-glow { animation: gentleFloat 3s ease-in-out infinite; }
 
-/* Channel tag */
-.room-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px solid var(--border);
-}
-.ch-tag {
-  font-size: 11px;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-.ch-tag svg { width:11px; height:11px; }
-.time-tag {
-  font-size: 10px;
-  color: var(--muted);
-  background: var(--bg);
-  padding: 2px 7px;
-  border-radius: 100px;
-}
+    /* Scene Overlay Status */
+    .scene-caption {
+      position: absolute;
+      bottom: 16px;
+      left: 20px;
+      background: rgba(254, 253, 250, 0.92);
+      backdrop-filter: blur(8px);
+      padding: 8px 16px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+    }
 
-/* ── BOTTOM BUTTONS ── */
-.actions {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  max-width: 860px;
-  margin: 0 auto;
-}
-.btn {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  padding: 9px 20px;
-  font-size: 13px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  color: var(--text);
-  cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: background .15s, transform .1s;
-}
-.btn:hover { background: #fff; transform: translateY(-1px); }
-.btn-primary { background: var(--green); color: #fff; border-color: var(--green); }
-.btn-primary:hover { background: var(--green-dark); }
+    /* ══════════════════════════════════════════════
+       MAIN CONTENT CONTAINER
+       ══════════════════════════════════════════════ */
+    .main-wrapper {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
 
-/* ── MODAL ── */
-.overlay {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(61,46,30,0.5);
-  backdrop-filter: blur(4px);
-  z-index: 200;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.overlay.open { display: flex; }
-.modal {
-  background: var(--card);
-  border-radius: 20px;
-  max-width: 420px;
-  width: 100%;
-  max-height: 85vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 60px rgba(61,46,30,0.25);
-  animation: popIn .2s ease;
-}
-@keyframes popIn {
-  from { opacity:0; transform:scale(.94) translateY(8px); }
-  to   { opacity:1; transform:scale(1) translateY(0); }
-}
-.modal-top {
-  padding: 20px 20px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.modal-title {
-  font-family: 'Nunito', sans-serif;
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--text);
-}
-.modal-close {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  color: var(--muted);
-  display: flex; align-items: center; justify-content: center;
-  transition: background .15s;
-}
-.modal-close:hover { background: var(--border); }
-.modal-body {
-  padding: 16px 20px 24px;
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--text);
-}
-.modal-body h3 {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 16px 0 6px;
-}
-.modal-body h3:first-child { margin-top: 0; }
-.modal-body p { color: var(--text); margin-bottom: 6px; }
-.modal-body ul { padding-left: 16px; }
-.modal-body li { margin-bottom: 4px; }
-.sched-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
-}
-.sched-row:last-child { border-bottom: none; }
-.chip {
-  display: inline-block;
-  padding: 2px 9px;
-  border-radius: 100px;
-  font-size: 12px;
-  font-weight: 600;
-}
-.chip-green { background: var(--green-light); color: var(--green-dark); }
-.chip-amber { background: var(--amber-light); color: #a05a10; }
-.chip-blue  { background: var(--blue-light);  color: #2d5a8a; }
-.usage-bar-wrap { margin: 4px 0 12px; }
-.usage-bar-bg {
-  background: var(--border);
-  border-radius: 100px;
-  height: 8px;
-  overflow: hidden;
-}
-.usage-bar-fill {
-  height: 100%;
-  border-radius: 100px;
-  background: linear-gradient(90deg, var(--green), #82c99a);
-  animation: growBar .8s ease forwards;
-  transform-origin: left;
-}
-@keyframes growBar { from{width:0} }
+    /* Section Headers */
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
+    .section-title {
+      font-size: 28px;
+      color: var(--ink);
+    }
+    .section-desc {
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
 
-/* ── AI TEAM PANEL ── */
-.ai-team-panel {
-  max-width: 720px;
-  margin: 28px auto 8px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 20px 22px 16px;
-}
-.ai-team-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--muted);
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.ai-team-grid { display: flex; flex-direction: column; gap: 14px; }
-.ai-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.ai-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 160px;
-  flex-shrink: 0;
-}
-.ai-avatar {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 13px; color: #fff;
-  flex-shrink: 0;
-}
-.ai-gemini    { background: linear-gradient(135deg,#4285f4,#34a853); }
-.ai-grok      { background: linear-gradient(135deg,#1a1a2e,#4a4a7a); }
-.ai-perplexity{ background: linear-gradient(135deg,#20b2aa,#008b8b); }
-.ai-chatgpt   { background: linear-gradient(135deg,#10a37f,#0d8a6b); }
-.ai-name { font-size: 13px; font-weight: 700; line-height: 1.2; }
-.ai-task { font-size: 11px; color: var(--muted); margin-top: 1px; }
-.ai-bar-col { flex: 1; }
-.ai-bar-wrap {
-  height: 8px;
-  background: var(--border);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 5px;
-}
-.ai-bar-fill {
-  height: 100%;
-  border-radius: 4px;
-  animation: growBar .8s ease;
-}
-.ai-bar-gemini    { background: linear-gradient(90deg,#4285f4,#34a853); }
-.ai-bar-grok      { background: linear-gradient(90deg,#6c6cbb,#9494d4); }
-.ai-bar-perplexity{ background: linear-gradient(90deg,#20b2aa,#48d1cc); }
-.ai-bar-chatgpt   { background: linear-gradient(90deg,#10a37f,#1bc99a); }
-.ai-bar-label {
-  font-size: 11px;
-  color: var(--muted);
-}
-.ai-bar-label strong { color: var(--text); }
-.ai-bar-warn { color: #e8843a; }
-.ai-bar-warn strong { color: #e8843a; }
-.ai-team-note {
-  margin-top: 14px;
-  font-size: 11px;
-  color: var(--muted);
-  opacity: .7;
-  border-top: 1px solid var(--border);
-  padding-top: 10px;
-}
-@media (max-width: 600px) {
-  .ai-row { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .ai-info { min-width: unset; }
-  .ai-bar-col { width: 100%; }
-}
+    /* ══════════════════════════════════════════════
+       THE 5 AGENTS CARDS
+       ══════════════════════════════════════════════ */
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
-/* ── FOOTER ── */
-.footer {
-  text-align: center;
-  margin-top: 32px;
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.8;
-}
+    .agent-card {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .agent-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--border);
+      transition: background 0.3s;
+    }
+    .agent-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--terracotta);
+    }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 600px) {
-  .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  body { padding: 16px 12px 32px; }
-}
-@media (max-width: 360px) {
-  .grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-}
-</style>
-<!-- ╔══════════════════════════════════════════════════════╗
-     ║  🎨 END DESIGN ZONE                                 ║
-     ╚══════════════════════════════════════════════════════╝ -->
+    /* Specific agent theme colors */
+    .agent-card.grok::before { background: #3b82f6; }
+    .agent-card.claude::before { background: #d97706; }
+    .agent-card.copilot::before { background: #10b981; }
+    .agent-card.art::before { background: var(--terracotta); }
+    .agent-card.chatgpt::before { background: #8b5cf6; }
 
+    .agent-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .agent-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 4px 12px rgba(43, 37, 31, 0.08);
+      border: 2px solid #fff;
+      flex-shrink: 0;
+    }
+    .agent-card.grok .agent-avatar { background: #eaf2ff; }
+    .agent-card.claude .agent-avatar { background: #fdf5ea; }
+    .agent-card.copilot .agent-avatar { background: #ecfdf5; }
+    .agent-card.art .agent-avatar { background: var(--terracotta-light); }
+    .agent-card.chatgpt .agent-avatar { background: #f5f3ff; }
+
+    .agent-info h3 {
+      font-size: 18px;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .agent-role {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+    }
+
+    .agent-body {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .agent-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-soft);
+      padding-top: 12px;
+      font-size: 11px;
+    }
+    .agent-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4ea863;
+    }
+
+    .badge-art-special {
+      background: var(--terracotta-light);
+      color: var(--terracotta-dark);
+      border: 1px solid var(--terracotta);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    /* ══════════════════════════════════════════════
+       RADAR LIVE REPORT CONTAINER
+       ══════════════════════════════════════════════ */
+    .radar-section {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .radar-header-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .radar-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .radar-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: #eaf2ff;
+      border: 1px solid #c7dcfc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .radar-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-action:hover {
+      background: var(--cream-dark);
+      border-color: var(--terracotta);
+    }
+    .btn-primary {
+      background: var(--terracotta);
+      color: #fff;
+      border-color: var(--terracotta);
+    }
+    .btn-primary:hover {
+      background: var(--terracotta-dark);
+      color: #fff;
+    }
+
+    /* Filter Chips */
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .chip {
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .chip.active, .chip:hover {
+      background: var(--sage);
+      border-color: var(--sage-dark);
+      color: var(--ink);
+    }
+
+    /* News Items Feed */
+    .news-feed {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .news-card {
+      background: #fdfaf4;
+      border: 1px solid var(--border-soft);
+      border-left: 4px solid var(--terracotta);
+      border-radius: var(--radius-sm);
+      padding: 18px 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .news-card:hover {
+      transform: translateX(4px);
+      box-shadow: var(--shadow-sm);
+      border-color: var(--border);
+      border-left-color: var(--terracotta-dark);
+    }
+
+    .news-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      background: var(--terracotta-light);
+      color: var(--terracotta-dark);
+    }
+    .news-tag.ai { background: #eaf2ff; color: #2563eb; }
+    .news-tag.heritage { background: #fdf2f8; color: #db2777; }
+    .news-tag.vietnam { background: #fef2f2; color: #dc2626; }
+    .news-tag.design { background: #f0fdf4; color: #16a34a; }
+    .news-tag.opportunity { background: #fefce8; color: #ca8a04; }
+
+    .news-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+    .news-summary {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .news-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--terracotta);
+    }
+    .news-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Deadlines Highlight Callout */
+    .deadline-box {
+      margin-top: 28px;
+      padding: 20px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #fef8f0 0%, #faede1 100%);
+      border: 1px solid #eed6c2;
+    }
+    .deadline-box h4 {
+      font-size: 16px;
+      color: var(--terracotta-dark);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .deadline-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--ink);
+    }
+    .deadline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .deadline-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: #fde8d7;
+      color: var(--terracotta-dark);
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════════════════
+       PIPELINE & NHIỆM VỤ
+       ══════════════════════════════════════════════ */
+    .pipeline-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .pipeline-card {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .pipeline-card h3 {
+      font-size: 17px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .task-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .task-checkbox {
+      margin-top: 3px;
+      accent-color: var(--sage-dark);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    .task-text.completed {
+      text-decoration: line-through;
+      color: var(--ink-muted);
+      opacity: 0.6;
+    }
+    .task-tag {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+    }
+    .tag-doing { background: #fef3c7; color: #b45309; }
+    .tag-decision { background: #ede9fe; color: #6d28d9; }
+    .tag-done { background: #d1fae5; color: #047857; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--cream);
+      padding: 36px 20px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-top: 60px;
+    }
+    .footer-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(43, 37, 31, 0.6);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+    .modal-card {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      max-width: 540px;
+      width: 100%;
+      padding: 28px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalPop {
+      0% { transform: scale(0.92); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      cursor: pointer;
+      color: var(--ink-muted);
+    }
+    .modal-close:hover {
+      background: var(--cream-dark);
+      color: var(--ink);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .top-nav { padding: 10px 16px; }
+      .live-clock-badge { font-size: 11px; padding: 4px 10px; }
+      .hero-title { font-size: 32px; }
+      .main-wrapper { padding: 0 16px; margin: 24px auto; gap: 32px; }
+      .radar-section { padding: 20px 16px; }
+      .radar-header-row { flex-direction: column; align-items: flex-start; }
+      .scene-caption { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="header-tag"><div class="dot-live"></div> 5 agents đang hoạt động</div>
-  <h1>🏡 Ann Place</h1>
-  <p>Văn phòng AI cá nhân · Tự động hóa hoàn toàn</p>
-</div>
-
-<!-- STATS -->
-<div class="stats">
-  <div class="stat-pill">🤖 <strong>5</strong> agents</div>
-  <div class="stat-pill">📅 <strong>4</strong> lần/ngày</div>
-  <div class="stat-pill">💰 Chi phí <strong>$0</strong></div>
-  <div class="stat-pill">⚡ <strong>~124</strong> phút/tháng</div>
-</div>
-
-<!-- GRID -->
-<div class="grid">
-
-  <!-- 1 ĐIỀU PHỐI -->
-  <div class="room" onclick="openModal('dieuphoi')">
-    <div class="room-bar bar-green"></div>
-    <div class="room-inner">
-      <div class="room-head">
+  <!-- Top Utility Bar -->
+  <nav class="top-nav">
+    <div class="top-nav-inner">
+      <div class="brand-tag">
+        <div class="brand-icon">🏡</div>
         <div>
-          <div class="room-name">Điều Phối</div>
-          <div class="room-sub">General</div>
+          <div class="brand-title">Ann Place</div>
+          <div class="brand-sub">AI Office Dashboard</div>
         </div>
-        <span class="badge badge-green">● Active</span>
       </div>
-      <div class="scene" style="position:relative">
-        <span class="sparkle">📋</span>
-        <span class="sparkle">✅</span>
-        <div class="char-wrap"><canvas id="c0" width="44" height="52"></canvas><div class="desk"></div></div>
+
+      <div class="nav-actions">
+        <div class="live-clock-badge" id="live-clock">
+          <div class="pulse-dot"></div>
+          <span id="time-string">Đang kết nối...</span>
+        </div>
+        <a href="https://github.com/thuyanhdo238/ann-place238" target="_blank" rel="noreferrer" class="btn-action">
+          <span>GitHub</span> ↗
+        </a>
       </div>
-      <div class="room-footer">
-        <span class="ch-tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>#general</span>
-        <span class="time-tag">T2 · 15:00</span>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════
+       HERO SCENE: GHIBLI STORYBOOK ILLUSTRATION
+       ══════════════════════════════════════════════ -->
+  <section class="hero-container">
+    <div class="hero-content">
+      <div class="hero-pill">
+        <span>✨ Thiết kế bởi Agent Art · Phong cách Ghibli</span>
+      </div>
+      <h1 class="hero-title">Văn Phòng AI <em>Ann Place</em></h1>
+      <p class="hero-subtitle">
+        Không gian làm việc đồng bộ của 5 AI Agents — cùng Thủy Anh nuôi dưỡng nghiên cứu luận án PhD, sáng tạo nghệ thuật SaLu, và cập nhật radar tri thức mỗi ngày.
+      </p>
+
+      <!-- Illustrated Vector Scene Canvas -->
+      <div class="ghibli-scene" id="scene-box">
+        <svg viewBox="0 0 960 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Sky Gradient -->
+            <linearGradient id="skyGrad" x1="480" y1="0" x2="480" y2="400" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#d6e8e8" />
+              <stop offset="45%" stop-color="#fdf4e7" />
+              <stop offset="85%" stop-color="#faebd7" />
+              <stop offset="100%" stop-color="#e3eed1" />
+            </linearGradient>
+
+            <!-- Sun Glow -->
+            <radialGradient id="sunGlow" cx="0.5" cy="0.5" r="0.5" fx="0.5" fy="0.5">
+              <stop offset="0%" stop-color="#fff8db" stop-opacity="0.9" />
+              <stop offset="40%" stop-color="#ffe6a3" stop-opacity="0.5" />
+              <stop offset="100%" stop-color="#ffe6a3" stop-opacity="0" />
+            </radialGradient>
+
+            <!-- Hills Gradient -->
+            <linearGradient id="hillBack" x1="0" y1="200" x2="0" y2="480" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#cadbb9" />
+              <stop offset="100%" stop-color="#a4bd8f" />
+            </linearGradient>
+            <linearGradient id="hillMid" x1="0" y1="260" x2="0" y2="480" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#b8c9a3" />
+              <stop offset="100%" stop-color="#8ba873" />
+            </linearGradient>
+            <linearGradient id="hillFront" x1="0" y1="340" x2="0" y2="480" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#8fae77" />
+              <stop offset="100%" stop-color="#64854c" />
+            </linearGradient>
+
+            <!-- Cottage Roof & Wall Gradients -->
+            <linearGradient id="roofGrad" x1="0" y1="180" x2="0" y2="280" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#d9894e" />
+              <stop offset="100%" stop-color="#a95f2d" />
+            </linearGradient>
+            <linearGradient id="wallGrad" x1="0" y1="270" x2="0" y2="390" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#fcf8ec" />
+              <stop offset="100%" stop-color="#e8deca" />
+            </linearGradient>
+          </defs>
+
+          <!-- Sky Canvas -->
+          <rect width="960" height="480" fill="url(#skyGrad)" />
+
+          <!-- Warm Morning Sun -->
+          <circle cx="210" cy="110" r="120" fill="url(#sunGlow)" />
+          <circle cx="210" cy="110" r="42" fill="#fffbe8" />
+
+          <!-- Clouds (Drifting Layers) -->
+          <g class="cloud-layer-1" opacity="0.85">
+            <path d="M120 70C125 55 145 45 165 52C175 40 198 42 208 55C222 52 235 62 235 75C245 76 250 85 245 95C240 102 120 102 120 70Z" fill="#ffffff" />
+            <path d="M520 90C525 78 542 70 558 76C566 65 586 67 594 78C606 75 617 84 617 95C626 96 630 104 626 112C621 118 520 118 520 90Z" fill="#ffffff" opacity="0.9" />
+          </g>
+          <g class="cloud-layer-2" opacity="0.6">
+            <path d="M780 130C784 120 798 112 812 117C818 107 835 109 842 118C852 115 860 123 860 132C868 133 872 140 868 147C864 152 780 152 780 130Z" fill="#ffffff" />
+          </g>
+
+          <!-- Rolling Hills (Back Layer) -->
+          <path d="M-40 310 Q 220 210, 480 270 T 1000 230 L 1000 480 L -40 480 Z" fill="url(#hillBack)" />
+          
+          <!-- Distant Ghibli Windmill / Trees -->
+          <g opacity="0.75">
+            <rect x="760" y="210" width="16" height="40" fill="#eedfca" rx="2" />
+            <polygon points="768,198 752,212 784,212" fill="#c17f4a" />
+            <line x1="768" y1="210" x2="740" y2="190" stroke="#8c5325" stroke-width="2" />
+            <line x1="768" y1="210" x2="796" y2="230" stroke="#8c5325" stroke-width="2" />
+            <circle cx="710" cy="245" r="14" fill="#8ba873" />
+            <circle cx="725" cy="242" r="18" fill="#7a9762" />
+          </g>
+
+          <!-- Mid Hills Layer -->
+          <path d="M-20 350 Q 240 280, 520 320 T 980 290 L 980 480 L -20 480 Z" fill="url(#hillMid)" />
+
+          <!-- Lush Grand Tree (Left / Center) -->
+          <g class="tree-sway">
+            <!-- Trunk -->
+            <path d="M260 380 Q 255 310, 240 250 Q 232 210, 220 180 Q 235 210, 255 240 Q 275 290, 290 380 Z" fill="#66462c" />
+            <path d="M245 240 Q 210 200, 180 190 Q 205 205, 235 230 Z" fill="#523722" />
+            <!-- Leaf Canopies Layered -->
+            <circle cx="210" cy="180" r="54" fill="#506e3d" />
+            <circle cx="255" cy="165" r="62" fill="#668a4e" />
+            <circle cx="185" cy="150" r="48" fill="#7b9f5f" />
+            <circle cx="230" cy="130" r="58" fill="#90b571" />
+            <circle cx="260" cy="135" r="46" fill="#a4cb80" />
+            <circle cx="215" cy="115" r="38" fill="#b9df94" />
+          </g>
+
+          <!-- The Ann Place Cottage Studio -->
+          <g id="cottage-group">
+            <!-- Chimney & Smoke -->
+            <rect x="560" y="210" width="22" height="50" fill="#a86036" rx="2" />
+            <rect x="557" y="206" width="28" height="6" fill="#7b3f1c" rx="1" />
+            <!-- Smoke Puffs -->
+            <circle cx="571" cy="195" r="8" fill="#ffffff" opacity="0.6" class="smoke-puff-1" />
+            <circle cx="576" cy="182" r="11" fill="#ffffff" opacity="0.4" class="smoke-puff-2" />
+
+            <!-- Main Cottage Walls -->
+            <path d="M440 280 L 610 280 L 610 395 L 440 395 Z" fill="url(#wallGrad)" stroke="#cbbca3" stroke-width="2" />
+            
+            <!-- Timber Framing -->
+            <line x1="440" y1="330" x2="610" y2="330" stroke="#8d6848" stroke-width="4" />
+            <line x1="475" y1="280" x2="475" y2="395" stroke="#8d6848" stroke-width="4" />
+            <line x1="575" y1="280" x2="575" y2="395" stroke="#8d6848" stroke-width="4" />
+
+            <!-- Terracotta Shingle Roof -->
+            <polygon points="525,195 415,285 635,285" fill="url(#roofGrad)" stroke="#7b3f1c" stroke-width="2" />
+            <!-- Roof Overhang Trim -->
+            <rect x="410" y="280" width="230" height="8" rx="2" fill="#7b3f1c" />
+
+            <!-- Attic Round Window -->
+            <circle cx="525" cy="245" r="16" fill="#ffefb8" stroke="#8d6848" stroke-width="3" />
+            <line x1="525" y1="229" x2="525" y2="261" stroke="#8d6848" stroke-width="2" />
+            <line x1="509" y1="245" x2="541" y2="245" stroke="#8d6848" stroke-width="2" />
+
+            <!-- Cozy Arched Door -->
+            <path d="M505 395 L 505 340 Q 525 325 545 340 L 545 395 Z" fill="#744a2c" stroke="#4a2e19" stroke-width="2" />
+            <circle cx="538" cy="365" r="2.5" fill="#e6c27e" />
+
+            <!-- Front Porch Lantern Glow -->
+            <g class="lantern-glow">
+              <circle cx="490" cy="335" r="14" fill="#ffe999" opacity="0.45" />
+              <rect x="487" y="328" width="6" height="10" rx="1" fill="#4a2e19" />
+              <circle cx="490" cy="333" r="3" fill="#fff5cc" />
+            </g>
+
+            <!-- Ground Ivy & Flower Boxes -->
+            <rect x="446" y="348" width="24" height="18" fill="#ffefb8" stroke="#8d6848" stroke-width="2" />
+            <circle cx="448" cy="370" r="6" fill="#e2725b" />
+            <circle cx="458" cy="368" r="8" fill="#e8984e" />
+            <circle cx="468" cy="371" r="6" fill="#e2725b" />
+            
+            <circle cx="590" cy="380" r="10" fill="#e2725b" />
+            <circle cx="602" cy="382" r="8" fill="#d97706" />
+          </g>
+
+          <!-- Foreground Hill & Garden Flowers -->
+          <path d="M-20 410 Q 300 350, 600 380 T 980 370 L 980 480 L -20 480 Z" fill="url(#hillFront)" />
+
+          <!-- Wooden Signpost: "Ann Place" -->
+          <g>
+            <rect x="360" y="360" width="8" height="45" fill="#66462c" rx="1" />
+            <rect x="330" y="345" width="68" height="22" fill="#dfcfb5" stroke="#8d6848" stroke-width="2" rx="3" />
+            <text x="364" y="360" font-family="Georgia, serif" font-size="10" font-weight="bold" fill="#3d2b1f" text-anchor="middle">Ann Place</text>
+          </g>
+
+          <!-- Small Wildflowers and Bushes -->
+          <g opacity="0.9">
+            <circle cx="120" cy="420" r="7" fill="#fdf0d5" />
+            <circle cx="126" cy="418" r="6" fill="#e2725b" />
+            <circle cx="180" cy="440" r="8" fill="#fbcfe8" />
+            <circle cx="670" cy="410" r="10" fill="#fed7aa" />
+            <circle cx="720" cy="425" r="9" fill="#fef08a" />
+            <circle cx="840" cy="400" r="8" fill="#bbf7d0" />
+            <circle cx="890" cy="415" r="10" fill="#fbcfe8" />
+          </g>
+        </svg>
+
+        <div class="scene-caption">
+          <span>🌿</span>
+          <span>Thung lũng Ann Place — Không gian bình yên cho sáng tạo và học thuật</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       MAIN CONTENT: 5 AGENTS + RADAR + PIPELINE
+       ══════════════════════════════════════════════ -->
+  <main class="main-wrapper">
+
+    <!-- 1. THE 5 AGENTS OF ANN PLACE -->
+    <section id="agents-section">
+      <div class="section-head">
+        <span class="section-eyebrow">Đội Ngũ AI Đồng Hành</span>
+        <h2 class="section-title">5 Agents Tại Văn Phòng Ann Place</h2>
+        <p class="section-desc">Mỗi Agent đảm nhận một sứ mệnh riêng, kết nối nhịp nhàng để tạo nên không gian làm việc tự động và giàu cảm xúc.</p>
+      </div>
+
+      <div class="agents-grid">
+        <!-- Agent 1: Grok (Radar) -->
+        <div class="agent-card grok" onclick="openAgentModal('grok')">
+          <div>
+            <div class="agent-header">
+              <div class="agent-avatar">🔭</div>
+              <div class="agent-info">
+                <h3>Grok</h3>
+                <div class="agent-role">Radar Agent</div>
+              </div>
+            </div>
+            <p class="agent-body">
+              Chuyên trách trinh sát, quét tự động các chuyển động mới nhất về AI, di sản văn hóa, và các cơ hội triển lãm toàn cầu.
+            </p>
+          </div>
+          <div class="agent-footer">
+            <div class="agent-status">
+              <span class="status-dot"></span>
+              <span>Quét 01:05 UTC</span>
+            </div>
+            <span class="news-link">Xem chi tiết →</span>
+          </div>
+        </div>
+
+        <!-- Agent 2: Claude (Leader) -->
+        <div class="agent-card claude" onclick="openAgentModal('claude')">
+          <div>
+            <div class="agent-header">
+              <div class="agent-avatar">🦉</div>
+              <div class="agent-info">
+                <h3>Claude</h3>
+                <div class="agent-role">Leader & Research</div>
+              </div>
+            </div>
+            <p class="agent-body">
+              Điều phối chiến lược, rà soát logic, cố vấn nội dung nghiên cứu luận án tiến sĩ PhD tại RMIT Vietnam và biểu tượng rồng thời Lý.
+            </p>
+          </div>
+          <div class="agent-footer">
+            <div class="agent-status">
+              <span class="status-dot"></span>
+              <span>Đang điều phối</span>
+            </div>
+            <span class="news-link">Xem chi tiết →</span>
+          </div>
+        </div>
+
+        <!-- Agent 3: Copilot (DevOps) -->
+        <div class="agent-card copilot" onclick="openAgentModal('copilot')">
+          <div>
+            <div class="agent-header">
+              <div class="agent-avatar">🛠️</div>
+              <div class="agent-info">
+                <h3>Copilot</h3>
+                <div class="agent-role">DevOps Agent</div>
+              </div>
+            </div>
+            <p class="agent-body">
+              Quản trị hạ tầng GitHub Actions, đồng bộ repository, kiểm tra secrets, duy trì đường truyền tự động hóa CI/CD không gián đoạn.
+            </p>
+          </div>
+          <div class="agent-footer">
+            <div class="agent-status">
+              <span class="status-dot"></span>
+              <span>Workflows xanh</span>
+            </div>
+            <span class="news-link">Xem chi tiết →</span>
+          </div>
+        </div>
+
+        <!-- Agent 4: Google AI Studio (Art) - SPECIAL -->
+        <div class="agent-card art" onclick="openAgentModal('art')">
+          <div>
+            <div class="agent-header">
+              <div class="agent-avatar">🎨</div>
+              <div class="agent-info">
+                <h3>Google AI Studio</h3>
+                <div class="agent-role">Art Agent</div>
+              </div>
+            </div>
+            <p class="agent-body">
+              Giám đốc mỹ thuật và trải nghiệm. Kiến tạo phong cách minh họa Ghibli, hòa sắc cream, sage green và terracotta ấm áp cho Ann Place.
+            </p>
+          </div>
+          <div class="agent-footer">
+            <div class="agent-status">
+              <span class="status-dot"></span>
+              <span>Đang thiết kế</span>
+            </div>
+            <span class="badge-art-special">Art Studio</span>
+          </div>
+        </div>
+
+        <!-- Agent 5: ChatGPT (Script+Deploy) -->
+        <div class="agent-card chatgpt" onclick="openAgentModal('chatgpt')">
+          <div>
+            <div class="agent-header">
+              <div class="agent-avatar">✍️</div>
+              <div class="agent-info">
+                <h3>ChatGPT</h3>
+                <div class="agent-role">Script & Deploy</div>
+              </div>
+            </div>
+            <p class="agent-body">
+              Viết kịch bản tự động, quản lý SaLu đăng bài hằng ngày, triển khai giao diện và duy trì tương tác linh hoạt trên nền web.
+            </p>
+          </div>
+          <div class="agent-footer">
+            <div class="agent-status">
+              <span class="status-dot"></span>
+              <span>Tự động SaLu</span>
+            </div>
+            <span class="news-link">Xem chi tiết →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. RADAR REPORT SECTION (FETCHED LIVE FROM GITHUB) -->
+    <section class="radar-section" id="radar-section">
+      <div class="radar-header-row">
+        <div class="radar-title-group">
+          <div class="radar-icon-box">📡</div>
+          <div>
+            <h2 class="section-title" style="font-size: 24px;">Báo Cáo Radar Hôm Nay</h2>
+            <p class="section-desc" id="radar-time-tag">Đang tải dữ liệu từ kho lưu trữ GitHub...</p>
+          </div>
+        </div>
+
+        <div class="radar-controls">
+          <button class="btn-action" onclick="fetchRadarData()">
+            <span>🔄 Làm mới</span>
+          </button>
+          <a href="https://raw.githubusercontent.com/thuyanhdo238/ann-place238/main/agents/radar/output/output.md" target="_blank" class="btn-action">
+            <span>Xem File Gốc .md</span> ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Categories Filter Chips -->
+      <div class="filter-chips">
+        <button class="chip active" onclick="filterRadar('all', this)">Tất cả tin tức</button>
+        <button class="chip" onclick="filterRadar('ai', this)">🤖 Trí tuệ nhân tạo (AI)</button>
+        <button class="chip" onclick="filterRadar('heritage', this)">🏛️ Di sản văn hóa</button>
+        <button class="chip" onclick="filterRadar('vietnam', this)">🇻🇳 Việt Nam</button>
+        <button class="chip" onclick="filterRadar('design', this)">🎨 Nghệ thuật & Thiết kế</button>
+        <button class="chip" onclick="filterRadar('opportunity', this)">📅 Deadline & Cơ hội</button>
+      </div>
+
+      <!-- Feed Container -->
+      <div class="news-feed" id="news-feed">
+        <div style="text-align: center; padding: 40px; color: var(--ink-muted);">
+          <div style="font-size: 28px; margin-bottom: 8px;">⏳</div>
+          <p>Đang lấy dữ liệu trực tiếp từ GitHub Radar Agent...</p>
+        </div>
+      </div>
+
+      <!-- Deadlines Callout Box -->
+      <div class="deadline-box" id="deadline-container" style="display: none;">
+        <h4>📅 Cơ hội & Deadline Sắp Tới Cần Chú Ý</h4>
+        <ul class="deadline-list" id="deadline-list">
+          <!-- Filled dynamically -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. PIPELINE & NHIỆM VỤ TIÊU BIỂU -->
+    <section id="pipeline-section">
+      <div class="section-head">
+        <span class="section-eyebrow">Tiến Độ Hành Động</span>
+        <h2 class="section-title">Kế Hoạch & Pipeline Ann Place</h2>
+        <p class="section-desc">Theo dõi các mốc quan trọng trong nghiên cứu luận án PhD, dự án mỹ thuật SaLu và hoạt động giảng dạy.</p>
+      </div>
+
+      <div class="pipeline-section">
+        <!-- Card 1: PhD Research -->
+        <div class="pipeline-card">
+          <h3><span>🔬</span> Nghiên cứu PhD (RMIT)</h3>
+          <ul class="task-list">
+            <li class="task-item" onclick="toggleTask(this)">
+              <input type="checkbox" class="task-checkbox" checked />
+              <span class="task-text">Hoàn thiện đề cương luận án PhD — RMIT Vietnam <span class="task-tag tag-doing">Đang làm</span></span>
+            </li>
+            <li class="task-item" onclick="toggleTask(this)">
+              <input type="checkbox" class="task-checkbox" />
+              <span class="task-text">Tổng hợp tài liệu Lý dynasty dragon symbolism cho chương 2</span>
+            </li>
+            <li class="task-item" onclick="toggleTask(this)">
+              <input type="checkbox" class="task-checkbox" />
+              <span class="task-text">Chọn hướng digital heritage methodology <span class="task-tag tag-decision">Cần chốt 15/11</span></span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Art Sympathy / SaLu -->
+        <div class="pipeline-card">
+          <h3><span>🎨</span> Art Sympathy / SaLu</h3>
+          <ul class="task-list">
+            <li class="task-item" onclick="toggleTask(this)">
+              <input type="checkbox" class="task-checkbox" checked />
+              <span class="task-text completed">Thiết lập agent SaLu — đăng tự động hằng ngày <span class="task-tag tag-done">Xong</span></span>
+            </li>
+            <li class="task-item" onclick="toggleTask(this)">
+              <input type="checkbox" class="task-checkbox" />
+              <span class="task-text">Phát triển visual identity cho SaLu (hình tượng nhân vật)</span>
+            </li>
+            <li class="task-item" onclick="toggleTask(this)">
+              <input type="checkbox" class="task-checkbox" />
+              <span class="task-text">Lên kế hoạch nội dung tháng 11</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Giảng Dạy & Văn Phòng -->
+        <div class="pipeline-card">
+          <h3><span>📚</span> Giảng Dạy & Văn Phòng AI</h3>
+          <ul class="task-list">
+            <li class="task-item" onclick="toggleTask(this)">
+              <input type="checkbox" class="task-checkbox" />
+              <span class="task-text">Cập nhật tài liệu môn Thiết kế Cơ sở học kỳ tới</span>
+            </li>
+            <li class="task-item" onclick="toggleTask(this)">
+              <input type="checkbox" class="task-checkbox" />
+              <span class="task-text">Đề xuất workshop AI cho sinh viên <span class="task-tag tag-decision">Chờ duyệt</span></span>
+            </li>
+            <li class="task-item" onclick="toggleTask(this)">
+              <input type="checkbox" class="task-checkbox" checked />
+              <span class="task-text completed">Redesign Ann Place phong cách Ghibli (Agent Art) <span class="task-tag tag-done">Hoàn thành</span></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div style="font-size: 24px;">🌿 🏡 🎨</div>
+      <p><strong>Ann Place — Không Gian Làm Việc Của Thủy Anh</strong></p>
+      <p style="font-size: 12px; max-width: 500px;">
+        Được sáng tạo và vận hành bởi 5 Agent: Grok, Claude, Copilot, Google AI Studio (Art), và ChatGPT. Mỗi ngày một bước nhỏ, bền bỉ và dịu dàng.
+      </p>
+      <p style="font-size: 11px; color: var(--terracotta); margin-top: 8px;">
+        Bản quyền thiết kế © 2026 Ann Place · Ghibli Aesthetic Redesign
+      </p>
+    </div>
+  </footer>
+
+  <!-- Modal Agent Info Popup -->
+  <div class="modal-overlay" id="agent-modal" onclick="closeModalOnOverlay(event)">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeAgentModal()">✕</button>
+      <div id="modal-body-content">
+        <!-- Injected via JavaScript -->
       </div>
     </div>
   </div>
 
-  <!-- 2 VĂN HÓA -->
-  <div class="room" onclick="openModal('vanhoa')">
-    <div class="room-bar bar-amber"></div>
-    <div class="room-inner">
-      <div class="room-head">
-        <div>
-          <div class="room-name">Văn Hóa</div>
-          <div class="room-sub">Radar</div>
-        </div>
-        <span class="badge badge-green">● Active</span>
-      </div>
-      <div class="scene" style="position:relative">
-        <span class="sparkle">🎨</span>
-        <span class="sparkle">🌿</span>
-        <div class="char-wrap"><canvas id="c1" width="44" height="52"></canvas><div class="desk"></div></div>
-      </div>
-      <div class="room-footer">
-        <span class="ch-tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>#radar</span>
-        <span class="time-tag">7:00 VN</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 3 CƠ HỘI -->
-  <div class="room" onclick="openModal('cohoi')">
-    <div class="room-bar bar-blue"></div>
-    <div class="room-inner">
-      <div class="room-head">
-        <div>
-          <div class="room-name">Cơ Hội</div>
-          <div class="room-sub">Opportunity</div>
-        </div>
-        <span class="badge badge-green">● Active</span>
-      </div>
-      <div class="scene" style="position:relative">
-        <span class="sparkle">🗺️</span>
-        <span class="sparkle">💼</span>
-        <div class="char-wrap"><canvas id="c2" width="44" height="52"></canvas><div class="desk"></div></div>
-      </div>
-      <div class="room-footer">
-        <span class="ch-tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>#radar</span>
-        <span class="time-tag">13:00 VN</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 4 CHIẾN LƯỢC -->
-  <div class="room" onclick="openModal('chienluoc')">
-    <div class="room-bar bar-amber"></div>
-    <div class="room-inner">
-      <div class="room-head">
-        <div>
-          <div class="room-name">Chiến Lược</div>
-          <div class="room-sub">Strategy</div>
-        </div>
-        <span class="badge badge-amber">⏳ Phase 3</span>
-      </div>
-      <div class="scene" style="position:relative">
-        <span class="sparkle">📈</span>
-        <div class="char-wrap"><canvas id="c3" width="44" height="52"></canvas><div class="desk"></div></div>
-      </div>
-      <div class="room-footer">
-        <span class="ch-tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>#general</span>
-        <span class="time-tag">Sắp có</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 5 SÁNG TẠO -->
-  <div class="room" onclick="openModal('sangtao')">
-    <div class="room-bar bar-red"></div>
-    <div class="room-inner">
-      <div class="room-head">
-        <div>
-          <div class="room-name">Sáng Tạo</div>
-          <div class="room-sub">SaLu · Chance</div>
-        </div>
-        <span class="badge badge-green">● Active</span>
-      </div>
-      <div class="scene" style="position:relative">
-        <span class="sparkle">✨</span>
-        <span class="sparkle">💡</span>
-        <div class="char-wrap"><canvas id="c4" width="44" height="52"></canvas><div class="desk"></div></div>
-      </div>
-      <div class="room-footer">
-        <span class="ch-tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>#art · #chance</span>
-        <span class="time-tag">8-9:00 VN</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6 KIỂM TRA -->
-  <div class="room" onclick="openModal('kiemtra')">
-    <div class="room-bar bar-green"></div>
-    <div class="room-inner">
-      <div class="room-head">
-        <div>
-          <div class="room-name">Kiểm Tra</div>
-          <div class="room-sub">QA tích hợp</div>
-        </div>
-        <span class="badge badge-blue">↳ Built-in</span>
-      </div>
-      <div class="scene" style="position:relative">
-        <span class="sparkle">🔍</span>
-        <div class="char-wrap"><canvas id="c5" width="44" height="52"></canvas><div class="desk"></div></div>
-      </div>
-      <div class="room-footer">
-        <span class="ch-tag">Tích hợp trong agents</span>
-        <span class="time-tag">Auto</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 7 VẬN HÀNH -->
-  <div class="room" onclick="openModal('vanhanh')">
-    <div class="room-bar bar-green"></div>
-    <div class="room-inner">
-      <div class="room-head">
-        <div>
-          <div class="room-name">Vận Hành</div>
-          <div class="room-sub">GitHub Actions</div>
-        </div>
-        <span class="badge badge-green">● Online</span>
-      </div>
-      <div class="scene" style="position:relative">
-        <span class="sparkle">⚙️</span>
-        <div class="char-wrap"><canvas id="c6" width="44" height="52"></canvas><div class="desk"></div></div>
-      </div>
-      <div class="room-footer">
-        <span class="ch-tag">CI/CD · Cron · Free</span>
-        <span class="time-tag">24/7</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 8 NHÂN SỰ -->
-  <div class="room" onclick="openModal('nhansu')">
-    <div class="room-bar bar-amber"></div>
-    <div class="room-inner">
-      <div class="room-head">
-        <div>
-          <div class="room-name">Nhân Sự</div>
-          <div class="room-sub">HR & Roles</div>
-        </div>
-        <span class="badge badge-amber">⏳ Phase 3</span>
-      </div>
-      <div class="scene" style="position:relative">
-        <span class="sparkle">👥</span>
-        <div class="char-wrap"><canvas id="c7" width="44" height="52"></canvas><div class="desk"></div></div>
-      </div>
-      <div class="room-footer">
-        <span class="ch-tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>#general</span>
-        <span class="time-tag">Sắp có</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 9 KẾ TOÁN -->
-  <div class="room" onclick="openModal('ketoan')">
-    <div class="room-bar bar-blue"></div>
-    <div class="room-inner">
-      <div class="room-head">
-        <div>
-          <div class="room-name">Kế Toán</div>
-          <div class="room-sub">Usage · Cost</div>
-        </div>
-        <span class="badge badge-green">● Active</span>
-      </div>
-      <div class="scene" style="position:relative">
-        <span class="sparkle">📊</span>
-        <span class="sparkle">🧮</span>
-        <div class="char-wrap"><canvas id="c8" width="44" height="52"></canvas><div class="desk"></div></div>
-      </div>
-      <div class="room-footer">
-        <span class="ch-tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>#general</span>
-        <span class="time-tag">T2 · 15:00</span>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /grid -->
-
-<!-- AI TEAM STATUS -->
-<div class="ai-team-panel">
-  <div class="ai-team-title">⚡ AI Team — Quota Hôm Nay</div>
-  <div class="ai-team-grid">
-
-    <div class="ai-row">
-      <div class="ai-info">
-        <span class="ai-avatar ai-gemini">G</span>
-        <div>
-          <div class="ai-name">Gemini</div>
-          <div class="ai-task">Trends · Video · SaLu content</div>
-        </div>
-      </div>
-      <div class="ai-bar-col">
-        <div class="ai-bar-wrap">
-          <div class="ai-bar-fill ai-bar-gemini" data-pct="80" style="width:80%"></div>
-        </div>
-        <div class="ai-bar-label"><strong>80%</strong> còn lại · đủ: 2 video + 5 search</div>
-      </div>
-    </div>
-
-    <div class="ai-row">
-      <div class="ai-info">
-        <span class="ai-avatar ai-grok">X</span>
-        <div>
-          <div class="ai-name">Grok</div>
-          <div class="ai-task">Real-time · X/Twitter · News</div>
-        </div>
-      </div>
-      <div class="ai-bar-col">
-        <div class="ai-bar-wrap">
-          <div class="ai-bar-fill ai-bar-grok" data-pct="60" style="width:60%"></div>
-        </div>
-        <div class="ai-bar-label"><strong>60%</strong> còn lại · đủ: 5 research tasks</div>
-      </div>
-    </div>
-
-    <div class="ai-row">
-      <div class="ai-info">
-        <span class="ai-avatar ai-perplexity">P</span>
-        <div>
-          <div class="ai-name">Perplexity</div>
-          <div class="ai-task">Academic · Citations · PhD</div>
-        </div>
-      </div>
-      <div class="ai-bar-col">
-        <div class="ai-bar-wrap">
-          <div class="ai-bar-fill ai-bar-perplexity" data-pct="50" style="width:50%"></div>
-        </div>
-        <div class="ai-bar-label"><strong>50%</strong> còn lại · đủ: 4 academic search</div>
-      </div>
-    </div>
-
-    <div class="ai-row">
-      <div class="ai-info">
-        <span class="ai-avatar ai-chatgpt">C</span>
-        <div>
-          <div class="ai-name">ChatGPT</div>
-          <div class="ai-task">Frontend · CSS · Design zone</div>
-        </div>
-      </div>
-      <div class="ai-bar-col">
-        <div class="ai-bar-wrap">
-          <div class="ai-bar-fill ai-bar-chatgpt" data-pct="20" style="width:20%"></div>
-        </div>
-        <div class="ai-bar-label ai-bar-warn"><strong>20%</strong> — chỉ đủ: 1 task nhỏ ⚠️</div>
-      </div>
-    </div>
-
-  </div>
-  <div class="ai-team-note">Cập nhật khi AI push output.md · Giá trị demo — thay bằng dữ liệu thực từ GitHub</div>
-</div>
-
-<!-- ACTIONS -->
-<div class="actions">
-  <button class="btn" onclick="openModal('schedule')">📅 Lịch chạy</button>
-  <button class="btn" onclick="openModal('usage')">📊 Usage & Chi phí</button>
-  <button class="btn btn-primary" onclick="window.open('https://github.com/thuyanhdo238/ann-place238','_blank')">⚡ GitHub Repo</button>
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-  Ann Place · GitHub Actions · $0/tháng · Tự động hoàn toàn<br>
-  <span style="font-size:11px;opacity:.7">Trạng thái thực: xem tab Actions trên GitHub</span>
-</div>
-
-<!-- MODAL -->
-<div class="overlay" id="overlay" onclick="closeModal(event)">
-  <div class="modal">
-    <div class="modal-top">
-      <div class="modal-title" id="modal-title"></div>
-      <button class="modal-close" onclick="closeModalDirect()">✕</button>
-    </div>
-    <div class="modal-body" id="modal-body"></div>
-  </div>
-</div>
-
-<!-- ╔══════════════════════════════════════════════════════╗
-     ║  ⚙️ LOGIC ZONE — Claude quản lý, KHÔNG chỉnh sửa  ║
-     ║  Modal data, canvas characters, animations logic    ║
-     ╚══════════════════════════════════════════════════════╝ -->
-<script>
-// ── MODAL DATA ──
-const DATA = {
-  dieuphoi: {
-    title: "🗂 Điều Phối",
-    html: `
-      <h3>Vai trò</h3>
-      <p>Tổng hợp báo cáo tuần, đọc <code>pipeline.md</code>, theo dõi trạng thái agents và usage.</p>
-      <h3>Agent</h3>
-      <p><span class="chip chip-green">General</span> — Thứ Hai 15:00 VN → #general</p>
-      <h3>Pipeline markers</h3>
-      <p><code>[>]</code> Đang làm &nbsp;·&nbsp; <code>[?]</code> Chờ quyết định &nbsp;·&nbsp; <code>[!]</code> Cần sửa &nbsp;·&nbsp; <code>[x]</code> Xong</p>
-      <h3>Nguyên tắc</h3>
-      <p>Không tự giao quyền mới. Không điều chỉnh ngân sách. Chỉ báo cáo và chờ quyết định.</p>
-    `
-  },
-  vanhoa: {
-    title: "🎨 Văn Hóa & Design",
-    html: `
-      <h3>Agent</h3>
-      <p><span class="chip chip-green">Radar — Grok</span> — 7:00 VN → #radar</p>
-      <h3>📡 Tin mới nhất từ Grok</h3>
-      <div id="radar-content" style="margin-top:8px;font-size:13px;line-height:1.7;color:#5a4a3a">
-        <span style="color:#8a7560">⏳ Đang tải...</span>
-      </div>
-    `
-  },
-  cohoi: {
-    title: "🗺 Cơ Hội",
-    html: `
-      <h3>Vai trò</h3>
-      <p>Quét cơ hội: hội thảo, triển lãm, call for submissions, remote design jobs.</p>
-      <h3>Agent</h3>
-      <p><span class="chip chip-green">Opportunity</span> — 13:00 VN → #radar</p>
-      <h3>Nguyên tắc</h3>
-      <p>⚠️ Chỉ báo cáo — <strong>không tự nộp hồ sơ, không tự đăng ký</strong> khi chưa được giao quyền cụ thể.</p>
-    `
-  },
-  chienluoc: {
-    title: "📈 Chiến Lược",
-    html: `
-      <h3>Vai trò</h3>
-      <p>Phân tích xu hướng từ Radar, đề xuất định vị và kế hoạch phát triển kênh.</p>
-      <h3>Trạng thái</h3>
-      <p><span class="chip chip-amber">Phase 3 — Chưa có agent</span></p>
-      <p>Hiện do bạn và Claude phối hợp xử lý khi cần.</p>
-      <h3>Kế hoạch</h3>
-      <p>Monthly digest từ dữ liệu Radar tích lũy · So sánh kênh tương tự art/design</p>
-    `
-  },
-  sangtao: {
-    title: "✨ Sáng Tạo",
-    html: `
-      <h3>Vai trò</h3>
-      <p>Sản xuất nội dung cho Art Sympathy (SaLu) và các kênh sáng tạo.</p>
-      <h3>Agents</h3>
-      <p><span class="chip chip-green">SaLu</span> — Art Sympathy · 9:00 VN → #art</p>
-      <p style="margin-top:6px"><span class="chip chip-green">Chance</span> — Trích dẫn danh họa · 8:00 VN → #chance</p>
-      <h3>Nhân vật SaLu</h3>
-      <p>Sinh vật tròn nhỏ, mắt to, cầm sketchbook. Ghi nhật ký lang thang qua cái đẹp. Anonymous — không có mặt bạn.</p>
-    `
-  },
-  kiemtra: {
-    title: "✅ Kiểm Tra",
-    html: `
-      <h3>Vai trò</h3>
-      <p>Rà soát nội dung trước khi xuất bản: nguồn, bản quyền, độ chính xác.</p>
-      <h3>Tích hợp sẵn trong mọi agent</h3>
-      <p>✓ Kiểm tra RSS source hợp lệ<br>✓ Không suy diễn tâm lý từ tác phẩm<br>✓ Ghi rõ: dữ kiện / diễn giải / đề xuất AI<br>✓ Đánh dấu nội dung chưa xác minh</p>
-    `
-  },
-  vanhanh: {
-    title: "⚙️ Vận Hành",
-    html: `
-      <h3>Hạ tầng</h3>
-      <p><strong>GitHub Actions</strong> — cron tự động, free tier 2.000 phút/tháng</p>
-      <p style="margin-top:6px"><strong>config/webhooks.json</strong> — webhook URLs lưu trong repo</p>
-      <p style="margin-top:6px"><strong>pipeline.md</strong> — bạn update, agents đọc</p>
-      <h3>Không có</h3>
-      <p>Server riêng · Domain · Hosting fee · Manual trigger</p>
-    `
-  },
-  nhansu: {
-    title: "👥 Nhân Sự",
-    html: `
-      <h3>Trạng thái</h3>
-      <p><span class="chip chip-amber">Phase 3 — Báo cáo tích hợp trong General</span></p>
-      <h3>Agents hiện có (5)</h3>
-      <p>Radar · Chance · Art Sympathy (SaLu) · Opportunity · General</p>
-      <h3>Agents sắp thêm</h3>
-      <p>Discord Bot (nhận lệnh 2 chiều) · Strategy monthly digest</p>
-    `
-  },
-  ketoan: {
-    title: "🧮 Kế Toán",
-    html: `
-      <h3>GitHub Actions tháng này (ước tính)</h3>
-      <div class="usage-bar-wrap">
-        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
-          <span>~124 phút đã dùng</span><span style="color:var(--green)">6.2% / 2.000 phút</span>
-        </div>
-        <div class="usage-bar-bg"><div class="usage-bar-fill" style="width:6.2%"></div></div>
-      </div>
-      <div class="sched-row"><span>GitHub Actions</span><span style="color:var(--green);font-weight:600">$0</span></div>
-      <div class="sched-row"><span>Hosting / Server</span><span style="color:var(--green);font-weight:600">$0</span></div>
-      <div class="sched-row"><span>API Claude / ChatGPT</span><span style="color:var(--green);font-weight:600">$0</span></div>
-      <div class="sched-row"><span>Subscription Claude</span><span>Cố định, dùng chung</span></div>
-      <p style="margin-top:12px;font-size:12px;color:var(--muted)">⚠️ Số trên là ước tính — xem số chính xác tại GitHub Settings → Billing</p>
-    `
-  },
-  schedule: {
-    title: "📅 Lịch Chạy",
-    html: `
-      <h3>Hằng ngày</h3>
-      <div class="sched-row"><span>7:00 VN</span><span><span class="chip chip-green">Radar</span> → #radar</span></div>
-      <div class="sched-row"><span>8:00 VN</span><span><span class="chip chip-green">Chance</span> → #chance</span></div>
-      <div class="sched-row"><span>9:00 VN</span><span><span class="chip chip-green">SaLu</span> → #art</span></div>
-      <div class="sched-row"><span>13:00 VN</span><span><span class="chip chip-green">Opportunity</span> → #radar</span></div>
-      <h3 style="margin-top:16px">Thứ Hai hằng tuần</h3>
-      <div class="sched-row"><span>15:00 VN</span><span><span class="chip chip-blue">General</span> → #general</span></div>
-      <p style="margin-top:16px;font-size:13px;color:var(--muted)">Tất cả chạy trên GitHub Actions · Không cần bật máy · Không làm gì thủ công</p>
-    `
-  },
-  usage: {
-    title: "📊 Usage & Chi Phí",
-    html: `
-      <h3>GitHub Actions (tháng ước tính)</h3>
-      <div class="usage-bar-wrap">
-        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
-          <span>~124 / 2.000 phút</span><span style="color:var(--green);font-weight:600">6.2%</span>
-        </div>
-        <div class="usage-bar-bg"><div class="usage-bar-fill" style="width:6.2%"></div></div>
-      </div>
-      <div class="sched-row"><span>4 agents × 30 ngày</span><span>120 phút</span></div>
-      <div class="sched-row"><span>General × 4 tuần</span><span>4 phút</span></div>
-      <div class="sched-row"><span><strong>Tổng</strong></span><span><strong>~124 phút</strong></span></div>
-      <h3 style="margin-top:16px">Chi phí thực tế</h3>
-      <div class="sched-row"><span>Toàn bộ hạ tầng</span><span style="color:var(--green);font-weight:700;font-size:16px">$0 / tháng</span></div>
-    `
-  }
-};
-
-const RADAR_URL = 'https://raw.githubusercontent.com/thuyanhdo238/ann-place238/main/agents/radar/output/output.md';
-
-function parseRadarMd(md) {
-  // Extract news items: lines starting with ## or ### or **
-  const lines = md.split('\n');
-  let html = '';
-  let count = 0;
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed) continue;
-    // Section headers
-    if (trimmed.startsWith('## ') || trimmed.startsWith('### ')) {
-      const title = trimmed.replace(/^###?\s*/, '').replace(/^\d+\.\s*/, '');
-      if (title && count < 8) {
-        html += `<div style="margin-bottom:10px;padding:8px 10px;background:#f5f0e8;border-left:3px solid #d4813a;border-radius:4px">
-          <strong style="color:#3d2e1e;font-size:13px">${title}</strong>`;
-        count++;
-      }
-    } else if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
-      const text = trimmed.replace(/^[-*]\s*/, '');
-      if (text && html.endsWith('</strong>')) {
-        html += `<div style="color:#5a4a3a;font-size:12px;margin-top:4px">${text}</div></div>`;
-      }
-    } else if (trimmed.startsWith('**') && trimmed.includes('**')) {
-      const title = trimmed.replace(/\*\*/g,'').replace(/^\d+\.\s*/, '');
-      if (title && count < 8) {
-        html += `<div style="margin-bottom:10px;padding:8px 10px;background:#f5f0e8;border-left:3px solid #d4813a;border-radius:4px">
-          <strong style="color:#3d2e1e;font-size:13px">${title}</strong></div>`;
-        count++;
-      }
-    }
-  }
-  if (!html) html = '<p style="color:#8a7560">Chưa có dữ liệu mới.</p>';
-  // Check deadline alerts
-  const deadlineMatch = md.match(/deadline.*?(\d{1,2}\/\d{1,2}\/\d{4})/i);
-  if (deadlineMatch) {
-    html = `<div style="background:#fdeeed;border:1px solid #c0523a;border-radius:6px;padding:8px 10px;margin-bottom:12px;font-size:12px;color:#c0523a">
-      ⚠️ <strong>Deadline:</strong> ${deadlineMatch[0]}</div>` + html;
-  }
-  return html;
-}
-
-function openModal(key) {
-  const d = DATA[key]; if (!d) return;
-  document.getElementById('modal-title').textContent = d.title;
-  document.getElementById('modal-body').innerHTML = d.html;
-  document.getElementById('overlay').classList.add('open');
-  // Load live radar data
-  if (key === 'vanhoa') {
-    fetch(RADAR_URL + '?t=' + Date.now())
-      .then(r => r.ok ? r.text() : Promise.reject(r.status))
-      .then(md => {
-        const el = document.getElementById('radar-content');
-        if (el) el.innerHTML = parseRadarMd(md);
-      })
-      .catch(() => {
-        const el = document.getElementById('radar-content');
-        if (el) el.innerHTML = '<span style="color:#8a7560">Không tải được — xem trực tiếp trên <a href="https://github.com/thuyanhdo238/ann-place238/blob/main/agents/radar/output/output.md" target="_blank">GitHub</a></span>';
+  <!-- ══════════════════════════════════════════════
+       LOGIC & REAL-TIME INTERACTION SCRIPT
+       ══════════════════════════════════════════════ -->
+  <script>
+    // 1. Real-time Digital Clock (Vietnam Time)
+    function updateClock() {
+      const now = new Date();
+      // Format time in GMT+7 / Local time
+      const timeStr = now.toLocaleTimeString('vi-VN', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
       });
-  }
-}
-function closeModal(e) { if (e.target.id === 'overlay') closeModalDirect(); }
-function closeModalDirect() { document.getElementById('overlay').classList.remove('open'); }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
-
-// ── PIXEL CHARACTERS ──
-const CHARS = [
-  { shirt:'#5a9e72', hair:'#3d2e1e' }, // Điều Phối
-  { shirt:'#d4813a', hair:'#e8739e' }, // Văn Hóa
-  { shirt:'#4a7eb5', hair:'#3d2e1e' }, // Cơ Hội
-  { shirt:'#d4813a', hair:'#7b5ea7' }, // Chiến Lược
-  { shirt:'#c0523a', hair:'#e8739e' }, // Sáng Tạo
-  { shirt:'#5a9e72', hair:'#3d2e1e' }, // Kiểm Tra
-  { shirt:'#5a9e72', hair:'#8B5E3C' }, // Vận Hành
-  { shirt:'#d4813a', hair:'#7b5ea7' }, // Nhân Sự
-  { shirt:'#4a7eb5', hair:'#3d7a53' }, // Kế Toán
-];
-
-function drawChar(id, c) {
-  const cv = document.getElementById('c' + id);
-  if (!cv) return;
-  const x = cv.getContext('2d');
-  const p = (col, r, g, w, h) => { x.fillStyle = col; x.fillRect(r*3, g*3, w*3, h*3); };
-  // head
-  p(c.hair,   3, 0, 8, 2);
-  p('#f5c5a3', 3, 2, 8, 5);
-  // eyes
-  p('#3d2e1e', 4.5, 3.5, 1, 1);
-  p('#3d2e1e', 8.5, 3.5, 1, 1);
-  // blush
-  p('#f5a0a0', 3.5, 5, 1.5, 0.8);
-  p('#f5a0a0', 9,   5, 1.5, 0.8);
-  // body
-  p(c.shirt,   2, 7, 10, 5);
-  // arms
-  p('#f5c5a3', 0.5, 8, 1.5, 3);
-  p('#f5c5a3', 12,  8, 1.5, 3);
-  // laptop
-  p('#c8c0b4', 2, 13, 10, 4);
-  p('#7bafd4', 3, 13.5, 8, 3);
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  CHARS.forEach((c, i) => drawChar(i, c));
-});
-
-// ── CARD ENTRANCE ANIMATION ──
-const observer = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '0';
-      e.target.style.transform = 'translateY(16px)';
-      setTimeout(() => {
-        e.target.style.transition = 'opacity .4s ease, transform .4s ease';
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }, i * 60);
-      observer.unobserve(e.target);
+      const dateStr = now.toLocaleDateString('vi-VN', {
+        weekday: 'short',
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric'
+      });
+      
+      const el = document.getElementById('time-string');
+      if (el) {
+        el.textContent = `${timeStr} · ${dateStr}`;
+      }
     }
-  });
-}, { threshold: 0.1 });
+    setInterval(updateClock, 1000);
+    updateClock();
 
-document.querySelectorAll('.room').forEach(r => observer.observe(r));
-</script>
-<!-- ╔══════════════════════════════════════════════════════╗
-     ║  ⚙️ END LOGIC ZONE                                  ║
-     ╚══════════════════════════════════════════════════════╝ -->
+    // 2. Fetch and Parse Live Radar Markdown
+    const RADAR_URL = 'https://raw.githubusercontent.com/thuyanhdo238/ann-place238/main/agents/radar/output/output.md';
+    let allNewsItems = [];
+
+    async function fetchRadarData() {
+      const feedEl = document.getElementById('news-feed');
+      feedEl.innerHTML = `
+        <div style="text-align: center; padding: 40px; color: var(--ink-muted);">
+          <div style="font-size: 28px; margin-bottom: 8px;">⏳</div>
+          <p>Đang đồng bộ báo cáo Radar mới nhất từ GitHub...</p>
+        </div>
+      `;
+
+      try {
+        const res = await fetch(RADAR_URL + '?t=' + Date.now());
+        if (!res.ok) throw new Error('Không thể tải file Markdown');
+        const text = await res.text();
+        parseRadarMarkdown(text);
+      } catch (err) {
+        console.warn('Fetch fallback to embedded data:', err);
+        // Fallback with rich parsed content if network is restricted
+        parseRadarMarkdown(FALLBACK_RADAR_MD);
+      }
+    }
+
+    function parseRadarMarkdown(md) {
+      allNewsItems = [];
+      const deadlines = [];
+
+      // Extract update timestamp
+      const updateMatch = md.match(/cập nhật lúc\s*([^\n\*]+)/i);
+      const timeTag = document.getElementById('radar-time-tag');
+      if (timeTag) {
+        timeTag.textContent = updateMatch ? `Radar by Grok — Cập nhật lúc ${updateMatch[1].trim()}` : 'Radar by Grok — Đã đồng bộ';
+      }
+
+      // Parse news entries: ### [Category] Title
+      const rawSections = md.split('### ');
+      
+      for (let i = 1; i < rawSections.length; i++) {
+        const sec = rawSections[i];
+        const lines = sec.split('\n');
+        const headerLine = lines[0].trim();
+        
+        // Extract category tag e.g. [AI], [Heritage], [Cơ hội / Vietnam]
+        const tagMatch = headerLine.match(/^\[(.*?)\]\s*(.*)$/);
+        let tag = 'Tin tức';
+        let title = headerLine;
+        
+        if (tagMatch) {
+          tag = tagMatch[1];
+          title = tagMatch[2];
+        }
+
+        // Summary from blockquote (> ...)
+        let summary = '';
+        let link = '';
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (trimmed.startsWith('>')) {
+            summary = trimmed.replace(/^>\s*/, '');
+          } else if (trimmed.includes('http')) {
+            const urlMatch = trimmed.match(/https?:\/\/[^\s\)]+/);
+            if (urlMatch) link = urlMatch[0];
+          }
+        }
+
+        if (title) {
+          allNewsItems.push({
+            tag,
+            title,
+            summary: summary || 'Thông tin chi tiết trong báo cáo chuyên sâu của Radar Agent.',
+            link: link || 'https://github.com/thuyanhdo238/ann-place238'
+          });
+        }
+      }
+
+      // Parse deadlines section
+      const deadlinePart = md.split('## 📅 Cơ hội / Deadline sắp tới')[1];
+      if (deadlinePart) {
+        const dLines = deadlinePart.split('\n');
+        for (const dl of dLines) {
+          const trimmed = dl.trim();
+          if (trimmed.startsWith('-')) {
+            deadlines.push(trimmed.replace(/^-\s*/, ''));
+          }
+        }
+      }
+
+      renderNewsItems(allNewsItems);
+      renderDeadlines(deadlines);
+    }
+
+    function renderNewsItems(items) {
+      const feedEl = document.getElementById('news-feed');
+      if (!items || items.length === 0) {
+        feedEl.innerHTML = '<p style="text-align:center; padding: 20px;">Không tìm thấy tin tức trong báo cáo.</p>';
+        return;
+      }
+
+      feedEl.innerHTML = items.map(item => {
+        let tagClass = '';
+        const tagLower = item.tag.toLowerCase();
+        if (tagLower.includes('ai')) tagClass = 'ai';
+        else if (tagLower.includes('heritage')) tagClass = 'heritage';
+        else if (tagLower.includes('vietnam')) tagClass = 'vietnam';
+        else if (tagLower.includes('design')) tagClass = 'design';
+        else tagClass = 'opportunity';
+
+        return `
+          <article class="news-card">
+            <span class="news-tag ${tagClass}">${item.tag}</span>
+            <h3 class="news-title">${item.title}</h3>
+            <p class="news-summary">${item.summary}</p>
+            <a href="${item.link}" target="_blank" rel="noreferrer" class="news-link">
+              <span>Đọc nguồn gốc</span> ↗
+            </a>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderDeadlines(deadlines) {
+      const box = document.getElementById('deadline-container');
+      const list = document.getElementById('deadline-list');
+      if (deadlines && deadlines.length > 0) {
+        box.style.display = 'block';
+        list.innerHTML = deadlines.map(d => `
+          <li class="deadline-item">
+            <span class="deadline-badge">Hạn chót</span>
+            <span>${d}</span>
+          </li>
+        `).join('');
+      } else {
+        box.style.display = 'none';
+      }
+    }
+
+    function filterRadar(category, btn) {
+      // Toggle button active
+      document.querySelectorAll('.filter-chips .chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (category === 'all') {
+        renderNewsItems(allNewsItems);
+      } else {
+        const filtered = allNewsItems.filter(item => {
+          const t = item.tag.toLowerCase();
+          if (category === 'ai') return t.includes('ai');
+          if (category === 'heritage') return t.includes('heritage') || t.includes('di sản');
+          if (category === 'vietnam') return t.includes('vietnam') || t.includes('việt nam');
+          if (category === 'design') return t.includes('design') || t.includes('art');
+          if (category === 'opportunity') return t.includes('cơ hội') || t.includes('deadline');
+          return true;
+        });
+        renderNewsItems(filtered);
+      }
+    }
+
+    // 3. Agent Modal Content
+    const AGENT_DETAILS = {
+      grok: {
+        avatar: '🔭',
+        name: 'Grok — Radar Agent',
+        role: 'Trinh Sát Tin Tức & Cơ Hội Di Sản Văn Hóa',
+        desc: 'Chạy tự động lúc 01:05 UTC hằng ngày để quét các cổng tin tức AI (OpenAI, Microsoft, Canva, Hugging Face) và mạng lưới di sản văn hóa số toàn cầu.',
+        tasks: [
+          'Thu thập tin nổi bật về Generative AI và Cultural Heritage',
+          'Theo dõi call for papers & hạn chót abstract hội nghị quốc tế',
+          'Xuất báo cáo định dạng Markdown tại folder agents/radar/output/'
+        ],
+        github: 'https://github.com/thuyanhdo238/ann-place238/tree/main/agents/radar'
+      },
+      claude: {
+        avatar: '🦉',
+        name: 'Claude — Leader & Research Agent',
+        role: 'Trưởng Nhóm Điều Phối & Cố Vấn Luận Án PhD',
+        desc: 'Đảm nhận tư duy học thuật, kiểm duyệt chất lượng nội dung và cố vấn phương pháp luận cho đề tài tiến sĩ RMIT của Thủy Anh.',
+        tasks: [
+          'Hỗ trợ cấu trúc đề cương nghiên cứu biểu tượng rồng thời Lý',
+          'Đánh giá tính xác thực (authenticity) trong phục dựng di sản số',
+          'Điều phối kịch bản hằng tuần giữa các AI Agents'
+        ],
+        github: 'https://github.com/thuyanhdo238/ann-place238'
+      },
+      copilot: {
+        avatar: '🛠️',
+        name: 'Copilot — DevOps & Automation Agent',
+        role: 'Kỹ Sư Hạ Tầng & Quản Trị Pipeline',
+        desc: 'Giữ cho dòng chảy làm việc luôn thông suốt thông qua GitHub Actions và các script tự động hóa hạ tầng đám mây.',
+        tasks: [
+          'Kiểm tra và trigger cronjobs chạy theo lịch',
+          'Quản lý GitHub Secrets và phân quyền truy cập',
+          'Tối ưu hóa chi phí vận hành văn phòng AI ở mức $0/tháng'
+        ],
+        github: 'https://github.com/thuyanhdo238/ann-place238/actions'
+      },
+      art: {
+        avatar: '🎨',
+        name: 'Google AI Studio — Art Agent',
+        role: 'Giám Đốc Mỹ Thuật & Trải Nghiệm Ghibli',
+        desc: 'Là người kiến tạo diện mạo ấm áp này! Agent Art chịu trách nhiệm về bảng màu, minh họa vector, typography và linh hồn thị giác của Ann Place.',
+        tasks: [
+          'Thiết kế giao diện illustrated storybook lấy cảm hứng từ Studio Ghibli',
+          'Phối hợp bảng màu: Cream #f7f2e8, Sage Green #b8c9a3, Terracotta #c17f4a',
+          'Vẽ khung cảnh thung lũng, mây bay, ngôi nhà nhỏ và hiệu ứng ánh sáng'
+        ],
+        github: 'https://github.com/thuyanhdo238/ann-place238/tree/main/design'
+      },
+      chatgpt: {
+        avatar: '✍️',
+        name: 'ChatGPT — Script & Deploy Agent',
+        role: 'Biên Kịch Tự Động & Triển Khai SaLu',
+        desc: 'Hiện thực hóa các ý tưởng thành kịch bản nội dung hằng ngày, duy trì dự án SaLu và lập trình các tương tác người dùng mượt mà.',
+        tasks: [
+          'Tự động soạn thảo và lên lịch đăng bài SaLu hằng ngày',
+          'Lập trình JavaScript cho các bộ lọc, đồng hồ và tác vụ trên trang',
+          'Đóng gói và triển khai ứng dụng web lên GitHub Pages'
+        ],
+        github: 'https://github.com/thuyanhdo238/ann-place238/tree/main/agents'
+      }
+    };
+
+    function openAgentModal(key) {
+      const data = AGENT_DETAILS[key];
+      if (!data) return;
+
+      const body = document.getElementById('modal-body-content');
+      body.innerHTML = `
+        <div style="display:flex; align-items:center; gap:16px; margin-bottom:16px;">
+          <div style="width:60px; height:60px; border-radius:18px; background:var(--terracotta-light); display:flex; align-items:center; justify-content:center; font-size:32px;">
+            ${data.avatar}
+          </div>
+          <div>
+            <h3 style="font-size:20px; color:var(--ink);">${data.name}</h3>
+            <div style="font-size:12px; font-weight:700; color:var(--terracotta); text-transform:uppercase;">${data.role}</div>
+          </div>
+        </div>
+        <p style="font-size:14px; color:var(--ink-muted); line-height:1.6; margin-bottom:18px;">${data.desc}</p>
+        <h4 style="font-size:14px; margin-bottom:8px; color:var(--ink);">Trách nhiệm trọng tâm:</h4>
+        <ul style="padding-left:20px; font-size:13px; color:var(--ink-muted); margin-bottom:20px; display:flex; flex-direction:column; gap:6px;">
+          ${data.tasks.map(t => `<li>${t}</li>`).join('')}
+        </ul>
+        <div style="display:flex; justify-content:flex-end;">
+          <a href="${data.github}" target="_blank" rel="noreferrer" class="btn-action btn-primary" style="font-size:12px;">
+            <span>Xem Mã Nguồn Agent</span> ↗
+          </a>
+        </div>
+      `;
+      document.getElementById('agent-modal').classList.add('open');
+    }
+
+    function closeAgentModal() {
+      document.getElementById('agent-modal').classList.remove('open');
+    }
+
+    function closeModalOnOverlay(e) {
+      if (e.target.id === 'agent-modal') {
+        closeAgentModal();
+      }
+    }
+
+    // 4. Task Checkbox Toggle Helper
+    function toggleTask(li) {
+      const cb = li.querySelector('.task-checkbox');
+      const text = li.querySelector('.task-text');
+      cb.checked = !cb.checked;
+      if (cb.checked) {
+        text.classList.add('completed');
+      } else {
+        text.classList.remove('completed');
+      }
+    }
+
+    // Fallback markdown for instant display
+    const FALLBACK_RADAR_MD = `# Radar Report — 29 tháng 10 năm 2026
+## 🔥 Tin nổi bật hôm nay
+### [AI] Microsoft ra mắt MAI Image 2.7 – model chỉnh sửa ảnh AI mạnh mẽ
+> Microsoft AI công bố MAI Image 2.7 (27/10), xếp hạng cao trên Artificial Analysis và Arena Edit. Model cải thiện mạnh khả năng chỉnh sửa scene/style, text, restoration.
+🔗 https://microsoft.ai/news/mai-image-2-7-debut/
+### [AI] Canva phát hành model tạo ảnh riêng đầu tiên – Canva Craft
+> Canva ra mắt Canva Craft, model image generation được train trên template thiết kế của chính họ. Hỗ trợ text chính xác, nhiều aspect ratio, và layered design.
+🔗 https://techcrunch.com/2026/10/22/canva-releases-its-first-image-generation-model/
+### [Heritage] Hội thảo Quốc tế “Generative AI and Cultural Heritage” tại Turin
+> Diễn ra 29–30/10/2026 tại Università di Torino. Tập trung vào synthetic heritage, AI trong số hóa di sản, authenticity, và vai trò của museum/archive.
+🔗 https://www.infoclio.ch/en/generative-ai-and-cultural-heritage
+### [Design / AI] Vatican tổ chức triennale nghệ thuật “Fundamentally Human” phản ứng với AI
+> Catholic Universities Art Triennale (ArtCut) khai mạc loạt triển lãm tại 7 quốc gia, nhấn mạnh nghệ thuật mang tính người trước sự phát triển của AI.
+🔗 https://hyperallergic.com/vatican-exhibition-series-centers-fundamentally-human-art-over-ai/
+### [Cơ hội / Vietnam] Triển lãm “Never Been Here” – nghệ thuật số & AI tại TP.HCM
+> Từ 25/10 đến 29/11/2026 tại Gate Gate Gallery (HCMC). Tác phẩm của 2 nghệ sĩ trẻ Việt Nam thắng RMIT Digital Design and Art Grants 2026.
+🔗 https://www.rmit.edu.vn/news/all-news/2026/oct/never-been-here-exhibition-a-dialogue-between-humanity-and-technology
+### [Vietnam / Design] Digital November 2026 – chương trình nghệ thuật số Pháp–Việt tại TP.HCM
+> Viện Pháp tổ chức từ 23/10–29/11/2026 với chủ đề “Entre les lignes”. Triển lãm Escape, VR, workshop character design và talk AI–văn hóa.
+🔗 https://ovietnam.vietnamnews.vn/french-institute-to-host-digital-november-post416067.html
+### [Vietnam] Chương trình “Bản sắc 2026” khuyến khích dùng AI để quảng bá văn hóa Việt
+> Bộ VHTTDL + VTC mời giới trẻ dùng công nghệ số và AI để sáng tạo nội dung về bản sắc văn hóa Việt (vodcast, hình ảnh).
+🔗 https://ovietnam.vietnamnews.vn/digital-technology-brings-vietnamese-cultural-identity-to-young-people-post416689.html
+## 📅 Cơ hội / Deadline sắp tới
+- **Travelling Cultural Heritage Conference** (Sibiu, Romania) – Deadline abstract: **15/11/2026**. Chủ đề digital afterlives, AI.
+- **Museums and AI Cultural Heritage Conference** (UK, 26–27/11/2026) – Theo dõi kết quả báo cáo.
+- Nhiều AI Art Contest đang mở (International AI Awards, GENERATE 2026, reEarth International Art Prize…) – deadline 30/10–01/11/2026.
+---*Radar by Grok — cập nhật lúc 01:05 UTC 29/10/2026*`;
+
+    // Initialize Radar on Load
+    fetchRadarData();
+  </script>
 </body>
 </html>
