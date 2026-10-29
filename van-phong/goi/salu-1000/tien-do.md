@@ -11,3 +11,4 @@
 ## Số người theo dõi
 | Ngày | Số theo dõi | Ghi chú |
 |---|---|---|
+- (29/10/2026, Claude) P-1 xong: lịch tháng 11 concept A, xem ke-hoach-thang-11.md
