@@ -4,23 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ann Place — Keep moving forward</title>
+  <meta name="description" content="Ann Place — Pixel AI Office Dashboard. Keep moving forward." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --cream: #f7f2e8;
       --cream-warm: #f1ebd9;
       --sage: #b8c9a3;
-      --sage-dark: #58714b;
-      --sage-wash: #e2ecd7;
+      --sage-dark: #4d6642;
+      --sage-wash: #e5eedb;
       --terracotta: #c17f4a;
       --terracotta-dark: #8c5325;
       --terracotta-light: #faeade;
       --paper: #fffefb;
       --ink: #2b251f;
-      --ink-soft: #63584c;
+      --ink-soft: #695e52;
       --border: #dfd4c0;
+      --win-bg: #ece6d8;
       --pixel-font: 'Press Start 2P', monospace;
     }
 
@@ -29,29 +31,26 @@
     body {
       background-color: var(--cream);
       color: var(--ink);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.5;
       overflow-x: hidden;
       min-height: 100vh;
       background-image: 
         radial-gradient(#dfd4c0 0.8px, transparent 0.8px),
         radial-gradient(#e8ddca 0.8px, var(--cream) 0.8px);
-      background-size: 32px 32px;
-      background-position: 0 0, 16px 16px;
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
     }
 
-    h1, h2, h3, h4, .serif {
-      font-family: Georgia, 'Newsreader', serif;
-      font-weight: 600;
-      color: var(--ink);
+    h1, h2, h3, .pixel-text {
+      font-family: var(--pixel-font);
+      letter-spacing: -0.02em;
     }
 
     a {
       color: var(--terracotta-dark);
       text-decoration: none;
-      transition: all 0.2s;
     }
-    a:hover { color: var(--terracotta); }
 
     /* Top Bar */
     .top-bar {
@@ -61,7 +60,7 @@
       position: sticky;
       top: 0;
       z-index: 60;
-      padding: 10px 24px;
+      padding: 10px 20px;
     }
     .top-bar-inner {
       max-width: 1100px;
@@ -69,7 +68,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
     }
     .brand-group {
       display: flex;
@@ -87,11 +86,11 @@
     }
     .brand-title {
       font-family: Georgia, serif;
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 700;
     }
     .slogan-tag {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -106,7 +105,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 14px;
+      padding: 5px 12px;
       background: var(--paper);
       border: 1px solid var(--border);
       border-radius: 20px;
@@ -127,10 +126,10 @@
     }
 
     /* ══════════════════════════════════════════════
-       HERO: INTERACTIVE ISOMETRIC OFFICE FLOOR
+       HERO: INTERACTIVE PIXEL OFFICE
        ══════════════════════════════════════════════ */
     .office-hero {
-      padding: 28px 20px 20px 20px;
+      padding: 20px;
       background: linear-gradient(180deg, #f7f2e8 0%, #ece4d2 100%);
       border-bottom: 2px solid var(--border);
     }
@@ -141,49 +140,55 @@
 
     .office-header-bar {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
     .office-title h1 {
-      font-size: 28px;
-      line-height: 1.2;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.4;
     }
     .office-title p {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--ink-soft);
+      margin-top: 3px;
     }
 
-    /* Interactive Office Scene Box */
+    /* The Live Isometric Office Floor */
     .office-stage {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 11;
-      max-height: 640px;
-      border-radius: 20px;
-      border: 3px solid #4a3828;
-      box-shadow: 0 12px 36px rgba(43, 37, 31, 0.16);
+      aspect-ratio: 16 / 11.2;
+      border-radius: 16px;
       overflow: hidden;
-      background-color: #eeddc5;
+      border: 3px solid #2b251f;
+      box-shadow: 
+        0 16px 36px rgba(43, 37, 31, 0.16),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+      background-color: #d8cbb7;
+      background-image: 
+        url('/assets/aistudio/1793232727608_a80b2581.png'),
+        url('https://raw.githubusercontent.com/thuyanhdo238/ann-place238/main/assets/office-floor.png');
       background-size: cover;
       background-position: center;
-      background-image: url('assets/office-floor.png'), url('/assets/aistudio/1793232727608_a80b2581.png');
+      user-select: none;
     }
 
-    /* 1. Sunlight Stream Rays */
+    /* Sunlight Rays & Floating Dust Motes */
     .sunlight-rays {
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(135deg, 
-        rgba(255, 248, 205, 0.44) 0%, 
-        rgba(255, 240, 170, 0.28) 35%, 
-        rgba(255, 230, 140, 0.08) 65%, 
-        transparent 90%);
-      mix-blend-mode: screen;
       z-index: 10;
+      background: linear-gradient(
+        132deg,
+        rgba(255, 248, 220, 0.38) 0%,
+        rgba(255, 243, 196, 0.18) 32%,
+        transparent 65%
+      );
+      mix-blend-mode: soft-light;
     }
     .dust-mote {
       position: absolute;
@@ -196,183 +201,173 @@
     }
     @keyframes floatMote {
       0%, 100% { transform: translateY(0) translateX(0); opacity: 0.4; }
-      50% { transform: translateY(-20px) translateX(15px); opacity: 0.9; }
+      50% { transform: translateY(-16px) translateX(12px); opacity: 0.9; }
     }
 
-    /* 2. Workstation Interactive Anchors */
+    /* Workstation Interactive Anchors */
     .station-anchor {
       position: absolute;
       cursor: pointer;
       z-index: 20;
-      transition: transform 0.2s;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .station-anchor:hover {
-      transform: scale(1.04);
+      transform: scale(1.06);
     }
 
-    /* Desk 1: Vincent van Gogh (Art Agent - Google AI Studio) */
-    #desk-art {
-      left: 17%;
-      top: 31%;
-      width: 14%;
-      height: 20%;
-    }
+    /* Positions mapped to the 5 desks in the pixel art floor */
+    #desk-art { left: 17%; top: 31%; width: 14%; height: 20%; }
+    #desk-claude { left: 64%; top: 48%; width: 14%; height: 20%; }
+    #desk-grok { left: 47%; top: 41%; width: 14%; height: 20%; }
+    #desk-chatgpt { left: 33%; top: 61%; width: 14%; height: 20%; }
+    #desk-copilot { left: 34%; top: 18%; width: 14%; height: 20%; }
 
-    /* Desk 2: Isaac Newton (Claude - Leader Agent) */
-    #desk-claude {
-      left: 64%;
-      top: 48%;
-      width: 14%;
-      height: 20%;
-    }
-
-    /* Desk 3: Beethoven (Grok - Radar Agent) */
-    #desk-grok {
-      left: 47%;
-      top: 41%;
-      width: 14%;
-      height: 20%;
-    }
-
-    /* Desk 4: Girl with a Pearl Earring (ChatGPT - Deploy Agent) */
-    #desk-chatgpt {
-      left: 33%;
-      top: 61%;
-      width: 14%;
-      height: 20%;
-    }
-
-    /* Desk 5: Bach / Voltaire (Copilot - DevOps Agent) */
-    #desk-copilot {
-      left: 34%;
-      top: 18%;
-      width: 14%;
-      height: 20%;
-    }
-
-    /* 3. Floating Status Bubbles */
-    .status-bubble {
+    /* Animated Character Sprites on Top of Desks */
+    .desk-sprite-container {
       position: absolute;
-      bottom: 95%;
+      inset: 0;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    /* Status Bubbles above Desks - strictly ONE active speaker at a time */
+    .status-bubble {
+      display: none;
+      position: absolute;
+      top: -34px;
       left: 50%;
       transform: translateX(-50%);
       white-space: nowrap;
+      z-index: 25;
       pointer-events: none;
-      animation: gentleBounce 3s ease-in-out infinite;
-      z-index: 30;
+      animation: floatBubble 2.5s infinite ease-in-out;
     }
-    @keyframes gentleBounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(-6px); }
+    .status-bubble.active {
+      display: block !important;
+    }
+    @keyframes floatBubble {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -4px); }
     }
 
-    /* Deadline: Flames on Fire! */
-    .flame-burst {
-      position: absolute;
-      inset: -10px -15px;
-      pointer-events: none;
-      background: radial-gradient(circle, rgba(255, 69, 0, 0.4) 0%, rgba(255, 140, 0, 0.2) 60%, transparent 80%);
-      z-index: 5;
-      animation: flameFlicker 0.4s infinite alternate;
-    }
-    .pixel-flame-icon {
-      font-size: 26px;
-      animation: flameJump 0.6s infinite alternate;
-      filter: drop-shadow(0 0 8px #ff4500);
-    }
-    @keyframes flameFlicker {
-      0% { opacity: 0.7; transform: scale(0.98); }
-      100% { opacity: 1; transform: scale(1.05); }
-    }
-    @keyframes flameJump {
-      0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(-5px) scale(1.15); }
-    }
-
-    /* Hand Raised Bubble: 🙋 Report Ready! */
-    .raise-hand-bubble {
-      background: #fffae8;
-      border: 2px solid #c17f4a;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      border-radius: 12px;
-      padding: 6px 12px;
-      font-size: 11px;
+    .bubble-pill {
+      font-size: 10px;
       font-weight: 700;
-      color: #8c5325;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      animation: reportPulse 1.2s infinite;
-    }
-    @keyframes reportPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(193, 127, 74, 0.6); }
-      50% { box-shadow: 0 0 0 8px rgba(193, 127, 74, 0); }
-    }
-
-    /* Work Hard / Idle Bubble */
-    .work-hard-bubble {
-      background: #ffffff;
-      border: 2px solid #4a3828;
-      box-shadow: 2px 2px 0px #4a3828;
-      border-radius: 10px;
-      padding: 5px 10px;
-      font-family: var(--pixel-font);
-      font-size: 8px;
-      color: #333;
-    }
-
-    /* Out of Usage / Battery low / Dizzy eyes */
-    .dizzy-bubble {
-      background: #fff0f0;
-      border: 2px solid #dc2626;
-      border-radius: 12px;
-      padding: 5px 10px;
-      font-size: 11px;
-      font-weight: 800;
-      color: #dc2626;
-      display: flex;
+      padding: 3px 8px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+      border: 1.5px solid #2b251f;
+      display: inline-flex;
       align-items: center;
       gap: 4px;
-      animation: dizzyShake 0.4s infinite alternate;
-    }
-    @keyframes dizzyShake {
-      0% { transform: rotate(-2deg); }
-      100% { transform: rotate(2deg); }
+      background: #fff;
     }
 
-    /* 4. Bé SaLu KOL Walking Around the Office */
+    .pill-work {
+      background: #fff;
+      color: var(--ink);
+    }
+    .pill-deadline {
+      background: #fee2e2;
+      border-color: #dc2626;
+      color: #b91c1c;
+      animation: deadlineJitter 0.3s infinite alternate;
+    }
+    @keyframes deadlineJitter {
+      0% { transform: rotate(-1deg) scale(0.98); }
+      100% { transform: rotate(1.5deg) scale(1.02); }
+    }
+    .pill-report {
+      background: #fef3c7;
+      border-color: #d97706;
+      color: #92400e;
+      animation: reportBounce 1.2s infinite;
+    }
+    @keyframes reportBounce {
+      0%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-6px); }
+    }
+    .pill-dizzy {
+      background: #f1f5f9;
+      border-color: #64748b;
+      color: #475569;
+    }
+
+    /* Cartoon Flames for Deadline */
+    .flame-burst {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 58px;
+      height: 64px;
+      pointer-events: none;
+      z-index: 22;
+      background: radial-gradient(circle, #facc15 15%, #ef4444 65%, transparent 75%);
+      mix-blend-mode: screen;
+      animation: flameFlicker 0.4s infinite alternate;
+      border-radius: 50% 50% 20% 20%;
+      filter: blur(1px);
+    }
+    @keyframes flameFlicker {
+      0% { transform: translateX(-50%) scale(0.92) rotate(-3deg); opacity: 0.85; }
+      100% { transform: translateX(-50%) scale(1.12) rotate(4deg); opacity: 1; }
+    }
+
+    /* Raised Hand for Beethoven / Grok */
+    .raising-hand {
+      animation: handWave 0.8s infinite ease-in-out alternate;
+      transform-origin: bottom center;
+      display: inline-block;
+    }
+    @keyframes handWave {
+      0% { transform: rotate(-12deg); }
+      100% { transform: rotate(18deg); }
+    }
+
+    /* Bé SaLu Walking Character */
     .salu-walker {
       position: absolute;
-      width: 64px;
-      height: 84px;
-      z-index: 25;
-      pointer-events: auto;
+      width: 54px;
+      height: 72px;
+      z-index: 35;
       cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .salu-walker:hover {
-      transform: scale(1.1);
+      filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.28));
+      transition: left 4s cubic-bezier(0.4, 0, 0.2, 1), top 4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .salu-sprite-box {
       width: 100%;
       height: 100%;
-      position: relative;
+      animation: saluBob 0.6s infinite alternate ease-in-out;
+      transform-origin: center bottom;
     }
+    @keyframes saluBob {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-4px); }
+    }
+
     .salu-speech-bubble {
+      display: none;
       position: absolute;
-      bottom: 100%;
+      bottom: 74px;
       left: 50%;
       transform: translateX(-50%);
       background: #fff;
       border: 2px solid #7c3aed;
-      border-radius: 12px;
-      padding: 4px 8px;
+      color: #5b21b6;
       font-size: 10px;
       font-weight: 700;
-      color: #6d28d9;
+      padding: 4px 10px;
+      border-radius: 12px;
       white-space: nowrap;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      margin-bottom: 4px;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+    }
+    .salu-speech-bubble.active {
+      display: block !important;
     }
     .salu-speech-bubble::after {
       content: '';
@@ -380,203 +375,319 @@
       top: 100%;
       left: 50%;
       transform: translateX(-50%);
-      border-width: 5px;
-      border-style: solid;
-      border-color: #7c3aed transparent transparent transparent;
+      border: 5px solid transparent;
+      border-top-color: #7c3aed;
     }
 
-    /* 5. Office Toolbar */
+    /* Toolbar below office */
     .office-toolbar {
+      margin-top: 12px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin-top: 14px;
-      padding: 10px 16px;
+      gap: 8px;
+      padding: 8px 14px;
       background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      font-size: 12px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
     }
     .toggle-state-btn {
-      padding: 6px 12px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--cream);
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      transition: all 0.2s;
+      gap: 6px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.15s;
     }
     .toggle-state-btn:hover {
-      background: var(--terracotta-light);
       border-color: var(--terracotta);
+      background: #fdfaf6;
+      transform: translateY(-1px);
     }
     .toggle-state-btn.active {
       background: var(--terracotta);
       color: #fff;
-      border-color: var(--terracotta-dark);
+      border-color: #8c5325;
+      box-shadow: 0 2px 0 #5c3516;
     }
 
     /* ══════════════════════════════════════════════
-       MAIN CONTENT: DOSSIER + RADAR + PIPELINE
+       RETRO CHIBI AGENT CARDS (THE REQUESTED STYLE)
        ══════════════════════════════════════════════ */
     .main-body {
       max-width: 1050px;
-      margin: 40px auto;
+      margin: 28px auto 40px auto;
       padding: 0 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 48px;
     }
 
-    /* 5 Agents Roster with Famous Avatars */
-    .roster-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 16px;
-    }
-    .roster-card {
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 18px 16px;
-      box-shadow: 0 4px 12px rgba(43, 37, 31, 0.05);
-      cursor: pointer;
-      transition: all 0.25s;
-      position: relative;
-    }
-    .roster-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(43, 37, 31, 0.1);
-      border-color: var(--terracotta);
-    }
-    .famous-figure-tag {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--terracotta);
-      margin-bottom: 6px;
-    }
-    .roster-card h3 {
-      font-size: 17px;
-      margin-bottom: 2px;
-    }
-    .roster-role {
-      font-size: 11px;
-      color: var(--ink-soft);
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    .roster-status-pill {
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 20px;
-      display: inline-block;
-    }
-    .status-deadline { background: #fee2e2; color: #dc2626; border: 1px solid #f87171; }
-    .status-report { background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; }
-    .status-working { background: #d1fae5; color: #047857; border: 1px solid #6ee7b7; }
-    .status-idle { background: #f3f4f6; color: #4b5563; border: 1px solid #d1d5db; }
-    .status-empty { background: #ffedd5; color: #c2410c; border: 1px solid #fdba74; }
-
-    /* Radar Feed Card */
-    .radar-card {
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 6px 20px rgba(43, 37, 31, 0.06);
-    }
-    .radar-header {
+    .section-header {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 22px;
+      margin-bottom: 16px;
     }
-    .news-item {
-      background: #fdfbf7;
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--terracotta);
-      border-radius: 12px;
-      padding: 16px 18px;
-      margin-bottom: 14px;
-      transition: all 0.2s;
-    }
-    .news-item:hover {
-      transform: translateX(4px);
-      box-shadow: 0 4px 12px rgba(43, 37, 31, 0.06);
-    }
-    .news-tag {
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 4px;
-      background: var(--terracotta-light);
-      color: var(--terracotta-dark);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      display: inline-block;
-    }
-
-    /* Pipeline Grid */
-    .pipeline-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .notebook-box {
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 22px;
-      box-shadow: 0 4px 14px rgba(43, 37, 31, 0.05);
-    }
-    .notebook-box h3 {
-      font-size: 17px;
-      margin-bottom: 14px;
+    .section-title {
+      font-size: 13px;
+      color: var(--ink);
       display: flex;
       align-items: center;
       gap: 8px;
-      padding-bottom: 8px;
-      border-bottom: 1px dashed var(--border);
     }
-    .task-li {
+
+    .chibi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(188px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    /* OS Retro Window Card */
+    .chibi-window {
+      background: var(--win-bg);
+      border: 2.5px solid #2b251f;
+      border-radius: 10px;
+      box-shadow: 4px 4px 0px #2b251f;
       display: flex;
-      align-items: flex-start;
-      gap: 10px;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+    }
+    .chibi-window:hover {
+      transform: translateY(-3px);
+      box-shadow: 6px 6px 0px #2b251f;
+    }
+
+    /* Window Titlebar with 3 dots */
+    .win-titlebar {
+      background: #dfd7c5;
+      border-bottom: 2px solid #2b251f;
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .win-dots {
+      display: flex;
+      gap: 4px;
+    }
+    .win-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid #2b251f;
+    }
+    .win-dot.red { background: #ef4444; }
+    .win-dot.yellow { background: #facc15; }
+    .win-dot.green { background: #22c55e; }
+
+    .win-title {
+      font-family: var(--pixel-font);
+      font-size: 8px;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Chibi Portrait Area */
+    .chibi-portrait-box {
+      background: linear-gradient(180deg, #ffffff 0%, #f4ede0 100%);
+      padding: 14px 10px 8px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-bottom: 2px dashed var(--border);
+    }
+
+    .chibi-avatar-frame {
+      width: 90px;
+      height: 90px;
+      border-radius: 12px;
+      background: #fff;
+      border: 2px solid #2b251f;
+      box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .chibi-name {
+      font-family: Georgia, serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .chibi-role {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--terracotta-dark);
+      margin-top: 2px;
+    }
+
+    /* Live Emotion Pill inside Card */
+    .chibi-status-tag {
+      margin-top: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      border: 1px solid #2b251f;
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Emoji Action Bar at bottom of card */
+    .chibi-emoji-bar {
+      padding: 8px;
+      background: #e6decb;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+    }
+    .emoji-action-btn {
+      background: #fff;
+      border: 1.5px solid #2b251f;
+      border-radius: 6px;
+      padding: 4px 0;
       font-size: 13px;
-      margin-bottom: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.1s;
+      box-shadow: 1px 1px 0px #2b251f;
+    }
+    .emoji-action-btn:hover {
+      background: #fef08a;
+      transform: scale(1.12);
+    }
+    .emoji-action-btn:active {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 #2b251f;
+    }
+
+    /* ══════════════════════════════════════════════
+       BOTTOM TWO-COLUMN: RADAR LIVE & NOTEBOOK PIPELINE
+       ══════════════════════════════════════════════ */
+    .content-columns {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 20px;
+    }
+
+    .panel-box {
+      background: var(--paper);
+      border: 2px solid #2b251f;
+      border-radius: 12px;
+      box-shadow: 4px 4px 0px #2b251f;
+      overflow: hidden;
+    }
+    .panel-header {
+      background: var(--win-bg);
+      border-bottom: 2px solid #2b251f;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .panel-title {
+      font-family: var(--pixel-font);
+      font-size: 9px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .panel-body {
+      padding: 14px;
+    }
+
+    .radar-item {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      transition: all 0.15s;
+    }
+    .radar-item:hover {
+      border-color: var(--terracotta);
+      background: #fdfaf6;
+      transform: translateX(2px);
+    }
+    .radar-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+    }
+    .radar-tag {
+      font-weight: 700;
+      color: var(--terracotta-dark);
+      background: var(--terracotta-light);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .radar-link {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--ink);
+      line-height: 1.3;
+      display: block;
+    }
+
+    /* Notebook checklist */
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      margin-bottom: 8px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      background: #fbf9f4;
+      border: 1px dashed var(--border);
       cursor: pointer;
     }
-    .task-li input { margin-top: 3px; accent-color: var(--sage-dark); }
-    .task-li.done span { text-decoration: line-through; opacity: 0.6; }
+    .check-item input { accent-color: var(--sage-dark); }
+    .check-item.done span { text-decoration: line-through; opacity: 0.6; }
 
-    /* Footer */
     footer {
       border-top: 1px dashed var(--border);
       background: #f3ece0;
-      padding: 36px 20px;
+      padding: 24px 20px;
       text-align: center;
-      font-size: 13px;
+      font-size: 12px;
       color: var(--ink-soft);
-      margin-top: 50px;
+      margin-top: 36px;
     }
 
     @media (max-width: 768px) {
       .office-stage { aspect-ratio: 16 / 13; }
-      .office-title h1 { font-size: 24px; }
-      .salu-walker { width: 48px; height: 64px; }
+      .content-columns { grid-template-columns: 1fr; }
+      .chibi-grid { grid-template-columns: repeat(2, 1fr); }
+      .salu-walker { width: 44px; height: 60px; }
     }
   </style>
 </head>
@@ -599,18 +710,17 @@
   </nav>
 
   <!-- ══════════════════════════════════════════════
-       HERO: INTERACTIVE PIXEL OFFICE SCENE
+       HERO: INTERACTIVE PIXEL OFFICE
        ══════════════════════════════════════════════ -->
   <section class="office-hero">
     <div class="office-container">
       <div class="office-header-bar">
         <div class="office-title">
-          <h1 class="serif">Văn Phòng Đang Hoạt Động · 9:00 AM - 5:00 PM</h1>
-          <p>Nhân vật lịch sử danh tiếng đại diện cho 5 AI Agents · Bé SaLu KOL tuần tra sáng tạo · <em>keep moving forward</em></p>
+          <h1>VĂN PHÒNG ĐANG HOẠT ĐỘNG · 9:00 - 17:00</h1>
+          <p>Nhân vật danh tiếng đại diện cho 5 AI Agents · Bé SaLu tuần tra sáng tạo</p>
         </div>
-
-        <div style="font-size: 12px; color: var(--terracotta-dark); font-weight: 600;">
-          ☀️ Ánh nắng rọi qua khung cửa
+        <div style="font-size: 11px; font-weight:700; color:var(--terracotta-dark);">
+          ☀️ Ánh nắng rọi qua cửa sổ
         </div>
       </div>
 
@@ -619,132 +729,90 @@
         
         <!-- Golden Sunlight Rays Streaming from Windows -->
         <div class="sunlight-rays">
-          <div class="dust-mote" style="left: 15%; top: 20%; animation-delay: 0s;"></div>
-          <div class="dust-mote" style="left: 28%; top: 35%; animation-delay: 1.5s;"></div>
-          <div class="dust-mote" style="left: 45%; top: 25%; animation-delay: 3s;"></div>
-          <div class="dust-mote" style="left: 65%; top: 40%; animation-delay: 2s;"></div>
-          <div class="dust-mote" style="left: 80%; top: 30%; animation-delay: 4s;"></div>
+          <div class="dust-mote" style="left: 15%; top: 22%; animation-delay: 0s;"></div>
+          <div class="dust-mote" style="left: 30%; top: 38%; animation-delay: 1.5s;"></div>
+          <div class="dust-mote" style="left: 48%; top: 26%; animation-delay: 3s;"></div>
+          <div class="dust-mote" style="left: 68%; top: 42%; animation-delay: 2s;"></div>
+          <div class="dust-mote" style="left: 82%; top: 32%; animation-delay: 4s;"></div>
         </div>
 
-        <!-- 1. Agent Desk: Vincent van Gogh (Google AI Studio - Art Agent) -->
-        <div class="station-anchor" id="desk-art" onclick="triggerAgent('art')" title="Vincent van Gogh — Google AI Studio (Art Agent)">
-          <div class="status-bubble" id="bubble-art">
-            <div class="work-hard-bubble">🎨 Starry Night</div>
-          </div>
+        <!-- 1. Agent Desk: Vincent van Gogh (Art Agent - Google AI Studio) -->
+        <div class="station-anchor" id="desk-art" onclick="triggerAgent('art')" title="Vincent van Gogh — Google AI Studio (Art)">
+          <div class="status-bubble" id="bubble-art"></div>
         </div>
 
         <!-- 2. Agent Desk: Isaac Newton (Claude - Leader Agent) -->
-        <!-- Currently in DEADLINE mode (Phun lửa cháy!) -->
-        <div class="station-anchor" id="desk-claude" onclick="triggerAgent('claude')" title="Isaac Newton — Claude (Leader Agent)">
+        <div class="station-anchor" id="desk-claude" onclick="triggerAgent('claude')" title="Isaac Newton — Claude (Leader)">
           <div class="flame-burst" id="flame-claude"></div>
-          <div class="status-bubble" id="bubble-claude">
-            <div style="display:flex; align-items:center; gap:4px;">
-              <span class="pixel-flame-icon">🔥</span>
-              <span class="work-hard-bubble" style="background:#fff2f0; border-color:#dc2626; color:#b91c1c;">DEADLINE PhD 15/11!</span>
-            </div>
+          <div class="status-bubble active" id="bubble-claude">
+            <span class="bubble-pill pill-deadline">🔥 DEADLINE PhD!</span>
           </div>
         </div>
 
         <!-- 3. Agent Desk: Beethoven (Grok - Radar Agent) -->
-        <!-- Currently in REPORT mode (Giơ tay báo cáo 🙋!) -->
-        <div class="station-anchor" id="desk-grok" onclick="triggerAgent('grok')" title="Beethoven — Grok (Radar Agent)">
-          <div class="status-bubble" id="bubble-grok">
-            <div class="raise-hand-bubble">
-              <span style="font-size:16px;">🙋</span>
-              <span>Có tin Radar mới! (01:05 UTC)</span>
-            </div>
-          </div>
+        <div class="station-anchor" id="desk-grok" onclick="triggerAgent('grok')" title="Beethoven — Grok (Radar)">
+          <div class="status-bubble" id="bubble-grok"></div>
         </div>
 
         <!-- 4. Agent Desk: Girl with a Pearl Earring (ChatGPT - Deploy Agent) -->
-        <!-- Currently in WORK HARD mode -->
-        <div class="station-anchor" id="desk-chatgpt" onclick="triggerAgent('chatgpt')" title="Girl with a Pearl Earring — ChatGPT (Deploy Agent)">
-          <div class="status-bubble" id="bubble-chatgpt">
-            <div class="work-hard-bubble">WORK HARD... ✍️</div>
-          </div>
+        <div class="station-anchor" id="desk-chatgpt" onclick="triggerAgent('chatgpt')" title="Girl with a Pearl Earring — ChatGPT (Deploy)">
+          <div class="status-bubble" id="bubble-chatgpt"></div>
         </div>
 
-        <!-- 5. Agent Desk: Bach/Voltaire (Copilot - DevOps Agent) -->
-        <!-- Currently in WORKING mode -->
-        <div class="station-anchor" id="desk-copilot" onclick="triggerAgent('copilot')" title="Bach — Copilot (DevOps Agent)">
-          <div class="status-bubble" id="bubble-copilot">
-            <div class="work-hard-bubble">CI/CD OK ⚡</div>
-          </div>
+        <!-- 5. Agent Desk: Bach / Voltaire (Copilot - DevOps Agent) -->
+        <div class="station-anchor" id="desk-copilot" onclick="triggerAgent('copilot')" title="Bach — Copilot (DevOps)">
+          <div class="status-bubble" id="bubble-copilot"></div>
         </div>
 
-        <!-- 6. Bé SaLu KOL đang đi lại trong văn phòng cầm bảng vẽ! -->
+        <!-- 6. Bé SaLu KOL đang đi lại trong văn phòng cầm bảng vẽ -->
         <div class="salu-walker" id="salu" onclick="talkSalu()">
           <div class="salu-speech-bubble" id="salu-speech">🎨 SaLu đi duyệt tranh!</div>
           <div class="salu-sprite-box">
-            <!-- Bé SaLu SVG Avatar (Purple Beret, Round Glasses, White dress with Heart, Holding Drawing Tablet) -->
             <svg viewBox="0 0 80 100" width="100%" height="100%">
-              <!-- Shadow -->
-              <ellipse cx="40" cy="94" rx="22" ry="5" fill="rgba(0,0,0,0.25)" />
-              
-              <!-- Legs & Shoes -->
-              <rect x="30" y="74" width="7" height="16" fill="#f8d7b8" rx="3" />
-              <rect x="43" y="74" width="7" height="16" fill="#f8d7b8" rx="3" />
-              <ellipse cx="33" cy="91" rx="5" ry="3" fill="#6d28d9" />
-              <ellipse cx="47" cy="91" rx="5" ry="3" fill="#6d28d9" />
-
-              <!-- White Dress with Heart -->
-              <path d="M26 48 L 54 48 L 58 76 L 22 76 Z" fill="#ffffff" stroke="#3d2b1f" stroke-width="1.8" />
-              <path d="M40 56 Q 38 52 35 54 Q 32 57 40 64 Q 48 57 45 54 Q 42 52 40 56 Z" fill="#38bdf8" />
-
-              <!-- Arms & Drawing Tablet (Bảng vẽ) -->
-              <g transform="translate(14, 52) rotate(-8)">
-                <rect x="0" y="0" width="22" height="28" rx="3" fill="#2d283e" stroke="#1e1b2e" stroke-width="1.5" />
-                <rect x="2" y="2" width="18" height="22" rx="1" fill="#7dd3fc" />
-                <line x1="16" y1="20" x2="26" y2="10" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" />
-              </g>
-
-              <!-- Head & Neck -->
-              <rect x="36" y="42" width="8" height="8" fill="#f8d7b8" />
-              <circle cx="40" cy="30" r="16" fill="#f8d7b8" stroke="#3d2b1f" stroke-width="1.8" />
-
-              <!-- Wavy Brown Hair -->
-              <path d="M24 28 Q 20 40 24 48 Q 28 50 30 46" fill="#5c3826" stroke="#3d2b1f" stroke-width="1.5" />
-              <path d="M56 28 Q 60 40 56 48 Q 52 50 50 46" fill="#5c3826" stroke="#3d2b1f" stroke-width="1.5" />
-
-              <!-- Face: Round Glasses & Smile -->
-              <circle cx="34" cy="30" r="2.5" fill="#3d2b1f" />
-              <circle cx="46" cy="30" r="2.5" fill="#3d2b1f" />
-              <circle cx="33.5" cy="29" r="0.8" fill="#fff" />
-              <circle cx="45.5" cy="29" r="0.8" fill="#fff" />
-              <circle cx="34" cy="30" r="6" fill="none" stroke="#2b251f" stroke-width="1.5" />
-              <circle cx="46" cy="30" r="6" fill="none" stroke="#2b251f" stroke-width="1.5" />
-              <line x1="40" y1="30" x2="40" y2="30" stroke="#2b251f" stroke-width="1.5" />
-              <ellipse cx="29" cy="35" rx="3" ry="1.5" fill="#fca5a5" />
-              <ellipse cx="51" cy="35" rx="3" ry="1.5" fill="#fca5a5" />
-              <path d="M38 36 Q 40 39 42 36" fill="none" stroke="#3d2b1f" stroke-width="1.5" stroke-linecap="round" />
-
-              <!-- Signature Purple Beret (Mũ nồi tím) -->
-              <ellipse cx="40" cy="18" rx="20" ry="8" fill="#7c3aed" stroke="#3d2b1f" stroke-width="1.8" />
-              <path d="M22 18 Q 40 8 58 18 Z" fill="#6d28d9" />
-              <circle cx="40" cy="10" r="2" fill="#7c3aed" />
+              <ellipse cx="40" cy="94" rx="20" ry="5" fill="rgba(0,0,0,0.22)" />
+              <rect x="31" y="74" width="7" height="15" fill="#f8d7b8" rx="3" />
+              <rect x="42" y="74" width="7" height="15" fill="#f8d7b8" rx="3" />
+              <ellipse cx="34" cy="89" rx="6" ry="4" fill="#58714b" />
+              <ellipse cx="45" cy="89" rx="6" ry="4" fill="#58714b" />
+              <path d="M26 48 L54 48 L62 76 L18 76 Z" fill="#ffffff" stroke="#2b251f" stroke-width="1.8" />
+              <path d="M40 56 C38 52 32 52 32 57 C32 62 40 68 40 68 C40 68 48 62 48 57 C48 52 42 52 40 56 Z" fill="#ef4444" />
+              <!-- Drawing Tablet in Hand -->
+              <rect x="12" y="52" width="16" height="22" rx="3" fill="#334155" stroke="#1e293b" stroke-width="1.5" transform="rotate(-15 20 63)" />
+              <rect x="14" y="54" width="12" height="18" rx="2" fill="#38bdf8" transform="rotate(-15 20 63)" />
+              <circle cx="34" cy="30" r="16" fill="#f8d7b8" stroke="#2b251f" stroke-width="1.8" />
+              <circle cx="28" cy="29" r="2.5" fill="#2b251f" />
+              <circle cx="40" cy="29" r="2.5" fill="#2b251f" />
+              <circle cx="28" cy="29" r="6" fill="none" stroke="#2b251f" stroke-width="1.5" />
+              <circle cx="40" cy="29" r="6" fill="none" stroke="#2b251f" stroke-width="1.5" />
+              <line x1="34" y1="29" x2="34" y2="29" stroke="#2b251f" stroke-width="1.5" />
+              <ellipse cx="24" cy="34" rx="3" ry="1.5" fill="#fca5a5" />
+              <ellipse cx="44" cy="34" rx="3" ry="1.5" fill="#fca5a5" />
+              <!-- Purple Beret -->
+              <ellipse cx="34" cy="17" rx="20" ry="8" fill="#7c3aed" stroke="#2b251f" stroke-width="1.8" />
+              <circle cx="34" cy="9" r="2" fill="#7c3aed" />
             </svg>
           </div>
         </div>
 
       </div>
 
-      <!-- Interactive Office Toolbar -->
+      <!-- Quick Scenario Switcher -->
       <div class="office-toolbar">
-        <div style="font-weight:700; display:flex; align-items:center; gap:6px;">
-          <span>🕹️ Điều khiển trạng thái nhân viên:</span>
+        <div style="font-weight:700; font-size:11px; display:flex; align-items:center; gap:6px;">
+          <span>🕹️ Trạng thái:</span>
         </div>
-        <div style="display:flex; flex-wrap:wrap; gap:8px;">
-          <button class="toggle-state-btn active" onclick="setScenario('deadline')">
-            <span>🔥 Chạy Deadline (Lửa cháy)</span>
+        <div class="btn-group">
+          <button class="toggle-state-btn active" data-type="deadline" onclick="setScenario('deadline', this)">
+            <span>🔥 Chạy Deadline</span>
           </button>
-          <button class="toggle-state-btn" onclick="setScenario('report')">
-            <span>🙋 Grok Giơ Tay (Báo cáo)</span>
+          <button class="toggle-state-btn" data-type="report" onclick="setScenario('report', this)">
+            <span>🙋 Giơ Tay Báo Cáo</span>
           </button>
-          <button class="toggle-state-btn" onclick="setScenario('dizzy')">
-            <span>🪫 Hết Usage (Hoa mắt + Hết pin)</span>
+          <button class="toggle-state-btn" data-type="dizzy" onclick="setScenario('dizzy', this)">
+            <span>🪫 Hết Pin (0%)</span>
           </button>
-          <button class="toggle-state-btn" onclick="setScenario('workhard')">
-            <span>💬 Work Hard (Chăm chỉ)</span>
+          <button class="toggle-state-btn" data-type="workhard" onclick="setScenario('workhard', this)">
+            <span>💬 Work Hard</span>
           </button>
         </div>
       </div>
@@ -752,165 +820,311 @@
   </section>
 
   <!-- ══════════════════════════════════════════════
-       CONTENT BELOW: 5 AGENTS ROSTER + RADAR + PIPELINE
+       MAIN CONTENT: CHIBI AGENT RETRO WINDOWS
        ══════════════════════════════════════════════ -->
   <main class="main-body">
 
-    <!-- 1. The 5 Famous Employees & Their Agent Roles -->
-    <section>
-      <div style="margin-bottom: 20px;">
-        <span style="font-size:11px; font-weight:700; color:var(--terracotta); text-transform:uppercase; letter-spacing:0.1em;">Danh Nhân Hội Ngộ</span>
-        <h2 class="serif" style="font-size: 26px;">5 Nhân Viên Danh Tiếng & Nhiệm Vụ AI</h2>
+    <div class="section-header">
+      <div class="section-title">
+        <span>⭐</span>
+        <span class="pixel-text" style="font-size:11px;">CHIBI AGENTS · TRẠNG THÁI & CẢM XÚC</span>
       </div>
+      <span style="font-size:11px; color:var(--ink-soft);">Bấm emoji để đổi biểu cảm ✨</span>
+    </div>
 
-      <div class="roster-grid">
-        <!-- Van Gogh / Art -->
-        <div class="roster-card" onclick="triggerAgent('art')">
-          <div class="famous-figure-tag">🎨 Vincent van Gogh</div>
-          <h3>AI Studio</h3>
-          <div class="roster-role">Art & Visual Agent</div>
-          <p style="font-size: 12px; color: var(--ink-soft); margin-bottom: 12px;">
-            Đang vẽ kiệt tác Starry Night trên màn hình CRT. Giám đốc mỹ thuật Ann Place.
-          </p>
-          <span class="roster-status-pill status-working" id="pill-art">🎨 Đang sáng tạo</span>
-        </div>
+    <!-- 5 Retro Window Chibi Agent Cards -->
+    <div class="chibi-grid">
 
-        <!-- Newton / Claude -->
-        <div class="roster-card" onclick="triggerAgent('claude')">
-          <div class="famous-figure-tag">🍎 Isaac Newton</div>
-          <h3>Claude</h3>
-          <div class="roster-role">Leader & PhD Research</div>
-          <p style="font-size: 12px; color: var(--ink-soft); margin-bottom: 12px;">
-            Nhà thông thái định hình luận án RMIT và nghiên cứu rồng thời Lý.
-          </p>
-          <span class="roster-status-pill status-deadline" id="pill-claude">🔥 Deadline 15/11</span>
+      <!-- 1. Van Gogh - Art Agent -->
+      <div class="chibi-window" id="card-art">
+        <div class="win-titlebar">
+          <div class="win-dots">
+            <span class="win-dot red"></span>
+            <span class="win-dot yellow"></span>
+            <span class="win-dot green"></span>
+          </div>
+          <span class="win-title">VAN_GOGH.ART</span>
         </div>
-
-        <!-- Beethoven / Grok -->
-        <div class="roster-card" onclick="triggerAgent('grok')">
-          <div class="famous-figure-tag">🎼 L. van Beethoven</div>
-          <h3>Grok</h3>
-          <div class="roster-role">Radar Intelligence</div>
-          <p style="font-size: 12px; color: var(--ink-soft); margin-bottom: 12px;">
-            Lắng nghe giai điệu tri thức vũ trụ, trinh sát tin AI & di sản toàn cầu.
-          </p>
-          <span class="roster-status-pill status-report" id="pill-grok">🙋 Báo cáo mới!</span>
+        <div class="chibi-portrait-box">
+          <div class="chibi-avatar-frame" id="avatar-art">
+            <svg viewBox="0 0 80 80" width="100%" height="100%">
+              <!-- Red Beard Chibi Van Gogh with Straw Hat & Paintbrush -->
+              <ellipse cx="40" cy="42" rx="28" ry="26" fill="#fde68a" />
+              <path d="M12 28 C12 18 68 18 68 28 Z" fill="#d97706" stroke="#2b251f" stroke-width="1.5" />
+              <ellipse cx="40" cy="28" rx="34" ry="7" fill="#f59e0b" stroke="#2b251f" stroke-width="1.5" />
+              <!-- Face -->
+              <circle cx="40" cy="44" r="20" fill="#fed7aa" stroke="#2b251f" stroke-width="1.5" />
+              <!-- Eyes -->
+              <circle cx="34" cy="42" r="2.5" fill="#2b251f" id="eye-art-1" />
+              <circle cx="46" cy="42" r="2.5" fill="#2b251f" id="eye-art-2" />
+              <ellipse cx="30" cy="46" rx="3" ry="1.5" fill="#fca5a5" />
+              <ellipse cx="50" cy="46" rx="3" ry="1.5" fill="#fca5a5" />
+              <!-- Red Beard -->
+              <path d="M26 46 Q 40 66 54 46 Q 40 54 26 46 Z" fill="#ea580c" stroke="#2b251f" stroke-width="1.2" />
+              <!-- Paintbrush -->
+              <rect x="54" y="24" width="4" height="24" rx="2" fill="#b45309" transform="rotate(30 56 36)" />
+              <polygon points="62,18 66,24 60,26" fill="#3b82f6" />
+            </svg>
+          </div>
+          <div class="chibi-name">Van Gogh</div>
+          <div class="chibi-role">Google AI Studio · Art</div>
+          <div class="chibi-status-tag" id="status-art">🎨 Đang vẽ UI</div>
         </div>
-
-        <!-- Girl with Pearl Earring / ChatGPT -->
-        <div class="roster-card" onclick="triggerAgent('chatgpt')">
-          <div class="famous-figure-tag">💎 Girl w/ Pearl Earring</div>
-          <h3>ChatGPT</h3>
-          <div class="roster-role">Script & Deploy</div>
-          <p style="font-size: 12px; color: var(--ink-soft); margin-bottom: 12px;">
-            Nàng thơ Vermeer chăm chỉ viết kịch bản SaLu mỗi ngày và triển khai mã nguồn.
-          </p>
-          <span class="roster-status-pill status-idle" id="pill-chatgpt">💬 Work hard...</span>
-        </div>
-
-        <!-- Bach / Copilot -->
-        <div class="roster-card" onclick="triggerAgent('copilot')">
-          <div class="famous-figure-tag">🎹 J.S. Bach</div>
-          <h3>Copilot</h3>
-          <div class="roster-role">DevOps & CI/CD</div>
-          <p style="font-size: 12px; color: var(--ink-soft); margin-bottom: 12px;">
-            Bậc thầy hòa âm phối khí hạ tầng GitHub Actions với chi phí $0/tháng.
-          </p>
-          <span class="roster-status-pill status-working" id="pill-copilot">⚡ Workflows OK</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2. Live Radar Feed (from GitHub output.md) -->
-    <section class="radar-card" id="radar-feed-section">
-      <div class="radar-header">
-        <div>
-          <h2 class="serif" style="font-size: 24px;">📡 Báo Cáo Radar Mới Nhất</h2>
-          <p style="font-size: 13px; color: var(--ink-soft);" id="radar-time-label">Đang nạp dữ liệu từ GitHub...</p>
-        </div>
-        <div style="display:flex; gap:10px;">
-          <button class="toggle-state-btn" onclick="fetchRadar()">🔄 Tải lại</button>
-          <a href="https://raw.githubusercontent.com/thuyanhdo238/ann-place238/main/agents/radar/output/output.md" target="_blank" class="toggle-state-btn">Xem raw .md ↗</a>
+        <div class="chibi-emoji-bar">
+          <button class="emoji-action-btn" onclick="setAgentMood('art', 'work', '🎨 Vẽ Starry UI')" title="Chăm chỉ">🎨</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('art', 'deadline', '🔥 Vẽ gấp!')" title="Deadline">🔥</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('art', 'report', '🙋 Nộp mockup')" title="Báo cáo">🙋</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('art', 'dizzy', '🪫 Hoa mắt @_@')" title="Hết pin">🪫</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('art', 'coffee', '☕ Thưởng trà')" title="Nghỉ giải lao">☕</button>
         </div>
       </div>
 
-      <div id="radar-articles-list">
-        <div style="text-align: center; padding: 30px; color: var(--ink-soft);">Đang kết nối...</div>
-      </div>
-    </section>
-
-    <!-- 3. Ann Place Pipeline Notebook -->
-    <section>
-      <div style="margin-bottom: 20px;">
-        <span style="font-size:11px; font-weight:700; color:var(--terracotta); text-transform:uppercase; letter-spacing:0.1em;">Kế Hoạch & Tiến Độ</span>
-        <h2 class="serif" style="font-size: 26px;">Sổ Tay Kế Hoạch Ann Place · <em>keep moving forward</em></h2>
-      </div>
-
-      <div class="pipeline-grid">
-        <div class="notebook-box">
-          <h3 class="serif">🔬 Nghiên cứu PhD (RMIT)</h3>
-          <div class="task-li">
-            <input type="checkbox" checked />
-            <span>Hoàn thiện đề cương luận án PhD — RMIT Vietnam (Đang làm 🔥)</span>
+      <!-- 2. Isaac Newton - Claude (Leader) -->
+      <div class="chibi-window" id="card-claude">
+        <div class="win-titlebar">
+          <div class="win-dots">
+            <span class="win-dot red"></span>
+            <span class="win-dot yellow"></span>
+            <span class="win-dot green"></span>
           </div>
-          <div class="task-li">
-            <input type="checkbox" />
-            <span>Tổng hợp tài liệu Lý dynasty dragon symbolism cho chương 2</span>
-          </div>
-          <div class="task-li">
-            <input type="checkbox" />
-            <span>Chốt hướng digital heritage methodology (Trước 15/11)</span>
-          </div>
+          <span class="win-title">NEWTON.LEAD</span>
         </div>
-
-        <div class="notebook-box">
-          <h3 class="serif">🎨 Bé SaLu & Art Sympathy</h3>
-          <div class="task-li done">
-            <input type="checkbox" checked />
-            <span>Thiết lập agent SaLu — đăng bài tự động hằng ngày</span>
+        <div class="chibi-portrait-box">
+          <div class="chibi-avatar-frame" id="avatar-claude">
+            <svg viewBox="0 0 80 80" width="100%" height="100%">
+              <!-- Chibi Newton with Powdered Hair & Apple -->
+              <ellipse cx="40" cy="40" rx="30" ry="26" fill="#e2e8f0" stroke="#2b251f" stroke-width="1.5" />
+              <circle cx="40" cy="44" r="20" fill="#fed7aa" stroke="#2b251f" stroke-width="1.5" />
+              <!-- Curls -->
+              <circle cx="20" cy="42" r="7" fill="#cbd5e1" stroke="#2b251f" stroke-width="1.2" />
+              <circle cx="60" cy="42" r="7" fill="#cbd5e1" stroke="#2b251f" stroke-width="1.2" />
+              <!-- Eyes with round specs -->
+              <circle cx="34" cy="42" r="2.5" fill="#2b251f" id="eye-claude-1" />
+              <circle cx="46" cy="42" r="2.5" fill="#2b251f" id="eye-claude-2" />
+              <circle cx="34" cy="42" r="5" fill="none" stroke="#2b251f" stroke-width="1.2" />
+              <circle cx="46" cy="42" r="5" fill="none" stroke="#2b251f" stroke-width="1.2" />
+              <line x1="39" y1="42" x2="41" y2="42" stroke="#2b251f" stroke-width="1.2" />
+              <!-- Apple on top of head -->
+              <circle cx="40" cy="18" r="8" fill="#ef4444" stroke="#2b251f" stroke-width="1.2" />
+              <path d="M40 10 Q 44 8 42 5" stroke="#78350f" stroke-width="1.5" fill="none" />
+              <ellipse cx="44" cy="8" rx="3" ry="1.5" fill="#22c55e" transform="rotate(30 44 8)" />
+            </svg>
           </div>
-          <div class="task-li">
-            <input type="checkbox" />
-            <span>Phát triển visual identity cho SaLu (bảng vẽ & mũ nồi tím)</span>
-          </div>
-          <div class="task-li">
-            <input type="checkbox" />
-            <span>Lên kế hoạch nội dung tháng 11</span>
-          </div>
+          <div class="chibi-name">Isaac Newton</div>
+          <div class="chibi-role">Claude · Leader</div>
+          <div class="chibi-status-tag" id="status-claude">🔥 Deadline PhD!</div>
         </div>
-
-        <div class="notebook-box">
-          <h3 class="serif">📚 Giảng Dạy & Văn Phòng AI</h3>
-          <div class="task-li">
-            <input type="checkbox" />
-            <span>Cập nhật tài liệu môn Thiết kế Cơ sở học kỳ tới</span>
-          </div>
-          <div class="task-li">
-            <input type="checkbox" />
-            <span>Đề xuất workshop AI cho sinh viên</span>
-          </div>
-          <div class="task-li done">
-            <input type="checkbox" checked />
-            <span>Xây dựng văn phòng pixel nhân vật nổi tiếng & SaLu tuần tra</span>
-          </div>
+        <div class="chibi-emoji-bar">
+          <button class="emoji-action-btn" onclick="setAgentMood('claude', 'work', '🍎 Nghiên cứu')" title="Chăm chỉ">🍎</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('claude', 'deadline', '🔥 DEADLINE 15/11!')" title="Deadline">🔥</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('claude', 'report', '🙋 Duyệt task')" title="Báo cáo">🙋</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('claude', 'dizzy', '🪫 Táo rơi đầu @_@')" title="Hết pin">🪫</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('claude', 'coffee', '☕ Thư giãn')" title="Nghỉ giải lao">☕</button>
         </div>
       </div>
-    </section>
+
+      <!-- 3. Beethoven - Grok (Radar) -->
+      <div class="chibi-window" id="card-grok">
+        <div class="win-titlebar">
+          <div class="win-dots">
+            <span class="win-dot red"></span>
+            <span class="win-dot yellow"></span>
+            <span class="win-dot green"></span>
+          </div>
+          <span class="win-title">BEETHOVEN.RADAR</span>
+        </div>
+        <div class="chibi-portrait-box">
+          <div class="chibi-avatar-frame" id="avatar-grok">
+            <svg viewBox="0 0 80 80" width="100%" height="100%">
+              <!-- Chibi Beethoven with Wild Hair & Red Scarf -->
+              <ellipse cx="40" cy="38" rx="32" ry="26" fill="#94a3b8" stroke="#2b251f" stroke-width="1.5" />
+              <circle cx="16" cy="32" r="10" fill="#64748b" />
+              <circle cx="64" cy="32" r="10" fill="#64748b" />
+              <circle cx="40" cy="44" r="20" fill="#fed7aa" stroke="#2b251f" stroke-width="1.5" />
+              <!-- Determined Brows & Eyes -->
+              <path d="M29 38 L37 41" stroke="#2b251f" stroke-width="1.5" stroke-linecap="round" />
+              <path d="M51 38 L43 41" stroke="#2b251f" stroke-width="1.5" stroke-linecap="round" />
+              <circle cx="33" cy="43" r="2.5" fill="#2b251f" id="eye-grok-1" />
+              <circle cx="47" cy="43" r="2.5" fill="#2b251f" id="eye-grok-2" />
+              <!-- Red Scarf -->
+              <path d="M26 60 Q 40 68 54 60 L 58 72 L 22 72 Z" fill="#dc2626" stroke="#2b251f" stroke-width="1.2" />
+              <!-- Radar Waves -->
+              <path d="M60 20 A 10 10 0 0 1 68 28" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" />
+              <path d="M64 16 A 16 16 0 0 1 74 26" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="chibi-name">Beethoven</div>
+          <div class="chibi-role">Grok · Radar</div>
+          <div class="chibi-status-tag" id="status-grok">🙋 Báo cáo mới!</div>
+        </div>
+        <div class="chibi-emoji-bar">
+          <button class="emoji-action-btn" onclick="setAgentMood('grok', 'work', '📡 Quét radar')" title="Chăm chỉ">📡</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('grok', 'deadline', '🔥 Bản giao hưởng!')" title="Deadline">🔥</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('grok', 'report', '🙋 Có tin tức 01:05!')" title="Báo cáo">🙋</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('grok', 'dizzy', '🪫 Ù tai @_@')" title="Hết pin">🪫</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('grok', 'coffee', '☕ Nghe nhạc')" title="Nghỉ giải lao">☕</button>
+        </div>
+      </div>
+
+      <!-- 4. Girl with a Pearl Earring - ChatGPT (Deploy) -->
+      <div class="chibi-window" id="card-chatgpt">
+        <div class="win-titlebar">
+          <div class="win-dots">
+            <span class="win-dot red"></span>
+            <span class="win-dot yellow"></span>
+            <span class="win-dot green"></span>
+          </div>
+          <span class="win-title">PEARL.DEPLOY</span>
+        </div>
+        <div class="chibi-portrait-box">
+          <div class="chibi-avatar-frame" id="avatar-chatgpt">
+            <svg viewBox="0 0 80 80" width="100%" height="100%">
+              <!-- Chibi Girl with Pearl Earring (Blue Turban + Huge Pearl) -->
+              <ellipse cx="40" cy="34" rx="28" ry="22" fill="#0284c7" stroke="#2b251f" stroke-width="1.5" />
+              <path d="M48 20 C54 26 56 46 54 58 L46 58 Z" fill="#f59e0b" stroke="#2b251f" stroke-width="1.2" />
+              <!-- Face -->
+              <circle cx="38" cy="42" r="19" fill="#fed7aa" stroke="#2b251f" stroke-width="1.5" />
+              <!-- Large expressive eyes -->
+              <ellipse cx="32" cy="40" rx="3.5" ry="4" fill="#2b251f" id="eye-chat-1" />
+              <circle cx="31" cy="39" r="1.2" fill="#fff" />
+              <ellipse cx="44" cy="40" rx="3.5" ry="4" fill="#2b251f" id="eye-chat-2" />
+              <circle cx="43" cy="39" r="1.2" fill="#fff" />
+              <ellipse cx="28" cy="46" rx="3" ry="1.5" fill="#fca5a5" />
+              <ellipse cx="48" cy="46" rx="3" ry="1.5" fill="#fca5a5" />
+              <path d="M35 47 Q 38 49 41 47" fill="none" stroke="#2b251f" stroke-width="1.2" />
+              <!-- The Iconic Pearl Earring! -->
+              <circle cx="21" cy="47" r="5" fill="#f8fafc" stroke="#2b251f" stroke-width="1.2" />
+              <circle cx="20" cy="46" r="1.5" fill="#ffffff" />
+            </svg>
+          </div>
+          <div class="chibi-name">Cô Bé Ngọc Trai</div>
+          <div class="chibi-role">ChatGPT · Script & Deploy</div>
+          <div class="chibi-status-tag" id="status-chatgpt">✍️ Scripting OK</div>
+        </div>
+        <div class="chibi-emoji-bar">
+          <button class="emoji-action-btn" onclick="setAgentMood('chatgpt', 'work', '✍️ Viết script')" title="Chăm chỉ">✍️</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('chatgpt', 'deadline', '🔥 Deploy gấp!')" title="Deadline">🔥</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('chatgpt', 'report', '🙋 Script sẵn sàng')" title="Báo cáo">🙋</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('chatgpt', 'dizzy', '🪫 Rate limit @_@')" title="Hết pin">🪫</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('chatgpt', 'coffee', '☕ Mỉm cười')" title="Nghỉ giải lao">☕</button>
+        </div>
+      </div>
+
+      <!-- 5. Bach / Voltaire - Copilot (DevOps) -->
+      <div class="chibi-window" id="card-copilot">
+        <div class="win-titlebar">
+          <div class="win-dots">
+            <span class="win-dot red"></span>
+            <span class="win-dot yellow"></span>
+            <span class="win-dot green"></span>
+          </div>
+          <span class="win-title">BACH.DEVOPS</span>
+        </div>
+        <div class="chibi-portrait-box">
+          <div class="chibi-avatar-frame" id="avatar-copilot">
+            <svg viewBox="0 0 80 80" width="100%" height="100%">
+              <!-- Chibi Bach with Baroque Curls & Terminal glasses -->
+              <ellipse cx="40" cy="38" rx="30" ry="26" fill="#f1f5f9" stroke="#2b251f" stroke-width="1.5" />
+              <!-- Big side curls -->
+              <circle cx="16" cy="40" r="7" fill="#e2e8f0" stroke="#2b251f" stroke-width="1.2" />
+              <circle cx="16" cy="48" r="7" fill="#e2e8f0" stroke="#2b251f" stroke-width="1.2" />
+              <circle cx="64" cy="40" r="7" fill="#e2e8f0" stroke="#2b251f" stroke-width="1.2" />
+              <circle cx="64" cy="48" r="7" fill="#e2e8f0" stroke="#2b251f" stroke-width="1.2" />
+              <circle cx="40" cy="44" r="20" fill="#fed7aa" stroke="#2b251f" stroke-width="1.5" />
+              <!-- Eyes -->
+              <circle cx="34" cy="43" r="2.5" fill="#2b251f" id="eye-copilot-1" />
+              <circle cx="46" cy="43" r="2.5" fill="#2b251f" id="eye-copilot-2" />
+              <!-- Green Terminal >_ on forehead -->
+              <rect x="28" y="24" width="24" height="10" rx="2" fill="#0f172a" stroke="#22c55e" stroke-width="1" />
+              <text x="31" y="32" font-family="monospace" font-size="7" fill="#22c55e" font-weight="bold">&gt;_ok</text>
+            </svg>
+          </div>
+          <div class="chibi-name">J.S. Bach</div>
+          <div class="chibi-role">Copilot · DevOps</div>
+          <div class="chibi-status-tag" id="status-copilot">🪫 0% USAGE</div>
+        </div>
+        <div class="chibi-emoji-bar">
+          <button class="emoji-action-btn" onclick="setAgentMood('copilot', 'work', '⚡ CI/CD Pass')" title="Chăm chỉ">⚡</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('copilot', 'deadline', '🔥 Server Alarm!')" title="Deadline">🔥</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('copilot', 'report', '🙋 Build xanh mượt')" title="Báo cáo">🙋</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('copilot', 'dizzy', '🪫 Cạn pin 0%')" title="Hết pin">🪫</button>
+          <button class="emoji-action-btn" onclick="setAgentMood('copilot', 'coffee', '☕ Nạp cà phê')" title="Nghỉ giải lao">☕</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         BOTTOM PANELS: RADAR LIVE & PIPELINE
+         ══════════════════════════════════════════════ -->
+    <div class="content-columns">
+      
+      <!-- Live Radar Digest (Grok Output) -->
+      <section class="panel-box" id="radar-feed-section">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span style="color:#ef4444;">●</span>
+            <span>RADAR FEED · 01:05 UTC</span>
+          </div>
+          <button class="toggle-state-btn" onclick="fetchRadar()" style="padding:2px 8px; font-size:10px;">
+            <span>🔄 Làm mới</span>
+          </button>
+        </div>
+        <div class="panel-body">
+          <div id="radar-articles-list">
+            <div style="text-align:center; padding:16px; font-size:12px; color:var(--ink-soft);">
+              Đang kết nối radar...
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Task Notebook & Pipeline -->
+      <section class="panel-box">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span>📝</span>
+            <span>PIPELINE · KEEP MOVING FORWARD</span>
+          </div>
+          <span style="font-size:10px; font-weight:700; color:var(--sage-dark);">3/4 XONG</span>
+        </div>
+        <div class="panel-body">
+          <div class="check-item done" onclick="this.classList.toggle('done')">
+            <input type="checkbox" checked readonly />
+            <span>01:05 Grok quét tin tức AI & X</span>
+          </div>
+          <div class="check-item done" onclick="this.classList.toggle('done')">
+            <input type="checkbox" checked readonly />
+            <span>Claude tổng hợp & phân tích radar</span>
+          </div>
+          <div class="check-item done" onclick="this.classList.toggle('done')">
+            <input type="checkbox" checked readonly />
+            <span>Google AI Studio (Art) thiết kế giao diện Chibi</span>
+          </div>
+          <div class="check-item" onclick="this.classList.toggle('done')">
+            <input type="checkbox" />
+            <span>ChatGPT & Copilot kiểm thử build & deploy</span>
+          </div>
+          <div style="margin-top: 14px; padding: 10px; background: #fffdf5; border: 1px dashed var(--terracotta); border-radius: 8px; font-size: 11px;">
+            <strong>💡 Ghi chú văn phòng:</strong>
+            <p style="color:var(--ink-soft); margin-top:3px;">
+              Bấm vào từng bàn làm việc trên văn phòng hoặc nút emoji bên dưới để xem chuyển động dễ thương của các nhân vật!
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
 
   </main>
 
   <footer>
-    <p style="font-family: Georgia, serif; font-size: 15px;"><strong>Ann Place — Keep moving forward</strong></p>
-    <p style="font-size: 12px; color: var(--ink-soft); margin-top: 4px;">
-      Vincent van Gogh · Isaac Newton · Beethoven · Girl with Pearl Earring · Bach · Bé SaLu KOL
-    </p>
-    <p style="font-size: 11px; color: var(--terracotta); margin-top: 8px;">
-      Thiết kế bởi Agent Art © 2026 Ann Place · Pixel Office Engine
-    </p>
+    <p><strong>Ann Place AI Office</strong> · 5 AI Agents × Nhân vật lịch sử danh tiếng · Bé SaLu KOL</p>
+    <p style="margin-top: 4px; font-size: 11px; opacity: 0.8;">keep moving forward</p>
   </footer>
 
   <!-- ══════════════════════════════════════════════
-       OFFICE LOGIC & BE SALU WALKING ENGINE
+       SCRIPTS: REALTIME CLOCK, SALU PATROL, SCENARIOS
        ══════════════════════════════════════════════ -->
   <script>
     // 1. Digital Clock
@@ -928,12 +1142,12 @@
     const speechEl = document.getElementById('salu-speech');
 
     const waypoints = [
-      { x: 26, y: 48, msg: '🎨 SaLu đang duyệt tranh của bác Van Gogh!' },
-      { x: 38, y: 38, msg: '☕ Qua bàn bác Copilot uống miếng nước...' },
+      { x: 26, y: 48, msg: '🎨 SaLu đi duyệt tranh của bác Van Gogh!' },
+      { x: 38, y: 36, msg: '⚡ Qua bàn bác Bach xem build code!' },
       { x: 50, y: 55, msg: '🎼 Nghe bác Beethoven báo cáo radar!' },
-      { x: 62, y: 68, msg: '🔥 Cố lên bác Newton, deadline sắp tới rồi!' },
-      { x: 44, y: 72, msg: '✍️ Chị đeo hoa tai ngọc trai viết xong kịch bản chưa?' },
-      { x: 32, y: 62, msg: '✨ Keep moving forward!' }
+      { x: 62, y: 68, msg: '🔥 Cố lên bác Newton, deadline tới rồi!' },
+      { x: 44, y: 72, msg: '✍️ Chị đeo ngọc trai viết xong script chưa?' },
+      { x: 32, y: 60, msg: '✨ Keep moving forward!' }
     ];
 
     let currentWp = 0;
@@ -941,161 +1155,289 @@
     let saluY = waypoints[0].y;
 
     function walkSalu() {
+      if (!saluEl) return;
       currentWp = (currentWp + 1) % waypoints.length;
       const target = waypoints[currentWp];
       
-      // Face direction flip
-      if (target.x < saluX) {
-        saluEl.querySelector('.salu-sprite-box').style.transform = 'scaleX(-1)';
-      } else {
-        saluEl.querySelector('.salu-sprite-box').style.transform = 'scaleX(1)';
+      const spriteBox = saluEl.querySelector('.salu-sprite-box');
+      if (spriteBox) {
+        spriteBox.style.transform = (target.x < saluX) ? 'scaleX(-1)' : 'scaleX(1)';
       }
 
       saluX = target.x;
       saluY = target.y;
 
-      saluEl.style.transition = 'left 4s cubic-bezier(0.4, 0, 0.2, 1), top 4s cubic-bezier(0.4, 0, 0.2, 1)';
       saluEl.style.left = saluX + '%';
       saluEl.style.top = saluY + '%';
 
-      if (speechEl) {
-        speechEl.textContent = target.msg;
-      }
+      // SaLu speaks as the single active speaker
+      showSingleBubble('salu', target.msg);
     }
 
-    saluEl.style.left = saluX + '%';
-    saluEl.style.top = saluY + '%';
-    setInterval(walkSalu, 4500);
+    if (saluEl) {
+      saluEl.style.left = saluX + '%';
+      saluEl.style.top = saluY + '%';
+      setInterval(walkSalu, 4800);
+    }
+
+    // STRICTLY ONLY ONE bubble appears at any time across the entire office!
+    function showSingleBubble(speakerKey, bubbleHtml) {
+      // 1. Hide all desk bubbles
+      document.querySelectorAll('.status-bubble').forEach(b => {
+        b.classList.remove('active');
+        b.style.display = 'none';
+      });
+
+      // 2. Hide SaLu's bubble
+      if (speechEl) {
+        speechEl.classList.remove('active');
+        speechEl.style.display = 'none';
+      }
+
+      // 3. Show ONLY the single active speaker
+      if (speakerKey === 'salu') {
+        if (speechEl) {
+          if (bubbleHtml) speechEl.textContent = bubbleHtml;
+          speechEl.classList.add('active');
+          speechEl.style.display = 'block';
+        }
+      } else if (speakerKey) {
+        const target = document.getElementById(`bubble-${speakerKey}`);
+        if (target) {
+          if (bubbleHtml) target.innerHTML = bubbleHtml;
+          target.classList.add('active');
+          target.style.display = 'block';
+        }
+      }
+    }
 
     function talkSalu() {
       const phrases = [
         '💖 Keep moving forward!',
-        '🎨 Hôm nay bảng vẽ có nhiều ý tưởng tuyệt vời lắm!',
-        '☀️ Nắng đẹp quá, cả nhà làm việc vui vẻ nhé!'
+        '🎨 Hôm nay bảng vẽ có nhiều ý tưởng xinh xắn lắm!',
+        '☀️ Nắng ấm qua cửa sổ, cả nhà cùng vui nhé!',
+        '⭐ Chúc các bác AI agents một ngày làm việc siêu năng suất!'
       ];
-      speechEl.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+      const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+      showSingleBubble('salu', phrase);
     }
 
-    // 3. Office Scenario State Switcher
-    function setScenario(type) {
-      document.querySelectorAll('.toggle-state-btn').forEach(b => b.classList.remove('active'));
-      event.target.closest('.toggle-state-btn').classList.add('active');
+    // 3. Robust Office Scenario State Switcher (Single Bubble Only)
+    function setScenario(type, btnElement) {
+      // Safely toggle button active classes
+      document.querySelectorAll('.toggle-state-btn').forEach(b => {
+        if (b.getAttribute('data-type') === type || (btnElement && b === btnElement)) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
 
       const flameClaude = document.getElementById('flame-claude');
-      const bubbleClaude = document.getElementById('bubble-claude');
-      const bubbleGrok = document.getElementById('bubble-grok');
-      const bubbleArt = document.getElementById('bubble-art');
-      const bubbleChat = document.getElementById('bubble-chatgpt');
-      const bubbleCopilot = document.getElementById('bubble-copilot');
 
       if (type === 'deadline') {
-        flameClaude.style.display = 'block';
-        bubbleClaude.innerHTML = '<div style="display:flex; align-items:center; gap:4px;"><span class="pixel-flame-icon">🔥</span><span class="work-hard-bubble" style="background:#fff2f0; border-color:#dc2626; color:#b91c1c;">DEADLINE PhD 15/11!</span></div>';
-        bubbleGrok.innerHTML = '<div class="work-hard-bubble">WORK HARD...</div>';
-        bubbleArt.innerHTML = '<div class="work-hard-bubble">WORK HARD...</div>';
-        bubbleChat.innerHTML = '<div class="work-hard-bubble">WORK HARD...</div>';
+        if (flameClaude) flameClaude.style.display = 'block';
+        showSingleBubble('claude', '<span class="bubble-pill pill-deadline">🔥 DEADLINE PhD!</span>');
+        updateAllCards('deadline');
       } else if (type === 'report') {
-        flameClaude.style.display = 'none';
-        bubbleGrok.innerHTML = '<div class="raise-hand-bubble"><span style="font-size:16px;">🙋</span><span>Có báo cáo mới! (01:05 UTC)</span></div>';
-        bubbleClaude.innerHTML = '<div class="work-hard-bubble">Đang duyệt báo cáo...</div>';
-        document.getElementById('radar-feed-section').scrollIntoView({ behavior: 'smooth' });
+        if (flameClaude) flameClaude.style.display = 'none';
+        showSingleBubble('grok', '<span class="bubble-pill pill-report"><span class="raising-hand">🙋</span> Radar mới 01:05!</span>');
+        updateAllCards('report');
+        const radarSec = document.getElementById('radar-feed-section');
+        if (radarSec) radarSec.scrollIntoView({ behavior: 'smooth' });
       } else if (type === 'dizzy') {
-        flameClaude.style.display = 'none';
-        // Hết usage: nhìn hoa mắt + hết pin!
-        bubbleArt.innerHTML = '<div class="dizzy-bubble"><span>@_@</span> <span>🪫 HẾT PIN (0%)</span></div>';
-        bubbleClaude.innerHTML = '<div class="dizzy-bubble"><span>@_@</span> <span>🪫 RATE LIMIT!</span></div>';
-        bubbleChat.innerHTML = '<div class="dizzy-bubble"><span>@_@</span> <span>🪫 HẾT USAGE</span></div>';
-        bubbleGrok.innerHTML = '<div class="dizzy-bubble"><span>@_@</span> <span>🪫 ĐỢI RESET</span></div>';
+        if (flameClaude) flameClaude.style.display = 'none';
+        showSingleBubble('copilot', '<span class="bubble-pill pill-dizzy">@_@ 🪫 0% USAGE</span>');
+        updateAllCards('dizzy');
       } else if (type === 'workhard') {
-        flameClaude.style.display = 'none';
-        bubbleArt.innerHTML = '<div class="work-hard-bubble">WORK HARD... 🎨</div>';
-        bubbleClaude.innerHTML = '<div class="work-hard-bubble">WORK HARD... 📖</div>';
-        bubbleGrok.innerHTML = '<div class="work-hard-bubble">WORK HARD... 📡</div>';
-        bubbleChat.innerHTML = '<div class="work-hard-bubble">WORK HARD... ✍️</div>';
-        bubbleCopilot.innerHTML = '<div class="work-hard-bubble">WORK HARD... 🛠️</div>';
+        if (flameClaude) flameClaude.style.display = 'none';
+        showSingleBubble('art', '<span class="bubble-pill pill-work">🎨 Starry Night</span>');
+        updateAllCards('work');
       }
     }
 
     function triggerAgent(key) {
+      const flameClaude = document.getElementById('flame-claude');
+      if (flameClaude) flameClaude.style.display = (key === 'claude') ? 'block' : 'none';
+
       if (key === 'grok') {
-        setScenario('report');
+        showSingleBubble('grok', '<span class="bubble-pill pill-report"><span class="raising-hand">🙋</span> Radar mới 01:05!</span>');
+        setAgentMood('grok', 'report', '🙋 Báo cáo mới 01:05!');
       } else if (key === 'claude') {
-        setScenario('deadline');
+        showSingleBubble('claude', '<span class="bubble-pill pill-deadline">🔥 DEADLINE PhD!</span>');
+        setAgentMood('claude', 'deadline', '🔥 DEADLINE 15/11!');
+      } else if (key === 'copilot') {
+        showSingleBubble('copilot', '<span class="bubble-pill pill-dizzy">@_@ 🪫 0% USAGE</span>');
+        setAgentMood('copilot', 'dizzy', '🪫 Cạn pin 0%');
+      } else if (key === 'chatgpt') {
+        showSingleBubble('chatgpt', '<span class="bubble-pill pill-work">✍️ Script & Deploy</span>');
+        setAgentMood('chatgpt', 'work', '✍️ Viết script');
       } else {
-        setScenario('workhard');
+        showSingleBubble('art', '<span class="bubble-pill pill-work">🎨 Starry Night</span>');
+        setAgentMood('art', 'work', '🎨 Vẽ Starry UI');
+      }
+
+      // Scroll smoothly to agent card
+      const card = document.getElementById(`card-${key}`);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.style.transform = 'translateY(-6px) scale(1.02)';
+        setTimeout(() => { card.style.transform = ''; }, 600);
       }
     }
 
-    // 4. Radar Fetch & Parse (Live from output.md)
+    // Set individual agent mood & display single bubble
+    function setAgentMood(agentKey, moodType, labelText) {
+      const statusEl = document.getElementById(`status-${agentKey}`);
+      if (statusEl) {
+        statusEl.textContent = labelText;
+        if (moodType === 'deadline') {
+          statusEl.style.background = '#fee2e2';
+          statusEl.style.color = '#b91c1c';
+          statusEl.style.borderColor = '#dc2626';
+        } else if (moodType === 'report') {
+          statusEl.style.background = '#fef3c7';
+          statusEl.style.color = '#92400e';
+          statusEl.style.borderColor = '#d97706';
+        } else if (moodType === 'dizzy') {
+          statusEl.style.background = '#f1f5f9';
+          statusEl.style.color = '#475569';
+          statusEl.style.borderColor = '#64748b';
+        } else if (moodType === 'coffee') {
+          statusEl.style.background = '#faeade';
+          statusEl.style.color = '#8c5325';
+          statusEl.style.borderColor = '#c17f4a';
+        } else {
+          statusEl.style.background = '#fff';
+          statusEl.style.color = 'var(--ink)';
+          statusEl.style.borderColor = '#2b251f';
+        }
+      }
+
+      // Animate card
+      const card = document.getElementById(`card-${agentKey}`);
+      if (card) {
+        card.style.transform = 'translateY(-5px) scale(1.03)';
+        setTimeout(() => { card.style.transform = ''; }, 300);
+      }
+
+      // Flame management for Claude
+      const flameClaude = document.getElementById('flame-claude');
+      if (flameClaude) {
+        flameClaude.style.display = (agentKey === 'claude' && moodType === 'deadline') ? 'block' : 'none';
+      }
+
+      // Show ONLY this agent's bubble in the office floor
+      let pillClass = 'pill-work';
+      if (moodType === 'deadline') pillClass = 'pill-deadline';
+      if (moodType === 'report') pillClass = 'pill-report';
+      if (moodType === 'dizzy') pillClass = 'pill-dizzy';
+      showSingleBubble(agentKey, `<span class="bubble-pill ${pillClass}">${labelText}</span>`);
+    }
+
+    function updateAllCards(type) {
+      if (type === 'deadline') {
+        setAgentMood('claude', 'deadline', '🔥 DEADLINE 15/11!');
+      } else if (type === 'report') {
+        setAgentMood('grok', 'report', '🙋 Báo cáo mới 01:05!');
+      } else if (type === 'dizzy') {
+        setAgentMood('copilot', 'dizzy', '🪫 0% USAGE');
+      } else if (type === 'work') {
+        setAgentMood('art', 'work', '🎨 Vẽ Starry UI');
+      }
+    }
+
+    // 4. Radar Live Parser (https://raw.githubusercontent.com/thuyanhdo238/ann-place238/main/agents/radar/output/output.md)
     const RADAR_URL = 'https://raw.githubusercontent.com/thuyanhdo238/ann-place238/main/agents/radar/output/output.md';
 
     async function fetchRadar() {
       const container = document.getElementById('radar-articles-list');
-      container.innerHTML = '<div style="text-align:center; padding:20px;">Đang tải tin tức...</div>';
+      if (!container) return;
+      container.innerHTML = '<div style="text-align:center; padding:12px; font-size:11px;">Đang tải tin tức...</div>';
       try {
         const res = await fetch(RADAR_URL + '?t=' + Date.now());
         if (!res.ok) throw new Error();
         const md = await res.text();
         renderRadarMd(md);
       } catch (e) {
-        renderRadarMd(FALLBACK_MD);
+        // Fallback default sample data
+        renderFallbackRadar();
       }
     }
 
     function renderRadarMd(md) {
-      const list = document.getElementById('radar-articles-list');
-      const timeMatch = md.match(/cập nhật lúc\s*([^\n\*]+)/i);
-      const label = document.getElementById('radar-time-label');
-      if (label && timeMatch) label.textContent = `Báo cáo bởi Beethoven (Grok) — Cập nhật lúc ${timeMatch[1].trim()}`;
+      const container = document.getElementById('radar-articles-list');
+      if (!container) return;
 
-      const sections = md.split('### ');
-      let html = '';
+      const lines = md.split('\n');
+      const items = [];
+      let currentItem = null;
 
-      for (let i = 1; i < sections.length; i++) {
-        const lines = sections[i].split('\n');
-        const header = lines[0].trim();
-        const tagM = header.match(/^\[(.*?)\]\s*(.*)$/);
-        let tag = 'Tin tức';
-        let title = header;
-        if (tagM) { tag = tagM[1]; title = tagM[2]; }
-
-        let summary = '';
-        let link = '';
-        for (const line of lines) {
-          const t = line.trim();
-          if (t.startsWith('>')) summary = t.replace(/^>\s*/, '');
-          else if (t.includes('http')) {
-            const m = t.match(/https?:\/\/[^\s\)]+/);
-            if (m) link = m[0];
-          }
+      for (let line of lines) {
+        const headerMatch = line.match(/^###\s*\[(.*?)\]\s*(.*)/) || line.match(/^###\s*(.*)/);
+        if (headerMatch) {
+          if (currentItem) items.push(currentItem);
+          currentItem = {
+            tag: headerMatch[2] ? headerMatch[1] : 'AI BRIEF',
+            title: headerMatch[2] ? headerMatch[2] : headerMatch[1],
+            summary: ''
+          };
+          continue;
         }
+        if (currentItem && line.trim().startsWith('- **Tóm tắt**:')) {
+          currentItem.summary = line.replace('- **Tóm tắt**:', '').trim();
+        } else if (currentItem && line.trim().startsWith('- **Link**:')) {
+          const m = line.match(/href="([^"]+)"/) || line.match(/\[.*?\]\((.*?)\)/);
+          if (m) currentItem.link = m[1];
+        }
+      }
+      if (currentItem) items.push(currentItem);
 
-        html += `
-          <div class="news-item">
-            <span class="news-tag">${tag}</span>
-            <div style="font-weight:700; font-size:15px; margin-bottom:4px;">${title}</div>
-            <p style="font-size:13px; color:var(--ink-soft); line-height:1.5; margin-bottom:8px;">${summary}</p>
-            <a href="${link || '#'}" target="_blank" style="font-size:12px; font-weight:700; color:var(--terracotta);">Đọc bài viết gốc ↗</a>
-          </div>
-        `;
+      if (items.length === 0) {
+        renderFallbackRadar();
+        return;
       }
 
-      list.innerHTML = html || '<p>Không có tin mới.</p>';
+      container.innerHTML = items.slice(0, 4).map(it => `
+        <div class="radar-item">
+          <div class="radar-meta">
+            <span class="radar-tag">${escapeHtml(it.tag || 'TIN TỨC')}</span>
+            <span>01:05 UTC · Grok Radar</span>
+          </div>
+          <a class="radar-link" href="${it.link || '#'}" target="_blank" rel="noopener">
+            ${escapeHtml(it.title)} ↗
+          </a>
+          ${it.summary ? `<p style="font-size:11px; color:var(--ink-soft); margin-top:3px;">${escapeHtml(it.summary)}</p>` : ''}
+        </div>
+      `).join('');
     }
 
-    const FALLBACK_MD = `# Radar Report — 29 tháng 10 năm 2026
-### [AI] Microsoft ra mắt MAI Image 2.7 – model chỉnh sửa ảnh AI mạnh mẽ
-> Microsoft AI công bố MAI Image 2.7, xếp hạng cao trên Artificial Analysis và Arena Edit. Model cải thiện mạnh khả năng chỉnh sửa scene/style, text.
-🔗 https://microsoft.ai/news/mai-image-2-7-debut/
-### [AI] Canva phát hành model tạo ảnh riêng đầu tiên – Canva Craft
-> Canva ra mắt Canva Craft, model image generation được train trên template thiết kế của chính họ.
-🔗 https://techcrunch.com/2026/10/22/canva-releases-its-first-image-generation-model/
-### [Heritage] Hội thảo Quốc tế “Generative AI and Cultural Heritage” tại Turin
-> Diễn ra 29–30/10/2026 tại Università di Torino. Tập trung vào synthetic heritage, AI trong số hóa di sản và authenticity.
-🔗 https://www.infoclio.ch/en/generative-ai-and-cultural-heritage
-### [Cơ hội / Vietnam] Triển lãm “Never Been Here” – nghệ thuật số & AI tại TP.HCM
-> Từ 25/10 đến 29/11/2026 tại Gate Gate Gallery (HCMC). Tác phẩm của 2 nghệ sĩ trẻ Việt Nam thắng RMIT Grants 2026.
-🔗 https://www.rmit.edu.vn/news/all-news/2026/oct/never-been-here-exhibition-a-dialogue-between-humanity-and-technology`;
+    function renderFallbackRadar() {
+      const container = document.getElementById('radar-articles-list');
+      if (!container) return;
+      container.innerHTML = `
+        <div class="radar-item">
+          <div class="radar-meta">
+            <span class="radar-tag">AI RESEARCH</span>
+            <span>01:05 UTC · Grok Radar</span>
+          </div>
+          <div class="radar-link">Mô hình lập luận phân tán thế hệ mới công bố kết quả benchmark</div>
+          <p style="font-size:11px; color:var(--ink-soft); margin-top:3px;">Tối ưu hóa chi phí token và tăng độ chính xác phân tích đa bước lên 34%.</p>
+        </div>
+        <div class="radar-item">
+          <div class="radar-meta">
+            <span class="radar-tag">OPEN SOURCE</span>
+            <span>23:40 UTC · Grok Radar</span>
+          </div>
+          <div class="radar-link">Bộ công cụ Agent Workflow nhẹ chạy trực tiếp trên trình duyệt</div>
+          <p style="font-size:11px; color:var(--ink-soft); margin-top:3px;">Tích hợp WebSocket và Web Worker để đồng bộ trạng thái nhiều agent.</p>
+        </div>
+      `;
+    }
+
+    function escapeHtml(s) {
+      return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
 
     fetchRadar();
   </script>
