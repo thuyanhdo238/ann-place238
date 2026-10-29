@@ -45,6 +45,8 @@ Kho cất các công cụ AI, skill và prompt mà Thuy Anh sưu tầm, đã đ�
 | F2 | Thư viện prompt Claude Code (6 nguyên tắc) | Tài liệu | Cách viết prompt hiệu quả | 📖 | [→](F-tai-lieu.md#f2) |
 | F3 | Hướng dẫn Claude Motion | Tài liệu | Dùng Motion khi có gói Team | 📖 | [→](F-tai-lieu.md#f3) |
 | F4 | Knowledge-work-plugins (Anthropic) | Kho plugin | Danh sách ~15 plugin nghề | 📖 | [→](F-tai-lieu.md#f4) |
+| **H** | **KHÁC** | | | | [H-khac.md](H-khac.md) |
+| H1–H6 | Expo Skills, Hallmark, AI Design Skills, OpenBot, Macro, DeepTutor | Skill / app | Dev, thiết kế web, học tập | Xem thẻ | [H-khac.md](H-khac.md) |
 | **G** | **PROMPT MẪU** | | | | [G-prompt.md](G-prompt.md) |
 | G1–G12 | 12 prompt đặt tên sẵn, chia theo việc | Prompt | Copy dán dùng ngay | 🟢 | [G-prompt.md](G-prompt.md) |
 
