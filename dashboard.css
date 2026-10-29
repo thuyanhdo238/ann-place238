@@ -18,3 +18,10 @@
 .office.collapsed{height:38px;aspect-ratio:auto}
 @media(min-width:761px) and (max-width:1100px){.hero{grid-template-columns:minmax(0,1fr) minmax(300px,48%);gap:18px}}
 @media(max-width:760px){.hero{gap:15px}.office{height:auto;aspect-ratio:900/672}.office-bg,.typing-scene{object-position:50% 50%}.office.collapsed{height:38px;aspect-ratio:auto}.office-caption{font-size:9px}.wander{height:62px;width:43px}}
+
+/* Portrait office window occupies about two thirds of the phone viewport. */
+@media(max-width:760px){
+  .office{height:66vh;height:66svh;aspect-ratio:auto}
+  .office-bg,.typing-scene{object-fit:cover;object-position:50% 50%}
+  .office.collapsed{height:38px;aspect-ratio:auto}
+}
