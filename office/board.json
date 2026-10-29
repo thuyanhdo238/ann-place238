@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "salu-first-1000-research",
+      "cycle": "salu-first-1000",
+      "stage": "research",
+      "title": "Tìm đề tài art/design có nguồn",
+      "worker": "radar",
+      "created_at": "2026-10-29T11:24:11.857790+07:00",
+      "due_at": "2026-10-29T09:00:00+07:00",
+      "depends_on": [],
+      "expected_output": "office/artifacts/salu-first-1000-research/research.md",
+      "status": "ready",
+      "reason": "Sẵn sàng bàn giao; chưa xác nhận lịch chạy trong ứng dụng AI",
+      "artifacts": [],
+      "overdue": true
+    },
+    {
+      "id": "salu-first-1000-plan",
+      "cycle": "salu-first-1000",
+      "stage": "plan",
+      "title": "Lập kế hoạch kênh và thử nghiệm nội dung",
+      "worker": "general",
+      "created_at": "2026-10-29T11:24:11.857790+07:00",
+      "due_at": "2026-10-29T10:00:00+07:00",
+      "depends_on": [
+        "salu-first-1000-research"
+      ],
+      "expected_output": "office/artifacts/salu-first-1000-plan/plan.md",
+      "status": "waiting",
+      "reason": "Chờ đầu ra hợp lệ từ bước trước",
+      "artifacts": [],
+      "overdue": true
+    },
+    {
+      "id": "salu-first-1000-script",
+      "cycle": "salu-first-1000",
+      "stage": "script",
+      "title": "Viết kịch bản, storyboard và caption SaLu",
+      "worker": "art",
+      "created_at": "2026-10-29T11:24:11.857790+07:00",
+      "due_at": "2026-10-29T11:00:00+07:00",
+      "depends_on": [
+        "salu-first-1000-plan"
+      ],
+      "expected_output": "office/artifacts/salu-first-1000-script/script.md",
+      "status": "waiting",
+      "reason": "Chờ đầu ra hợp lệ từ bước trước",
+      "artifacts": [],
+      "overdue": true
+    },
+    {
+      "id": "salu-first-1000-video",
+      "cycle": "salu-first-1000",
+      "stage": "video",
+      "title": "Dựng video, âm thanh và phụ đề",
+      "worker": null,
+      "created_at": "2026-10-29T11:24:11.857790+07:00",
+      "due_at": "2026-10-29T14:00:00+07:00",
+      "depends_on": [
+        "salu-first-1000-script"
+      ],
+      "expected_output": "office/artifacts/salu-first-1000-video/video.mp4",
+      "status": "blocked",
+      "reason": "Chưa phân công worker cho bước này",
+      "artifacts": [],
+      "overdue": false
+    },
+    {
+      "id": "salu-first-1000-review",
+      "cycle": "salu-first-1000",
+      "stage": "review",
+      "title": "Kiểm tra nội dung, nguồn, quyền sử dụng và chất lượng",
+      "worker": null,
+      "created_at": "2026-10-29T11:24:11.857790+07:00",
+      "due_at": "2026-10-29T16:00:00+07:00",
+      "depends_on": [
+        "salu-first-1000-video"
+      ],
+      "expected_output": "office/artifacts/salu-first-1000-review/review.json",
+      "status": "blocked",
+      "reason": "Chưa phân công worker cho bước này",
+      "artifacts": [],
+      "overdue": false
+    },
+    {
+      "id": "salu-first-1000-publish",
+      "cycle": "salu-first-1000",
+      "stage": "publish",
+      "title": "Đăng thành phẩm đã đạt điều kiện",
+      "worker": null,
+      "created_at": "2026-10-29T11:24:11.857790+07:00",
+      "due_at": "2026-10-29T18:00:00+07:00",
+      "depends_on": [
+        "salu-first-1000-review"
+      ],
+      "expected_output": "office/artifacts/salu-first-1000-publish/published.json",
+      "status": "blocked",
+      "reason": "Chưa phân công worker cho bước này",
+      "artifacts": [],
+      "overdue": false
+    },
+    {
+      "id": "salu-first-1000-measure",
+      "cycle": "salu-first-1000",
+      "stage": "measure",
+      "title": "Ghi hiệu quả và đề xuất cho vòng sau",
+      "worker": "general",
+      "created_at": "2026-10-29T11:24:11.857790+07:00",
+      "due_at": "2026-10-30T18:00:00+07:00",
+      "depends_on": [
+        "salu-first-1000-publish"
+      ],
+      "expected_output": "office/artifacts/salu-first-1000-measure/metrics.json",
+      "status": "waiting",
+      "reason": "Chờ đầu ra hợp lệ từ bước trước",
+      "artifacts": [],
+      "overdue": false
+    }
+  ],
+  "campaign": {
+    "id": "salu-first-1000",
+    "brief": "Xây kênh SaLu lên các nền tảng để đạt KPI 1.000 người theo dõi.",
+    "brand": "Art Sympathy · SaLu",
+    "scope": "Nghệ thuật và cảm hứng: SaLu lang thang ký họa, kể cách bé nhìn cuộc sống; không chẩn đoán hoặc hứa chữa bệnh.",
+    "target_followers": 1000,
+    "kpi_scope": null,
+    "platforms": [],
+    "deadline": null,
+    "baseline_followers": null,
+    "budget_vnd": null,
+    "state": "brief_received",
+    "notes": "Mục tiêu thử; chưa có dữ liệu tài khoản, mốc ban đầu, thời hạn hoặc kết nối sản xuất/xuất bản. Không cam kết chắc chắn đạt KPI."
+  },
+  "updated_at": "2026-10-29T11:24:11.857790+07:00",
+  "schedule_vn": [
+    "08:00",
+    "10:00",
+    "13:00",
+    "17:00"
+  ],
+  "workers": {
+    "general": {
+      "label": "Leader · Điều phối",
+      "existing": "Báo cáo tuần theo quy tắc",
+      "external_schedule_confirmed": false
+    },
+    "radar": {
+      "label": "Radar · Nghiên cứu",
+      "existing": "RSS và báo cáo Grok",
+      "external_schedule_confirmed": false
+    },
+    "art": {
+      "label": "Art · Nội dung SaLu",
+      "existing": "Chọn nội dung viết sẵn",
+      "external_schedule_confirmed": false
+    },
+    "chance": {
+      "label": "Chance",
+      "existing": "Chọn câu trích dẫn",
+      "external_schedule_confirmed": false
+    },
+    "opportunity": {
+      "label": "Opportunity · Cơ hội",
+      "existing": "RSS cơ hội",
+      "external_schedule_confirmed": false
+    }
+  },
+  "decisions": [
+    {
+      "id": "campaign-platforms",
+      "title": "Chọn nền tảng và tài khoản kênh",
+      "reason": "Brief chưa có thông tin này; không tự đoán thay bạn.",
+      "file": "office/campaign.json"
+    },
+    {
+      "id": "campaign-kpi_scope",
+      "title": "1.000 follow cho từng kênh hay tổng các kênh?",
+      "reason": "Brief chưa có thông tin này; không tự đoán thay bạn.",
+      "file": "office/campaign.json"
+    },
+    {
+      "id": "campaign-deadline",
+      "title": "Chọn thời hạn mục tiêu",
+      "reason": "Brief chưa có thông tin này; không tự đoán thay bạn.",
+      "file": "office/campaign.json"
+    },
+    {
+      "id": "campaign-baseline_followers",
+      "title": "Xác nhận số follow ban đầu",
+      "reason": "Brief chưa có thông tin này; không tự đoán thay bạn.",
+      "file": "office/campaign.json"
+    },
+    {
+      "id": "campaign-budget_vnd",
+      "title": "Xác nhận mức chi: 0 đồng hoặc ngân sách cho phép",
+      "reason": "Brief chưa có thông tin này; không tự đoán thay bạn.",
+      "file": "office/campaign.json"
+    },
+    {
+      "id": "assign-video",
+      "title": "Chọn worker: Dựng video, âm thanh và phụ đề",
+      "reason": "Chưa có worker được xác nhận thực hiện bước này.",
+      "file": "office/config.json"
+    },
+    {
+      "id": "assign-review",
+      "title": "Chọn worker: Kiểm tra nội dung, nguồn, quyền sử dụng và chất lượng",
+      "reason": "Chưa có worker được xác nhận thực hiện bước này.",
+      "file": "office/config.json"
+    },
+    {
+      "id": "assign-publish",
+      "title": "Chọn worker: Đăng thành phẩm đã đạt điều kiện",
+      "reason": "Chưa có worker được xác nhận thực hiện bước này.",
+      "file": "office/config.json"
+    },
+    {
+      "id": "confirm-worker-schedules",
+      "title": "Xác nhận lịch của từng ứng dụng AI",
+      "reason": "GitHub chỉ tạo nhiệm vụ và thu báo cáo; không tự khởi chạy phiên Claude/Grok/ChatGPT.",
+      "file": "office/README.md"
+    }
+  ],
+  "mode": "Bộ điều phối theo quy tắc; chưa phải phiên AI leader tự suy luận",
+  "spending": "Không gọi API AI, không mua dịch vụ; chưa thu thập token thực tế"
+}
