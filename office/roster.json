@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "status": "proposed_not_benchmarked",
+  "note": "Vai đích. Chưa xác nhận tên model/công cụ hoặc năng lực của các lịch AI bên ngoài.",
+  "roles": [
+    {"worker":"general","role":"leader","owns":["brief","plan","allocation","synthesis","optimization"],"model":null,"benchmark_score":null},
+    {"worker":"radar","role":"research","owns":["trend_research","source_ledger","audience_research"],"model":null,"benchmark_score":null},
+    {"worker":"art","role":"creative","owns":["script","storyboard","caption","SaLu_consistency"],"model":null,"benchmark_score":null},
+    {"worker":"chance","role":"production","owns":["video","audio","subtitles","asset_ledger"],"model":null,"benchmark_score":null,"execution_verified":false},
+    {"worker":"opportunity","role":"review_publish","owns":["independent_review","rights_screening","publication","metrics"],"model":null,"benchmark_score":null,"execution_verified":false}
+  ],
+  "review_must_differ_from": ["creative","production"],
+  "benchmark_min_score":80,
+  "benchmark_samples":3,
+  "critical_errors_allowed":0
+}

@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import hashlib
 import tempfile
 import unittest
 from pathlib import Path
@@ -25,6 +26,10 @@ class OfficeTest(unittest.TestCase):
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text('Research with sources')
         r = dict(task_id=task['id'], worker=task['worker'], status='completed', submitted_at=self.now.isoformat(), artifacts=[task['expected_output']], source_urls=['https://example.org'])
+        if task['stage'] == 'research':
+            ledger = p.with_name('sources.json')
+            m.save(ledger, {'sources':[{'id':'S1','url':'https://example.org/source','publisher':'Test','title':'Test','kind':'primary','retrieved_at':self.now.isoformat(),'verification':'checked','evidence_locator':'Test section'}], 'claims':[{'id':'C1','statement':'Fixture','source_ids':['S1'],'support':'direct','verified_by':'radar','checked_at':self.now.isoformat()}]})
+            r['artifacts'].append(str(ledger.relative_to(self.root)))
         r.update(changes)
         m.save(self.root / 'office/submissions' / (task['id'] + '.json'), r)
     def test_idempotence_and_dependency(self):
@@ -73,7 +78,13 @@ class OfficeTest(unittest.TestCase):
         out = self.root / review['expected_output']
         m.save(out, dict(content_pass=True, sources_checked=True, rights_checked=False, platform_checked=True))
         self.assertEqual(m.run(self.root, self.now)['tasks'][4]['status'], 'invalid')
-        m.save(out, dict(content_pass=True, sources_checked=True, rights_checked=True, platform_checked=True))
+        video = a['tasks'][3]
+        signature = hashlib.sha256((self.root / video['expected_output']).read_bytes()).hexdigest()
+        m.save(out, dict(content_pass=True, sources_checked=True, rights_checked=True, platform_checked=True,
+            reviewer='general', checked_at=self.now.isoformat(), decision='pass', risk='green', issues=[],
+            reviewed_artifacts=[dict(path=video['expected_output'],sha256=signature)],
+            assets=[dict(id='A1',type='original',rights_basis='Test fixture',rights_evidence='Test permission',allowed_platforms=['test-channel'],status='cleared')],
+            platform_checks=[dict(platform='test-channel',policy_url='https://example.org/policy',checked_at=self.now.isoformat(),ai_disclosure='not_required_documented')]))
         self.assertEqual(m.run(self.root, self.now)['tasks'][5]['status'], 'blocked')
         cfg['publishing_policy'] = dict(enabled=True, charter_approved=True, channel='test-channel')
         m.save(self.root / 'office/config.json', cfg)

@@ -1,0 +1,15 @@
+{
+  "version":"1.0",
+  "reviewer":"opportunity",
+  "checked_at":"2026-10-29T16:00:00+07:00",
+  "decision":"needs_changes",
+  "risk":"yellow",
+  "content_pass":false,
+  "sources_checked":false,
+  "rights_checked":false,
+  "platform_checked":false,
+  "reviewed_artifacts":[{"path":"office/artifacts/TASK-ID/video.mp4","sha256":"Thay bằng SHA256 của đúng tệp đã xem"}],
+  "assets":[{"id":"A1","type":"music","source_url":"https://example.org/license","rights_basis":"Chưa kiểm tra","rights_evidence":"URL giấy phép hoặc tham chiếu an toàn","allowed_platforms":[],"commercial_use":null,"status":"unresolved"}],
+  "platform_checks":[{"platform":"youtube","policy_url":"https://support.google.com/youtube/answer/14328491?hl=en","checked_at":"2026-10-29T16:00:00+07:00","ai_disclosure":"unresolved","note":"Chưa mở nguồn và đối chiếu nội dung"}],
+  "issues":["Mẫu chưa được điền, không dùng để duyệt tự động"]
+}

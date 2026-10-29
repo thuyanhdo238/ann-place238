@@ -63,3 +63,7 @@ Báo bị chặn:
 Thử tại máy: `python3 office/controller.py`. Kiểm tra: `python3 -m unittest discover -s tests`. Không chạy các script Discord cũ để thử bộ điều phối này.
 
 Dashboard đọc board công khai từ main trên raw.githubusercontent.com để cập nhật theo lần bàn giao, không cần Pages build lại cho mỗi commit do GitHub Actions tạo. Nếu không truy cập được, dùng bản đệm theo lần build; xem thời điểm cập nhật trong trang Văn phòng AI. Các điểm thiếu về chiến lược nằm trong danh sách leader chuẩn bị; chỉ hiện yêu cầu bạn quyết định khi đã có kế hoạch bàn giao. Ngân sách khởi đầu 0 đồng, chi mới phải hỏi.
+
+## Chuẩn 1.0 và kế hoạch kênh
+
+Đọc `office/standards/WORKFLOW.md` và `office/standards/CHANNEL_PLAN.md`. `office/roster.json` là năm vai đích, chưa phải kết quả benchmark hay xác nhận năng lực công cụ. Không tự ghi Chance đã dựng video hoặc Opportunity đã đăng bài chỉ vì có tên trong roster. `sources.json` bắt buộc cho research; review cần reviewer độc lập, căn cứ quyền theo nền tảng và hash đúng video. Validator kiểm hồ sơ, không chứng thực nội dung nguồn hay kết luận pháp lý. Các mẫu trong `office/templates` là mẫu trống/minh họa, không phải bàn giao đã đạt.

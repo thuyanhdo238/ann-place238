@@ -1,5 +1,8 @@
 """File-based office controller. No model calls, credentials, paid APIs or messages."""
 import argparse
+import sys
+sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent))
+from quality import validate_sources, validate_review
 import json
 from datetime import datetime, timedelta
 from pathlib import Path, PurePosixPath
@@ -52,7 +55,7 @@ def artifact_path(root, task, relative):
     return resolved
 
 
-def receipt(root, task, now):
+def receipt(root, task, now, task_map=None):
     p = root / 'office/submissions' / (task['id'] + '.json')
     if not p.exists():
         return None
@@ -75,12 +78,24 @@ def receipt(root, task, now):
         expected_files = [f for f in files if f.name == expected]
         if not expected_files:
             raise ValueError('Thiếu đầu ra bắt buộc: ' + expected)
-        if task['stage'] == 'research' and not r.get('source_urls'):
-            raise ValueError('Nghiên cứu cần liên kết nguồn')
+        if task['stage'] == 'research':
+            if not r.get('source_urls'):
+                raise ValueError('Nghiên cứu cần liên kết nguồn')
+            ledgers = [f for f in files if f.name == 'sources.json']
+            if not ledgers:
+                raise ValueError('Nghiên cứu cần sources.json gắn dữ kiện với nguồn')
+            validate_sources(load(ledgers[0]), now)
         if task['stage'] == 'review':
             review = load(expected_files[0])
             if not all(review.get(k) is True for k in ['content_pass', 'sources_checked', 'rights_checked', 'platform_checked']):
                 raise ValueError('Kiểm duyệt chưa đạt đủ tiêu chí')
+            if not task_map:
+                raise ValueError('Thiếu hồ sơ tác giả/bản video để kiểm duyệt độc lập')
+            cycle_tasks = [x for x in task_map.values() if x['cycle'] == task['cycle']]
+            video = next(x for x in cycle_tasks if x['stage'] == 'video')
+            creators = [x['worker'] for x in cycle_tasks if x['stage'] in ['script','video']]
+            video_file = artifact_path(root, video, video['expected_output'])
+            validate_review(review, task['worker'], creators, video_file, video['expected_output'], now)
         if task['stage'] == 'publish':
             pub = load(expected_files[0])
             if not str(pub.get('url', '')).startswith('https://'):
@@ -129,7 +144,7 @@ def run(root=ROOT, now=None):
         elif t['stage'] == 'publish' and not (cfg['publishing_policy']['enabled'] and cfg['publishing_policy']['charter_approved'] and cfg['publishing_policy']['channel']):
             t.update(status='blocked', reason='Chưa cấu hình kênh và nguyên tắc xuất bản')
         else:
-            evidence = receipt(root, t, now)
+            evidence = receipt(root, t, now, by_id)
             if evidence:
                 t.update(evidence)
             else:
@@ -156,7 +171,7 @@ def run(root=ROOT, now=None):
             'Đọc office/README.md trước khi làm. Chỉ nhận việc có trạng thái ready. Không làm lại việc đã nộp.']
         for t in assigned:
             lines += ['', f"## {t['id']} — {t['status']}", t['title'], 'Hạn: ' + t['due_at'],
-                'Chờ: ' + ', '.join(t['depends_on']), 'Đầu ra: ' + t['expected_output'], 'Ghi chú: ' + t['reason']]
+                'Chờ: ' + ', '.join(t['depends_on']), 'Đầu ra: ' + t['expected_output'], 'Chuẩn chất lượng: office/standards/WORKFLOW.md; kế hoạch kênh: office/standards/CHANNEL_PLAN.md', 'Ghi chú: ' + t['reason']]
         (root / 'office/work-orders').mkdir(parents=True, exist_ok=True)
         (root / 'office/work-orders' / (worker + '.md')).write_text('\n'.join(lines) + '\n', encoding='utf-8')
     today_tasks = [t for t in board['tasks'] if t['cycle'] == cycle]

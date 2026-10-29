@@ -1,0 +1,6 @@
+{
+  "version":"1.0",
+  "sources":[{"id":"S1","url":"https://example.org/original","publisher":"Tên nguồn gốc","title":"Tiêu đề","kind":"primary","published_at":"2026-10-29","retrieved_at":"2026-10-29T09:00:00+07:00","verification":"checked","evidence_locator":"Mục chứa thông tin; chỉ điền sau khi đã mở và đọc"}],
+  "claims":[{"id":"C1","statement":"Dữ kiện cần kiểm tra","source_ids":["S1"],"support":"direct","verified_by":"radar","checked_at":"2026-10-29T09:00:00+07:00"}],
+  "note":"Đây là mẫu, không phải nguồn đã được kiểm chứng; thay toàn bộ dữ liệu ví dụ."
+}
