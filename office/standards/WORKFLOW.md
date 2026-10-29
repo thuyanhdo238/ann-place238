@@ -2,19 +2,23 @@
 
 Trạng thái: bản chuẩn hóa để thử nghiệm, chưa kích hoạt workflow lên main. Áp dụng brief SaLu / Art Sympathy: art và inspiration; không tự chuyển sang tư vấn sức khỏe tinh thần. Mục tiêu tăng trưởng là giả thuyết cần thử và đo, không phải bảo đảm 1.000 follow.
 
-## 1. Năm vị trí AI
+## 1. Đúng năm ứng dụng đã có
 
-| Vị trí | Mã worker trong repo | Trách nhiệm | Cách chọn AI/công cụ phù hợp | Đầu ra |
+Chủ dự án xác nhận: **Claude, ChatGPT, Grok, Google AI Studio, GitHub Copilot**. Không yêu cầu mua thêm AI thứ sáu. Phân vai dưới đây là thiết kế thử ban đầu dựa trên công việc/công cụ, không phải kết quả xếp hạng hiệu năng.
+
+| Ứng dụng | Mã worker | Vai chính | Đầu ra | Kiểm tra chéo |
 | --- | --- | --- | --- | --- |
-| Leader | general | Chuyển brief thành mục tiêu đo được, kế hoạch, phân công, thu báo cáo và quyết định ưu tiên | Lập kế hoạch bám ràng buộc, đọc đủ hồ sơ, không tự báo xong khi thiếu bằng chứng | plan.md, phân công, báo cáo và đề xuất |
-| Nghiên cứu | radar | Tìm xu hướng, khán giả, kênh tham khảo; xác minh dữ kiện và thời điểm | Thực sự truy cập/tìm được web, mở được nguồn gốc; độ chính xác hơn số lượng tin | research.md và sources.json |
-| Sáng tạo | art | Concept, lời kể SaLu, storyboard, caption; giữ nhận diện và phạm vi | Chất lượng lời kể/hình ảnh, tính nhất quán SaLu, mức phù hợp brief | script.md, storyboard, shot list, caption |
-| Sản xuất | chance | Dựng hình, motion, âm thanh, phụ đề, xuất đúng định dạng | Có công cụ thật để tạo/xuất video và tệp; không chọn chỉ vì viết prompt tốt | video.mp4, assets.json, thumbnail, phụ đề |
-| Kiểm duyệt và xuất bản | opportunity | Độc lập kiểm tra nguồn, quyền sử dụng, chất lượng và quy định kênh; đăng đúng bản đã đạt; đo hiệu quả | Khả năng phát hiện sai/thiếu quyền, so sánh phiên bản, thao tác kênh được ủy quyền | review.json, published.json, metrics.json |
+| Claude | general | Leader, lập kế hoạch, giao việc, tổng hợp; duyệt biên tập/quyền sử dụng cuối | plan.md, báo cáo, review.json có chứng cứ | Không tự duyệt video do chính phiên mình tạo; Grok đối chiếu dữ kiện, Copilot kiểm cấu trúc/hash |
+| Grok | radar | Research: trend, khán giả, đối thủ và nguồn gốc | research.md, sources.json, đề xuất đề tài | Claude đọc lại nguồn quan trọng; không tin trend chỉ vì có trên X |
+| ChatGPT | art | Creative: định hướng hình ảnh SaLu, kịch bản, storyboard, caption | script.md, storyboard, hướng dẫn hình ảnh | Claude duyệt nội dung; có thể kiểm tra chéo bản dựng Google AI Studio, không tự duyệt kịch bản mình viết |
+| Google AI Studio | chance | Ứng viên production: tư liệu hình/âm thanh/video theo storyboard, trong tính năng tài khoản thực có | Tệp media thật và asset ledger | ChatGPT đối chiếu nhận diện hình ảnh; Claude duyệt nguồn/quyền; chưa có công cụ/xuất tệp thì blocked |
+| GitHub Copilot | opportunity | Engineering/QA: workflow, script dựng/xuất nếu khả thi, kiểm schema/hash, test và dashboard | Code/PR, kết quả kiểm tra, adapter xuất bản nếu được cấp quyền | Không thay reviewer biên tập/pháp lý; có Copilot chat không tự chứng minh đã có cloud coding agent |
 
-Đây là **vai đích**, chưa phải tuyên bố các script cũ đã có các năng lực ấy. Chance cũ chọn trích dẫn; Opportunity cũ đọc RSS. Chỉ xác nhận vai thực thi sau bài thử thực tế. Năm mã worker không chứng minh đã có năm ứng dụng AI đang chạy tự động.
+**Reviewer là trách nhiệm kiểm tra chéo, không cần thêm một ứng dụng thứ sáu.** Claude chịu trách nhiệm kết luận biên tập sau khi nhận hồ sơ; Grok kiểm nguồn; ChatGPT đối chiếu hình; Copilot kiểm kỹ thuật. Chứng cứ chưa rõ thì sửa/thay asset trước, không tự duyệt để đủ lịch.
 
-Tên nhà cung cấp/model và phiên bản ghi trong bản đánh giá sau khi biết đúng các tài khoản/công cụ đang có. Không mặc định một thương hiệu mạnh nhất trong mọi nhiệm vụ. Một ứng dụng có thể đảm nhiệm hai vị trí bằng phiên/tác vụ riêng, nhưng reviewer phải khác worker sáng tạo và sản xuất; nếu dùng cùng model, mức độc lập hạn chế vẫn phải được ghi nhận.
+Cấu hình thực thi hiện vẫn giữ các bước chưa xác nhận ở trạng thái chờ/bị chặn. Việc gắn Google AI Studio với production không chứng minh đang render video, có quota miễn phí hay có lịch tự chạy. Copilot không tự có quyền đăng mạng xã hội vì đang nằm trong GitHub.
+
+Tên model/version, quota và khả năng chạy theo lịch phải được ghi sau bài thử. Các script Chance/Opportunity cũ lần lượt chọn quote và RSS; không được gọi chúng là pipeline production/QA mới khi chưa thay đúng runner. Một thương hiệu có nhiều sản phẩm/chế độ; phải kiểm đúng sản phẩm và gói tài khoản của bạn.
 
 ## 2. Phân công dựa trên kết quả thử
 
@@ -26,7 +30,7 @@ Dùng cùng 3 bài mẫu art/inspiration cho các ứng viên, cùng đầu vào
 | Nghiên cứu | Dữ kiện đúng 35; nguồn gốc kiểm tra được 30; tính mới/phù hợp 25; thời gian 10 |
 | Sáng tạo | Giữ SaLu 30; câu chuyện/hình ảnh 30; phù hợp brief 20; đúng dữ kiện/bàn giao 20 |
 | Sản xuất | Video hoàn chỉnh dùng được 35; đúng storyboard 25; hình/âm thanh/phụ đề 25; thời gian 15 |
-| Reviewer | Phát hiện lỗi cài sẵn 40; hồ sơ quyền đầy đủ 30; đúng phiên bản/kênh 20; thời gian 10 |
+| Nhóm kiểm duyệt chéo | Phát hiện lỗi cài sẵn 40; hồ sơ quyền đầy đủ 30; đúng phiên bản/kênh 20; thời gian 10 |
 
 Ngưỡng nội bộ đề xuất: ít nhất 80/100, không có lỗi nghiêm trọng (bịa nguồn, giấy phép chưa rõ mà duyệt, sai SaLu, không xuất được tệp, đăng nhầm phiên bản). Không tự điền điểm khi chưa thử. Chi phí token chỉ ghi khi có số đo; không đổi giá quy đổi thành hóa đơn thật.
 
@@ -40,7 +44,7 @@ Ngưỡng nội bộ đề xuất: ít nhất 80/100, không có lỗi nghiêm t
 | Kịch bản | Creative | Mỗi dữ kiện có claim id; storyboard, asset list và caption cùng phiên bản |
 | Sản xuất | Production | Video thật, phụ đề/âm lượng/tỷ lệ được xem thử; mọi asset có hồ sơ quyền |
 | Kiểm duyệt | Reviewer | Đối chiếu nguồn độc lập; rights ledger đầy đủ; chính sách từng nền tảng được mở và ghi ngày; đúng hash của tệp |
-| Đăng | Reviewer/publisher | Có kết nối thao tác kênh, quy tắc xuất bản được chấp thuận, bản kiểm duyệt đạt; lưu link và idempotency key |
+| Đăng | Claude duyệt; runner được ủy quyền đăng | Có kết nối thao tác kênh, quy tắc xuất bản được chấp thuận, bản kiểm duyệt đạt; lưu link và idempotency key |
 | Đo/cải thiện | Reviewer thu số, Leader phân tích | Số thực đo 24h/72h/7 ngày theo điều kiện truy cập; leader quyết định thử nghiệm tiếp theo |
 
 Trạng thái chuẩn: chờ đầu vào → sẵn sàng nhận việc → báo đang làm → có bàn giao → đang kiểm tra → đạt / cần sửa / bị chặn → đã đăng → đo kết quả. Bộ controller hiện chỉ xác thực sẵn sàng/chờ/bị chặn/bàn giao; không giả trạng thái đang làm khi thiếu biên nhận bắt đầu.
@@ -96,3 +100,12 @@ Thông tin chiến lược còn thiếu là việc leader chuẩn bị đề xu�
 - Meta AI info: https://about.fb.com/news/2024/04/metas-approach-to-labeling-ai-generated-content-and-manipulated-media/ (mô tả cách gắn nhãn, không thay toàn bộ điều khoản quyền sử dụng/đăng bài).
 
 Danh sách này là điểm bắt đầu tra cứu; metadata văn bản không thay việc đọc điều khoản áp dụng. Không dùng riêng luật sửa đổi 2022 như thể đã bao gồm toàn bộ thay đổi đến 2026. Cập nhật hồ sơ chính sách khi đổi nền tảng hoặc có thay đổi; đọc lại tại lần duyệt trước khi đăng.
+
+## 9. Căn cứ khả năng công cụ, kiểm tra 29/10/2026
+
+- Claude Cowork có recurring tasks và dùng connected tools/skills: https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork . Phải thử quyền đọc/ghi GitHub trong tác vụ cụ thể.
+- Grok Automations có lịch và connector theo mỗi lần chạy: https://x.ai/news/grok-automations . Phải kiểm đầu ra commit thực, không coi thông báo succeeded là đủ.
+- Google AI Studio Build hỗ trợ import/sync GitHub và tạo ứng dụng: https://ai.google.dev/gemini-api/docs/aistudio-build-mode . Tài liệu này không đủ để xác nhận lịch production hoặc quyền tạo video của tài khoản hiện có.
+- GitHub Copilot cloud agent nhận việc từ issue/prompt và tạo PR, yêu cầu khả năng/gói tương ứng: https://docs.github.com/en/copilot/how-tos/copilot-on-github/use-copilot-agents/kick-off-a-task . Không mua/nâng gói tự động. Bước chat thông thường khác việc đã khởi chạy cloud agent.
+
+Bảng trên không khẳng định ChatGPT tự chạy toàn bộ công cụ trong một scheduled task; cần thử đúng chế độ đang dùng. Mỗi AI phải hoàn thành một vòng nhận việc–ghi tệp–nộp biên nhận trước khi đánh dấu sẵn sàng tự động.

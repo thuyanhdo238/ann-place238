@@ -38,6 +38,8 @@ Không bắt SaLu nhảy theo mọi trend. Research chấm đề tài theo mức
 
 ## 4. Lộ trình và phân công
 
+Ứng dụng phụ trách: Leader = Claude; Research = Grok; Creative = ChatGPT; Production ứng viên = Google AI Studio; Engineering/QA = GitHub Copilot. Kiểm duyệt nội dung/quyền cuối do Claude chịu trách nhiệm, có Grok/ChatGPT đối chiếu, Copilot kiểm kỹ thuật. Đây là phân vai dự kiến; chưa xác nhận runner production và xuất bản.
+
 | Thời gian tương đối | Công việc | Owner | Đầu ra/điều kiện |
 | --- | --- | --- | --- |
 | Ngày 1–2 | Kiểm công cụ/tài khoản, baseline; bài thử năng lực 5 vai; kiểm chính sách | Leader + từng worker; reviewer chấm độc lập | Roster có bằng chứng, danh sách chặn và kết quả benchmark; chưa có quyền thì không tự mở kênh/đăng |
