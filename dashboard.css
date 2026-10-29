@@ -11,8 +11,6 @@
 @media(max-width:760px){.typing-scene{object-position:50% 52%}.wander{width:38px;height:54px}}
 @media(prefers-reduced-motion:reduce){.wander img{animation:none!important}body.motion-enabled .wander{animation:none!important}body.motion-enabled .wander img{animation:salu-breathe 4s ease-in-out infinite alternate!important}}
 
-.flow-task{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--border)}.flow-task:last-child{border-bottom:0}.flow-task p{font-size:12px;line-height:1.7;margin:7px 0}.flow-task small{font-size:10px;overflow-wrap:anywhere;color:var(--muted)}.flow-number{flex:0 0 27px;height:27px;border-radius:50%;background:#eee6f0;color:var(--wine);display:grid;place-items:center;font-size:12px}.card.lower{margin-bottom:20px}.flow-task h3{font-size:17px}
-
 /* Give the office illustration enough room to read on desktop and phone. */
 .hero{grid-template-columns:minmax(0,1fr) minmax(360px,44%);gap:28px;padding:26px 0}
 .office{width:100%;height:auto;aspect-ratio:900/672}
@@ -27,3 +25,4 @@
   .office-bg,.typing-scene{object-fit:cover;object-position:50% 50%}
   .office.collapsed{height:38px;aspect-ratio:auto}
 }
+.flow-task{display:flex;gap:14px;padding:16px 0;border-top:1px solid var(--line)}.flow-task:first-of-type{border:0}.flow-number{flex:none;height:30px;width:30px;border-radius:50%;background:var(--lav);color:var(--wine);display:grid;place-items:center;font-family:"Noto Serif",serif}.flow-task p{margin:4px 0;font-size:11px;color:var(--muted)}.flow-task p b{color:var(--ink)}.agent-card .chip{display:inline-block}.lower+.stats{margin-top:14px}
