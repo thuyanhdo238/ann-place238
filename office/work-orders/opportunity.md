@@ -1,6 +1,6 @@
 # Nhiệm vụ cho opportunity
 
-Cập nhật: 2026-10-29T20:07:03.206718+07:00
+Cập nhật: 2026-10-30T13:43:23.080020+07:00
 
 Brief: Xây kênh SaLu lên các nền tảng để đạt KPI 1.000 người theo dõi.
 Phạm vi: Nghệ thuật và cảm hứng: SaLu lang thang ký họa, kể cách bé nhìn cuộc sống; không chẩn đoán hoặc hứa chữa bệnh.
