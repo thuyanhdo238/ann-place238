@@ -1,6 +1,6 @@
 # Nhiệm vụ cho art
 
-Cập nhật: 2026-10-30T23:28:40.790343+07:00
+Cập nhật: 2026-10-31T13:34:03.648263+07:00
 
 Brief: Xây kênh SaLu lên các nền tảng để đạt KPI 1.000 người theo dõi.
 Phạm vi: Nghệ thuật và cảm hứng: SaLu lang thang ký họa, kể cách bé nhìn cuộc sống; không chẩn đoán hoặc hứa chữa bệnh.
